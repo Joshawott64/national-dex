@@ -12,93 +12,115 @@ export class Pokemon extends Model {
   }
 }
 
-Pokemon.init({
-  pokemonId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Pokemon.init(
+  {
+    pokemonId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    baseExperience: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    height: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    isDefault: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    order: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    weight: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    officialArtwork: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    officialArtworkShiny: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    giph: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    giphFemale: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    giphShiny: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    giphFemaleShiny: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    legacyIcon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    legacyIconFemale: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    latestIcon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    latestIconFemale: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    latestCry: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    legacyCry: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    baseHp: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    baseAttack: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    baseDefense: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    baseSpecialAttack: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    baseSpecialDefense: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    baseSpeed: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  baseExperience: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  height: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  isDefault: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
-  order: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  weight: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  officialArtwork: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  officialArtworkShiny: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  giph: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  giphFemale: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  giphShiny: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  giphFemaleShiny: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  latestCry: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  legacyCry: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  baseHp: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  baseAttack: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  baseDefense: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  baseSpecialAttack: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  baseSpecialDefense: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  baseSpeed: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "pokemon",
+    sequelize: db,
+  }
+);
 
 export class Move extends Model {
   // simplify console logs
@@ -107,97 +129,103 @@ export class Move extends Model {
   }
 }
 
-Move.init({
-  moveId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Move.init(
+  {
+    moveId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    accuracy: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    effectChance: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    pp: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    priority: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    power: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    damageClass: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    ailment: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    minHits: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    maxHits: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minTurns: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    maxTurns: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    drain: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    healing: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    critRate: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    ailmentChance: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    flinchChance: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    statChance: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    target: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    flavorText: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  accuracy: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  effectChance: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  pp: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  priority: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  power: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  damageClass: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  ailment: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  minHits: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  maxHits: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  minTurns: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  maxTurns: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  drain: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  healing: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  critRate: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  ailmentChance: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  flinchChance: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  statChance: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  target: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  flavorText: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "move",
+    sequelize: db,
+  }
+);
 
 export class Moveset extends Model {
   // simplify console logs
@@ -206,13 +234,19 @@ export class Moveset extends Model {
   }
 }
 
-Moveset.init({
-  movesetId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Moveset.init(
+  {
+    movesetId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
   },
-});
+  {
+    modelName: "moveset",
+    sequelize: db,
+  }
+);
 
 export class Type extends Model {
   // simplify console logs
@@ -221,17 +255,23 @@ export class Type extends Model {
   }
 }
 
-Type.init({
-  typeId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Type.init(
+  {
+    typeId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "type",
+    sequelize: db,
+  }
+);
 
 export class Ability extends Model {
   // simplify console logs
@@ -240,25 +280,31 @@ export class Ability extends Model {
   }
 }
 
-Ability.init({
-  abilityId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Ability.init(
+  {
+    abilityId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    effect: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    shortEffect: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  effect: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  shortEffect: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "ability",
+    sequelize: db,
+  }
+);
 
 export class Species extends Model {
   // simplify console logs
@@ -267,21 +313,27 @@ export class Species extends Model {
   }
 }
 
-Species.init({
-  speciesId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Species.init(
+  {
+    speciesId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    // chainId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  chainId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "species",
+    sequelize: db,
+  }
+);
 
 export class Generation extends Model {
   // simplify console logs
@@ -290,21 +342,27 @@ export class Generation extends Model {
   }
 }
 
-Generation.init({
-  generationId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Generation.init(
+  {
+    generationId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    genName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    regionName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  genName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  regionName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "generation",
+    sequelize: db,
+  }
+);
 
 export class User extends Model {
   // simplify console logs
@@ -313,21 +371,27 @@ export class User extends Model {
   }
 }
 
-User.init({
-  userId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+User.init(
+  {
+    userId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "user",
+    sequelize: db,
+  }
+);
 
 export class UserPokemon extends Model {
   // simplify console logs
@@ -336,17 +400,23 @@ export class UserPokemon extends Model {
   }
 }
 
-UserPokemon.init({
-  userPokemonId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+UserPokemon.init(
+  {
+    userPokemonId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nickname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  nickname: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "user_pokemon",
+    sequelize: db,
+  }
+);
 
 export class Team extends Model {
   // simplify console logs
@@ -355,17 +425,23 @@ export class Team extends Model {
   }
 }
 
-Team.init({
-  teamId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+Team.init(
+  {
+    teamId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    modelName: "team",
+    sequelize: db,
+  }
+);
 
 // Ability table relationships
 Ability.hasMany(Pokemon, { foreignKey: "ability1Id" });
