@@ -117,7 +117,7 @@ Move.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  accurarcy: {
+  accuracy: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
