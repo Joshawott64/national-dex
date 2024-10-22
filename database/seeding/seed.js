@@ -118,18 +118,18 @@ const movesInDB = allMoves.map(async (move) => {
   let flavorText = "";
 
   // sometimes move.meta is null (for some reason)
-  let ailment = "";
-  let ailmentChance = "";
-  let category = "";
-  let critRate = "";
-  let drain = "";
-  let flinchChance = "";
-  let healing = "";
-  let minHits = "";
-  let maxHits = "";
-  let minTurns = "";
-  let maxTurns = "";
-  let statChance = "";
+  let ailment = 0;
+  let ailmentChance = 0;
+  let category = 0;
+  let critRate = 0;
+  let drain = 0;
+  let flinchChance = 0;
+  let healing = 0;
+  let minHits = 0;
+  let maxHits = 0;
+  let minTurns = 0;
+  let maxTurns = 0;
+  let statChance = 0;
 
   if (move.flavor_text_entries.length > 0) {
     // match flavor text in english language
@@ -270,6 +270,6 @@ const typesInDB = typeData.map(async (type) => {
   return newType;
 });
 
-await db.close();
+// await db.close();
 
 console.log("Finished seeding database!");
