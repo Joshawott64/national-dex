@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import Navbar from "./components/navbar/Navbar.jsx";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <div>
+    <div className="h-svh">
+      <div className="fixed w-full">
+        <Navbar />
+      </div>
+      <div className="h-full w-full">
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 

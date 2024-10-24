@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         primary: "#FB5A5A",
+        "navbar-circle": "#48F6F6",
         "title-yellow": "#FFD029",
         "title-blue": "#1970C0",
         "accent-gray-dark": "#727272",
