@@ -9,6 +9,8 @@ import db, {
   User,
   UserPokemon,
   Team,
+  DexEntry,
+  Version,
 } from "../model.js";
 import abilityData0 from "../seeding/table_JSONs/abilities/all_abilities_0.json" assert { type: "json" };
 import abilityData1 from "../seeding/table_JSONs/abilities/all_abilities_1.json" assert { type: "json" };
@@ -32,6 +34,7 @@ import pokemonSpeciesData3 from "../seeding/table_JSONs/species/all_pokemon_spec
 import pokemonSpeciesData4 from "../seeding/table_JSONs/species/all_pokemon_species_4.json" assert { type: "json" };
 import pokemonSpeciesData5 from "../seeding/table_JSONs/species/all_pokemon_species_5.json" assert { type: "json" };
 import typeData from "../seeding/table_JSONs/types/all_types_0.json" assert { type: "json" };
+import versionData from "../seeding/table_JSONs/versions/all_versions_0.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await db.sync({ force: true });
@@ -209,8 +212,26 @@ const movesInDB = allMoves.map(async (move) => {
   return newMove;
 });
 
+const versionsInDB = versionData.map(async (version) => {
+  const name =
+    version.names[
+      version.names.findIndex((name) => {
+        return name.language.name === "en";
+      })
+    ].name;
+
+  const newVersion = await Version.create({ name });
+
+  return newVersion;
+});
+
 const speciesInDB = allPokemonSpecies.map(async (species) => {
-  const { name } = species;
+  const name =
+    species.names[
+      species.names.findIndex((name) => {
+        return name.language.name === "en";
+      })
+    ].name;
   const chainId = species["evolution_chain"].url.replace(
     /(^https\:\/\/pokeapi\.co\/api\/v2\/evolution\-chain\/|\/$)/g,
     ""
@@ -219,11 +240,50 @@ const speciesInDB = allPokemonSpecies.map(async (species) => {
     /(^https\:\/\/pokeapi\.co\/api\/v2\/generation\/|\/$)/g,
     ""
   );
+  const dexNumber = species["pokedex_numbers"][0]["entry_number"];
+  const isBaby = species["is_baby"];
+  const isLegendary = species["is_legendary"];
+  const isMythical = species["is_mythical"];
+  const formsSwitchable = species["forms_switchable"];
+  const genus =
+    species.genera[
+      species.genera.findIndex((genus) => {
+        return genus.language.name === "en";
+      })
+    ].genus;
+  const hasGenderDifferences = species["has_gender_differences"];
 
   const newSpecies = await Species.create({
     name,
     chainId,
     generationId,
+    dexNumber,
+    isBaby,
+    isLegendary,
+    isMythical,
+    formsSwitchable,
+    genus,
+    hasGenderDifferences,
+  });
+
+  // create dex entries table entries
+  const dexEntriesInDb = species["flavor_text_entries"].map(async (entry) => {
+    const dexEntry = entry["flavor_text"];
+    const language = entry.language.name;
+    const versionId = entry.version.url.replace(
+      /(^https\:\/\/pokeapi\.co\/api\/v2\/version\/|\/$)/g,
+      ""
+    );
+    const speciesId = species.id;
+
+    const newDexEntry = await DexEntry.create({
+      dexEntry,
+      language,
+      versionId,
+      speciesId,
+    });
+
+    return newDexEntry;
   });
 
   return newSpecies;

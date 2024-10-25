@@ -6,10 +6,10 @@ import "./App.css";
 function App() {
   return (
     <div className="h-svh">
-      <div className="fixed w-full">
+      <div className="absolute w-full">
         <Navbar />
       </div>
-      <div className="h-full w-full pt-36">
+      <div className="h-full w-full pt-36 pb-28">
         <Outlet />
       </div>
     </div>

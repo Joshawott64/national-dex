@@ -328,6 +328,34 @@ Species.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    dexNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    isBaby: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    isLegendary: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    isMythical: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    formsSwitchable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    genus: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    hasGenderDifferences: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
   },
   {
     modelName: "species",
@@ -443,6 +471,60 @@ Team.init(
   }
 );
 
+export class Version extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Version.init(
+  {
+    versionId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+  },
+  {
+    modelName: "version",
+    sequelize: db,
+  }
+);
+
+export class DexEntry extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+DexEntry.init(
+  {
+    dexEntryId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    dexEntry: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    language: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+  },
+  {
+    modelName: "dex_entry",
+    sequelize: db,
+  }
+);
+
 // Ability table relationships
 Ability.hasMany(Pokemon, { foreignKey: "abilityId" });
 Ability.hasMany(Pokemon, { foreignKey: "ability2Id" });
@@ -463,6 +545,8 @@ Move.belongsTo(Type, { foreignKey: "typeId" });
 // Species table relationships
 Species.hasMany(Pokemon, { foreignKey: "speciesId" });
 Pokemon.belongsTo(Species, { foreignKey: "speciesId" });
+Species.hasMany(DexEntry, { foreignKey: "speciesId" });
+DexEntry.belongsTo(Species, { foreignKey: "speciesId" });
 
 // Generation table relationships
 Generation.hasMany(Species, { foreignKey: "generationId" });
@@ -500,6 +584,10 @@ Team.belongsTo(UserPokemon, { foreignKey: "userPokemonId" });
 // User table relationships
 User.hasMany(UserPokemon, { foreignKey: "userId" });
 UserPokemon.belongsTo(User, { foreignKey: "userId" });
+
+// Version table relationships
+Version.hasMany(DexEntry, { foreignKey: "versionId" });
+DexEntry.belongsTo(Version, { foreignKey: "versionId" });
 
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
   console.log("Syncing database...");

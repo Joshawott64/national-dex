@@ -9,12 +9,16 @@ import db, {
   User,
   UserPokemon,
   Team,
+  Version,
+  DexEntry,
 } from "../database/model.js";
 import { Sequelize } from "sequelize";
 
 const handlerFunctions = {
   getAllPokemon: async (req, res) => {
-    const pokemonData = await Pokemon.findAll();
+    const pokemonData = await Pokemon.findAll({
+      order: ["pokemonId"],
+    });
 
     res.status(200).send(pokemonData);
   },

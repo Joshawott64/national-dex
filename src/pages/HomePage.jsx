@@ -7,7 +7,7 @@ import SearchBar from "../components/home_page/SearchBar.jsx";
 
 const HomePage = () => {
   // state values
-  const [pokemonData, setPokemonData] = useState();
+  const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
     axios.get("/api/pokemon/all").then((res) => {
@@ -17,11 +17,11 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="px-10">
+    <div className="h-full px-10">
       <Filters />
       <HamburgerMenu />
       <SearchBar />
-      <PokemonList />
+      <PokemonList pokemonData={pokemonData} />
     </div>
   );
 };
