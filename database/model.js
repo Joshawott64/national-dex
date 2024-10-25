@@ -324,10 +324,10 @@ Species.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    // chainId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
+    chainId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     modelName: "species",
@@ -444,7 +444,7 @@ Team.init(
 );
 
 // Ability table relationships
-Ability.hasMany(Pokemon, { foreignKey: "ability1Id" });
+Ability.hasMany(Pokemon, { foreignKey: "abilityId" });
 Ability.hasMany(Pokemon, { foreignKey: "ability2Id" });
 Ability.hasMany(Pokemon, { foreignKey: "ability3Id" });
 Pokemon.belongsTo(Ability, { foreignKey: "abilityId" });
@@ -453,7 +453,7 @@ Ability.hasMany(UserPokemon, { foreignKey: "abilityId" });
 UserPokemon.belongsTo(Ability, { foreignKey: "abilityId" });
 
 // Type table relationships
-Type.hasMany(Pokemon, { foreignKey: "type1Id" });
+Type.hasMany(Pokemon, { foreignKey: "typeId" });
 Type.hasMany(Pokemon, { foreignKey: "type2Id" });
 Pokemon.belongsTo(Type, { foreignKey: "typeId" });
 
@@ -500,5 +500,11 @@ Team.belongsTo(UserPokemon, { foreignKey: "userPokemonId" });
 // User table relationships
 User.hasMany(UserPokemon, { foreignKey: "userId" });
 UserPokemon.belongsTo(User, { foreignKey: "userId" });
+
+if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
+  console.log("Syncing database...");
+  await db.sync();
+  console.log("Finished syncing database!");
+}
 
 export default db;

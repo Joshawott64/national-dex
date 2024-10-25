@@ -14,12 +14,12 @@ import { Sequelize } from "sequelize";
 
 const handlerFunctions = {
   getAllPokemon: async (req, res) => {
-    const pokemonData = Pokemon.findAll();
+    const pokemonData = await Pokemon.findAll();
 
     res.status(200).send(pokemonData);
   },
   getRandomPokemon: async (req, res) => {
-    const randomPokemonData = Pokemon.findOne({
+    const randomPokemonData = await Pokemon.findOne({
       order: [Sequelize.fn("RAND")],
     });
 
@@ -28,7 +28,7 @@ const handlerFunctions = {
   getPokemonById: async (req, res) => {
     const id = req.params;
 
-    const pokemonData = Pokemon.findOne({
+    const pokemonData = await Pokemon.findOne({
       where: { pokemonId: id },
     });
 

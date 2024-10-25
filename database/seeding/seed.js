@@ -66,9 +66,6 @@ const allPokemonSpecies = [
   ...pokemonSpeciesData5,
 ];
 
-// console.log("allAbilities[0]:", allAbilities[0]);
-// console.log("allAbilities[0]:", allAbilities[0].effect_entries[1].effect);
-
 const abilitiesInDB = allAbilities.map(async (ability) => {
   const { name } = ability;
   // not every move has an effect and shortEffect
@@ -111,6 +108,16 @@ const generationsInDB = generationData.map(async (generation) => {
   });
 
   return newGeneration;
+});
+
+const typesInDB = typeData.map(async (type) => {
+  const { name } = type;
+
+  const newType = await Type.create({
+    name,
+  });
+
+  return newType;
 });
 
 const movesInDB = allMoves.map(async (move) => {
@@ -156,15 +163,27 @@ const movesInDB = allMoves.map(async (move) => {
     statChance = move.meta.stat_chance;
   }
 
-  const { name, accuracy, effectChance, pp, priority, power } = move;
+  const { name, accuracy, effect_chance, pp, priority, power } = move;
 
   const damageClass = move.damage_class.name;
   const target = move.target.name;
+  let typeId = move.type.url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/type\/|\/$)/g,
+    ""
+  );
+  const generationId = move.generation.url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/generation\/|\/$)/g,
+    ""
+  );
+
+  if (typeId === "10002") {
+    typeId = 21;
+  }
 
   const newMove = await Move.create({
     name,
     accuracy,
-    effectChance,
+    effectChance: effect_chance,
     pp,
     priority,
     power,
@@ -183,13 +202,35 @@ const movesInDB = allMoves.map(async (move) => {
     statChance,
     target,
     flavorText,
+    typeId,
+    generationId,
   });
 
   return newMove;
 });
 
+const speciesInDB = allPokemonSpecies.map(async (species) => {
+  const { name } = species;
+  const chainId = species["evolution_chain"].url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/evolution\-chain\/|\/$)/g,
+    ""
+  );
+  const generationId = species.generation.url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/generation\/|\/$)/g,
+    ""
+  );
+
+  const newSpecies = await Species.create({
+    name,
+    chainId,
+    generationId,
+  });
+
+  return newSpecies;
+});
+
 const pokemonInDB = allPokemon.map(async (pokemon) => {
-  const { name, baseExperience, height, isDefault, order, weight } = pokemon;
+  const { name, base_experience, height, is_default, order, weight } = pokemon;
 
   const latestCry = pokemon.cries.latest;
   const legacyCry = pokemon.cries.legacy;
@@ -215,14 +256,50 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
   const baseSpecialAttack = pokemon.stats[3].base_stat;
   const baseSpecialDefense = pokemon.stats[4].base_stat;
   const baseSpeed = pokemon.stats[5].base_stat;
+  const abilityId = pokemon.abilities[0].ability.url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/ability\/|\/$)/g,
+    ""
+  );
+  const ability2Id =
+    pokemon.abilities.length > 1
+      ? pokemon.abilities[1].ability.url.replace(
+          /(^https\:\/\/pokeapi\.co\/api\/v2\/ability\/|\/$)/g,
+          ""
+        )
+      : null;
+  const ability3Id =
+    pokemon.abilities.length > 2
+      ? pokemon.abilities[2].ability.url.replace(
+          /(^https\:\/\/pokeapi\.co\/api\/v2\/ability\/|\/$)/g,
+          ""
+        )
+      : null;
+  const typeId = pokemon.types[0].type.url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/type\/|\/$)/g,
+    ""
+  );
+  const type2Id =
+    pokemon.types.length > 1
+      ? pokemon.types[1].type.url.replace(
+          /(^https\:\/\/pokeapi\.co\/api\/v2\/type\/|\/$)/g,
+          ""
+        )
+      : null;
+  const speciesId = pokemon.species.url.replace(
+    /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon\-species\/|\/$)/g,
+    ""
+  );
 
   const newPokemon = await Pokemon.create({
     name,
-    baseExperience,
+    baseExperience: base_experience,
     height,
-    isDefault,
+    isDefault: is_default,
     order,
     weight,
+    abilityId,
+    ability2Id,
+    ability3Id,
     officialArtwork,
     officialArtworkShiny,
     giph,
@@ -241,33 +318,12 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
     baseSpecialAttack,
     baseSpecialDefense,
     baseSpeed,
+    typeId,
+    type2Id,
+    speciesId,
   });
 
   return newPokemon;
-});
-
-const speciesInDB = allPokemonSpecies.map(async (species) => {
-  const {
-    name,
-    // chainId
-  } = species;
-
-  const newSpecies = await Species.create({
-    name,
-    // chainId,
-  });
-
-  return newSpecies;
-});
-
-const typesInDB = typeData.map(async (type) => {
-  const { name } = type;
-
-  const newType = await Type.create({
-    name,
-  });
-
-  return newType;
 });
 
 // await db.close();

@@ -9,7 +9,7 @@ function App() {
       <div className="fixed w-full">
         <Navbar />
       </div>
-      <div className="h-full w-full">
+      <div className="h-full w-full pt-36">
         <Outlet />
       </div>
     </div>
