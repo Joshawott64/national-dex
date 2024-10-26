@@ -537,7 +537,8 @@ UserPokemon.belongsTo(Ability, { foreignKey: "abilityId" });
 // Type table relationships
 Type.hasMany(Pokemon, { foreignKey: "typeId" });
 Type.hasMany(Pokemon, { foreignKey: "type2Id" });
-Pokemon.belongsTo(Type, { foreignKey: "typeId" });
+Pokemon.belongsTo(Type, { as: "type1", foreignKey: "typeId" });
+Pokemon.belongsTo(Type, { as: "type2", foreignKey: "type2Id" });
 
 Type.hasMany(Move, { foreignKey: "typeId" });
 Move.belongsTo(Type, { foreignKey: "typeId" });

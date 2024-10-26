@@ -307,7 +307,8 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
   const legacyIconFemale =
     pokemon.sprites.versions["generation-vii"].icons.front_female;
   const latestIcon =
-    pokemon.sprites.versions["generation-viii"].icons.front_default;
+    pokemon.sprites.versions["generation-viii"].icons.front_default ??
+    pokemon.sprites.front_default;
   const latestIconFemale =
     pokemon.sprites.versions["generation-viii"].icons.front_female;
   const baseHp = pokemon.stats[0].base_stat;

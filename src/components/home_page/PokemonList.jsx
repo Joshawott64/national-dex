@@ -1,12 +1,12 @@
 const PokemonList = ({ pokemonData }) => {
   const pokemonCards = pokemonData.map((pokemon) => (
     <div
-      key={pokemon.pokemonId}
+      key={pokemon.speciesId}
       className="flex w-full bg-white rounded-lg drop-shadow-lg"
     >
-      <p>#{pokemon.pokemonId}</p>
+      <p>#{pokemon.dexNumber}</p>
       <img
-        src={pokemon.legacyIcon ?? pokemon.latestIcon}
+        src={pokemon.pokemons[0].legacyIcon ?? pokemon.pokemons[0].latestIcon}
         alt={pokemon.name}
       ></img>
       <p>{pokemon.name}</p>

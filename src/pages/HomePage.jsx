@@ -10,7 +10,7 @@ const HomePage = () => {
   const [pokemonData, setPokemonData] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/pokemon/all").then((res) => {
+    axios.get("/api/pokemon/details/all").then((res) => {
       console.log("res.data:", res.data);
       setPokemonData(res.data);
     });

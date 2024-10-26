@@ -15,9 +15,19 @@ import db, {
 import { Sequelize } from "sequelize";
 
 const handlerFunctions = {
-  getAllPokemon: async (req, res) => {
-    const pokemonData = await Pokemon.findAll({
-      order: ["pokemonId"],
+  getAllPokemonDetails: async (req, res) => {
+    const pokemonData = await Species.findAll({
+      order: ["speciesId"],
+      include: [
+        {
+          model: Pokemon,
+          where: { isDefault: true },
+          include: [
+            { model: Type, as: "type1" },
+            { model: Type, as: "type2" },
+          ],
+        },
+      ],
     });
 
     res.status(200).send(pokemonData);
