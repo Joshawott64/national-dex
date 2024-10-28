@@ -19,7 +19,7 @@ const HomePage = () => {
   return (
     <div className="h-full px-10">
       <Filters />
-      <HamburgerMenu />
+      {/* <HamburgerMenu /> */}
       <SearchBar />
       <PokemonList pokemonData={pokemonData} />
     </div>

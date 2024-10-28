@@ -6,7 +6,7 @@ const PokemonList = ({ pokemonData }) => {
       className="flex justify-start place-items-center gap-x-1 w-full px-2 text-xs text-center bg-white rounded-lg drop-shadow-lg"
     >
       <p className="w-9 drop-shadow-lg">#{pokemon.dexNumber}</p>
-      <div className="h-10 w-10">
+      <div className="flex justify-center place-items-center h-10 w-10">
         <img
           className="drop-shadow-lg"
           src={pokemon.pokemons[0].legacyIcon ?? pokemon.pokemons[0].latestIcon}
