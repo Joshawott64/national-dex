@@ -40,10 +40,19 @@ const handlerFunctions = {
     res.status(200).send(randomPokemonData);
   },
   getPokemonById: async (req, res) => {
-    const id = req.params;
+    const id = req.params.id;
 
-    const pokemonData = await Pokemon.findOne({
-      where: { pokemonId: id },
+    const pokemonData = await Species.findOne({
+      where: { speciesId: id },
+      include: [
+        {
+          model: Pokemon,
+          include: [
+            { model: Type, as: "type1" },
+            { model: Type, as: "type2" },
+          ],
+        },
+      ],
     });
 
     res.status(200).send(pokemonData);
