@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const ImageBanner = ({ pokemonData }) => {
+const ImageBanner = ({ pokemonData, bannerImage }) => {
   // invoke useNavigate
   const navigate = useNavigate();
   return (
@@ -16,11 +16,7 @@ const ImageBanner = ({ pokemonData }) => {
             <IoIosArrowBack className="drop-shadow-lg" />
           </button>
           <div className="w-full"></div>
-          <img
-            src={pokemonData.pokemons[0].officialArtwork}
-            alt={pokemonData.name}
-            className="w-32"
-          />
+          <img src={bannerImage} alt={pokemonData.name} className="w-32" />
           <div className="w-full"></div>
           <button
             onClick={() => navigate(`/pokemon/${pokemonData.speciesId + 1}`)}
