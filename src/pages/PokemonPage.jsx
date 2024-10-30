@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ImageBanner from "../components/pokemon_page/ImageBanner.jsx";
 import Sprites from "../components/pokemon_page/Sprites.jsx";
+import EntryMenu from "../components/pokemon_page/EntryMenu.jsx";
 
 const PokemonPage = () => {
   const { id } = useParams();
@@ -12,11 +13,13 @@ const PokemonPage = () => {
   const [bannerImage, setBannerImage] = useState("");
   const [dexNumber, setDexNumber] = useState(0);
   const [pokemonName, setPokemonName] = useState("");
-  const [currentDexEntry, setCurrentDexEntry] = useState("");
   const [giph, setGiph] = useState("");
   const [giphShiny, setGiphShiny] = useState("");
   const [giphFemale, setGiphFemale] = useState("");
   const [giphFemaleShiny, setGiphFemaleShiny] = useState("");
+  const [currentVersion, setCurrentVersion] = useState("");
+  const [currentDexEntry, setCurrentDexEntry] = useState("");
+  const [dexEntries, setDexEntries] = useState([]);
 
   useEffect(() => {
     axios.get(`/api/pokemon/${id}`).then((res) => {
@@ -29,6 +32,13 @@ const PokemonPage = () => {
       setGiphShiny(res.data.pokemons[0].giphShiny);
       setGiphFemale(res.data.pokemons[0].giphFemale);
       setGiphFemaleShiny(res.data.pokemons[0].giphFemaleShiny);
+    });
+
+    axios.get(`/api/pokemon/entries/${id}`).then((res) => {
+      console.log("res.data:", res.data);
+      setCurrentVersion(res.data[res.data.length - 1].version.name);
+      setDexEntries(res.data);
+      setCurrentDexEntry(res.data[res.data.length - 1].dexEntry);
     });
   }, [id]);
 
@@ -52,12 +62,17 @@ const PokemonPage = () => {
         giphFemale={giphFemale}
         giphFemaleShiny={giphFemaleShiny}
       />
-      <div>
-        <p>Dex entry selection</p>
-      </div>
-      <div>
-        <p>Current dex entry</p>
-      </div>
+      <EntryMenu
+        currentVersion={currentVersion}
+        setCurrentVersion={setCurrentVersion}
+        dexEntries={dexEntries}
+        setCurrentDexEntry={setCurrentDexEntry}
+      />
+      {dexEntries.length > 0 && (
+        <div>
+          <p>{currentDexEntry}</p>
+        </div>
+      )}
       <div>
         <p>Moves List</p>
       </div>

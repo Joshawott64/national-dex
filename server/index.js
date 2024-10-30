@@ -15,13 +15,18 @@ app.use(
 );
 
 // handler functions destructure
-const { getAllPokemonDetails, getRandomPokemon, getPokemonById } =
-  handlerFunctions;
+const {
+  getAllPokemonDetails,
+  getRandomPokemon,
+  getPokemonById,
+  getDexEntries,
+} = handlerFunctions;
 
 // endpoints
 app.get("/api/pokemon/details/all", getAllPokemonDetails);
 app.get("/api/pokemon/random", getRandomPokemon);
 app.get("/api/pokemon/:id", getPokemonById);
+app.get("/api/pokemon/entries/:id", getDexEntries);
 
 ViteExpress.listen(app, port, () =>
   console.log(`Executing on port ${port} http://localhost:${port}`)

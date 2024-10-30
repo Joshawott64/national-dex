@@ -57,6 +57,17 @@ const handlerFunctions = {
 
     res.status(200).send(pokemonData);
   },
+  getDexEntries: async (req, res) => {
+    const id = req.params.id;
+
+    const dexEntryData = await DexEntry.findAll({
+      where: { speciesId: id, language: "en" },
+      order: ["dexEntryId"],
+      include: [{ model: Version }],
+    });
+
+    res.status(200).send(dexEntryData);
+  },
 };
 
 export default handlerFunctions;
