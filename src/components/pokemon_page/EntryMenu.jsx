@@ -33,7 +33,7 @@ const EntryMenu = ({
       </div>
 
       {showEntryOptions && (
-        <div className="absolute flex flex-col gap-y-1 h-24 p-2 rounded-lg bg-primary overflow-y-scroll">
+        <div className="absolute flex flex-col gap-y-1 max-h-24 p-2 z-50 rounded-lg bg-primary overflow-y-scroll">
           {entryOptions}
         </div>
       )}
