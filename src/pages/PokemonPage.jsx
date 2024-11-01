@@ -108,6 +108,8 @@ const PokemonPage = () => {
       {typeof pokemonData === "object" && (
         <FormSelection
           pokemonData={pokemonData}
+          pokemonName={pokemonName}
+          setPokemonName={setPokemonName}
           setBannerImage={setBannerImage}
           setGiph={setGiph}
           setGiphShiny={setGiphShiny}

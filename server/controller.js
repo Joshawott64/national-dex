@@ -47,6 +47,8 @@ const handlerFunctions = {
       include: [
         {
           model: Pokemon,
+          separate: true,
+          order: [["pokemonId", "ASC"]],
           include: [
             { model: Type, as: "type1" },
             { model: Type, as: "type2" },
