@@ -5,8 +5,11 @@ import ImageBanner from "../components/pokemon_page/ImageBanner.jsx";
 import Sprites from "../components/pokemon_page/Sprites.jsx";
 import EntryMenu from "../components/pokemon_page/EntryMenu.jsx";
 import FormSelection from "../components/pokemon_page/FormSelection.jsx";
+import { IoMdVolumeHigh } from "react-icons/io";
 
 const PokemonPage = () => {
+  // bg-bug-primary bg-dark-primary bg-dragon-primary bg-electric-primary bg-fairy-primary bg-fighting-primary bg-fire-primary bg-ghost-primary bg-grass-primary bg-ground-primary bg-ice-primary bg-normal-primary bg-poison-primary bg-flying-primary bg-psychic-primary bg-rock-primary bg-steel-primary bg-water-primary
+
   const { id } = useParams();
 
   // state values
@@ -31,6 +34,8 @@ const PokemonPage = () => {
   const [currentVersion, setCurrentVersion] = useState("");
   const [currentDexEntry, setCurrentDexEntry] = useState("");
   const [dexEntries, setDexEntries] = useState([]);
+  const [legacyCry, setLegacyCry] = useState("");
+  const [latestCry, setLatestCry] = useState("");
 
   useEffect(() => {
     axios.get(`/api/pokemon/${id}`).then((res) => {
@@ -55,6 +60,8 @@ const PokemonPage = () => {
       setGiphShiny(res.data.pokemons[0].giphShiny);
       setGiphFemale(res.data.pokemons[0].giphFemale);
       setGiphFemaleShiny(res.data.pokemons[0].giphFemaleShiny);
+      setLegacyCry(res.data.pokemons[0].legacyCry);
+      setLatestCry(res.data.pokemons[0].latestCry);
     });
 
     axios.get(`/api/pokemon/entries/${id}`).then((res) => {
@@ -64,6 +71,20 @@ const PokemonPage = () => {
       setCurrentDexEntry(res.data[res.data.length - 1].dexEntry);
     });
   }, [id]);
+
+  // handler functions
+  const handleCryAudio = (time) => {
+    switch (time) {
+      case "legacy":
+        new Audio(legacyCry).play();
+        break;
+      case "latest":
+        new Audio(latestCry).play();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="flex flex-col justify-start place-items-center gap-y-2 h-full px-10">
@@ -83,10 +104,19 @@ const PokemonPage = () => {
       <div>
         <p className="drop-shadow-lg">The {pokemonGenus}</p>
       </div>
-      <div>
-        <p>
-          {pokemonType1} {pokemonType2}
-        </p>
+      <div className="flex justify-center place-items-center gap-x-1 w-36 text-xs text-text-light">
+        <div
+          className={`flex justify-center place-items-center bg-${pokemonType1}-primary w-16 rounded-full drop-shadow-lg`}
+        >
+          <p className="drop-shadow-lg">{pokemonType1.toUpperCase()}</p>
+        </div>
+        {pokemonType2 !== null && (
+          <div
+            className={`flex justify-center place-items-center bg-${pokemonType2}-primary w-16 rounded-full drop-shadow-lg`}
+          >
+            <p className="drop-shadow-lg">{pokemonType2.toUpperCase()}</p>
+          </div>
+        )}
       </div>
       <div>
         <p>Attack: {baseAttack}</p>
@@ -125,6 +155,8 @@ const PokemonPage = () => {
           setBaseSpecialAttack={setBaseSpecialAttack}
           setBaseSpecialDefense={setBaseSpecialDefense}
           setBaseSpeed={setBaseSpeed}
+          setLegacyCry={setLegacyCry}
+          setLatestCry={setLatestCry}
         />
       )}
       <Sprites
@@ -133,8 +165,27 @@ const PokemonPage = () => {
         giphFemale={giphFemale}
         giphFemaleShiny={giphFemaleShiny}
       />
-      <div>
-        <p>Cries</p>
+      <div className="flex justify-center place-items-center gap-x-4">
+        {legacyCry !== null && (
+          <div className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg">
+            <p
+              className="drop-shadow-lg"
+              onClick={() => handleCryAudio("legacy")}
+            >
+              Legacy
+            </p>
+            <IoMdVolumeHigh className="drop-shadow-lg" />
+          </div>
+        )}
+        <div className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg">
+          <p
+            className="drop-shadow-lg"
+            onClick={() => handleCryAudio("latest")}
+          >
+            Latest
+          </p>
+          <IoMdVolumeHigh className="drop-shadow-lg" />
+        </div>
       </div>
       <EntryMenu
         currentVersion={currentVersion}

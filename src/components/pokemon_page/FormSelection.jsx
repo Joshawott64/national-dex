@@ -19,6 +19,8 @@ const FormSelection = ({
   setBaseSpecialAttack,
   setBaseSpecialDefense,
   setBaseSpeed,
+  setLegacyCry,
+  setLatestCry,
 }) => {
   // handler functions
   const handlePokemonNameChange = async (currentName, formName) => {
@@ -205,6 +207,8 @@ const FormSelection = ({
             setBaseSpecialAttack(form.baseSpecialAttack);
             setBaseSpecialDefense(form.baseSpecialDefense);
             setBaseSpeed(form.baseSpeed);
+            setLegacyCry(form.legacyCry);
+            setLatestCry(form.latestCry);
             handlePokemonNameChange(pokemonData.name, form.name);
           }}
           className={`flex justify-center place-items-center h-10 w-10 bg-accent-gray-light border-2 border-accent-gray-dark rounded-lg drop-shadow-lg ${
