@@ -5,6 +5,7 @@ import ImageBanner from "../components/pokemon_page/ImageBanner.jsx";
 import Sprites from "../components/pokemon_page/Sprites.jsx";
 import EntryMenu from "../components/pokemon_page/EntryMenu.jsx";
 import FormSelection from "../components/pokemon_page/FormSelection.jsx";
+import StatsTable from "../components/pokemon_page/StatsTable.jsx";
 import { IoMdVolumeHigh } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -118,23 +119,6 @@ const PokemonPage = () => {
           </div>
         )}
       </div>
-      <div>
-        <p>Attack: {baseAttack}</p>
-        <p>Defense: {baseDefense}</p>
-        <p>Hp: {baseHp}</p>
-        <p>SpecialAttack: {baseSpecialAttack}</p>
-        <p>SpecialDefense: {baseSpecialDefense}</p>
-        <p>Speed: {baseSpeed}</p>
-        <p>
-          Total:{" "}
-          {baseAttack +
-            baseDefense +
-            baseHp +
-            baseSpecialAttack +
-            baseSpecialDefense +
-            baseSpeed}
-        </p>
-      </div>
       {typeof pokemonData === "object" && (
         <FormSelection
           pokemonData={pokemonData}
@@ -167,23 +151,19 @@ const PokemonPage = () => {
       />
       <div className="flex justify-center place-items-center gap-x-4">
         {legacyCry !== null && (
-          <div className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg">
-            <p
-              className="drop-shadow-lg"
-              onClick={() => handleCryAudio("legacy")}
-            >
-              Legacy
-            </p>
+          <div
+            onClick={() => handleCryAudio("legacy")}
+            className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+          >
+            <p className="drop-shadow-lg">Legacy</p>
             <IoMdVolumeHigh className="drop-shadow-lg" />
           </div>
         )}
-        <div className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg">
-          <p
-            className="drop-shadow-lg"
-            onClick={() => handleCryAudio("latest")}
-          >
-            Latest
-          </p>
+        <div
+          onClick={() => handleCryAudio("latest")}
+          className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+        >
+          <p className="drop-shadow-lg">Latest</p>
           <IoMdVolumeHigh className="drop-shadow-lg" />
         </div>
       </div>
@@ -198,9 +178,14 @@ const PokemonPage = () => {
           <p className="text-center drop-shadow-lg">{currentDexEntry}</p>
         </div>
       )}
-      <div>
-        <p>Base Stat Table</p>
-      </div>
+      <StatsTable
+        baseHp={baseHp}
+        baseAttack={baseAttack}
+        baseDefense={baseDefense}
+        baseSpecialAttack={baseSpecialAttack}
+        baseSpecialDefense={baseSpecialDefense}
+        baseSpeed={baseSpeed}
+      />
       <div>
         <p>Abilities</p>
       </div>
