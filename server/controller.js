@@ -70,6 +70,16 @@ const handlerFunctions = {
 
     res.status(200).send(dexEntryData);
   },
+  getMovesetsByPokemonId: async (req, res) => {
+    const id = req.params.id;
+
+    const movesetData = await Moveset.findAll({
+      where: { pokemonId: id },
+      include: [{ model: Move }],
+    });
+
+    res.status(200).send(movesetData);
+  },
 };
 
 export default handlerFunctions;

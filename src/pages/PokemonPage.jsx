@@ -15,6 +15,7 @@ const PokemonPage = () => {
 
   // state values
   const [pokemonData, setPokemonData] = useState("");
+  const [movesetData, setMovesetData] = useState("");
   const [bannerImage, setBannerImage] = useState("");
   const [dexNumber, setDexNumber] = useState(0);
   const [pokemonName, setPokemonName] = useState("");
@@ -70,6 +71,11 @@ const PokemonPage = () => {
       setCurrentVersion(res.data[res.data.length - 1].version.name);
       setDexEntries(res.data);
       setCurrentDexEntry(res.data[res.data.length - 1].dexEntry);
+    });
+
+    axios.get(`/api/pokemon/moveset/${id}`).then((res) => {
+      console.log("moveset data:", res.data);
+      setMovesetData(res.data);
     });
   }, [id]);
 
