@@ -298,10 +298,18 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
     pokemon.sprites.other["official-artwork"].front_default;
   const officialArtworkShiny =
     pokemon.sprites.other["official-artwork"].front_shiny;
-  const giph = pokemon.sprites.other.showdown.front_default;
-  const giphFemale = pokemon.sprites.other.showdown.front_female;
-  const giphShiny = pokemon.sprites.other.showdown.front_shiny;
-  const giphFemaleShiny = pokemon.sprites.other.showdown.front_shiny_female;
+  const giph =
+    pokemon.sprites.other.showdown.front_default ??
+    pokemon.sprites.other.home.front_default;
+  const giphFemale =
+    pokemon.sprites.other.showdown.front_female ??
+    pokemon.sprites.other.home.front_female;
+  const giphShiny =
+    pokemon.sprites.other.showdown.front_shiny ??
+    pokemon.sprites.other.home.front_shiny;
+  const giphFemaleShiny =
+    pokemon.sprites.other.showdown.front_shiny_female ??
+    pokemon.sprites.other.home.front_shiny_female;
   const legacyIcon =
     pokemon.sprites.versions["generation-vii"].icons.front_default;
   const legacyIconFemale =
@@ -382,6 +390,31 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
     typeId,
     type2Id,
     speciesId,
+  });
+
+  // create movesets table for each pokemon
+  const pokemonId = newPokemon.pokemonId;
+
+  const movesetsInDB = pokemon.moves.map(async (move) => {
+    const moveId = move.move.url.replace(
+      /(^https\:\/\/pokeapi\.co\/api\/v2\/move\/|\/$)/g,
+      ""
+    );
+    const moveDetailsInDB = move.version_group_details.map(async (detail) => {
+      const levelLearnedAt = detail.level_learned_at;
+      const method = detail.move_learn_method.name;
+      const versionGroup = detail.version_group.name;
+
+      const newMoveSet = await Moveset.create({
+        levelLearnedAt,
+        method,
+        versionGroup,
+        moveId: moveId,
+        pokemonId: pokemonId,
+      });
+
+      return newMoveSet;
+    });
   });
 
   return newPokemon;

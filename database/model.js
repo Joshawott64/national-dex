@@ -241,6 +241,18 @@ Moveset.init(
       autoIncrement: true,
       primaryKey: true,
     },
+    levelLearnedAt: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    method: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    versionGroup: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   },
   {
     modelName: "moveset",
