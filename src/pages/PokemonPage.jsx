@@ -6,6 +6,7 @@ import Sprites from "../components/pokemon_page/Sprites.jsx";
 import EntryMenu from "../components/pokemon_page/EntryMenu.jsx";
 import FormSelection from "../components/pokemon_page/FormSelection.jsx";
 import StatsTable from "../components/pokemon_page/StatsTable.jsx";
+import MoveList from "../components/pokemon_page/MoveList.jsx";
 import { IoMdVolumeHigh } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -15,7 +16,7 @@ const PokemonPage = () => {
 
   // state values
   const [pokemonData, setPokemonData] = useState("");
-  const [movesetData, setMovesetData] = useState("");
+  const [movesetData, setMovesetData] = useState([]);
   const [bannerImage, setBannerImage] = useState("");
   const [dexNumber, setDexNumber] = useState(0);
   const [pokemonName, setPokemonName] = useState("");
@@ -94,7 +95,7 @@ const PokemonPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-start place-items-center gap-y-2 h-full px-10">
+    <div className="flex flex-col justify-start place-items-center gap-y-2 w-full h-full px-10">
       <ImageBanner
         pokemonData={pokemonData}
         bannerImage={bannerImage}
@@ -195,9 +196,7 @@ const PokemonPage = () => {
       <div>
         <p>Abilities</p>
       </div>
-      <div>
-        <p>Moves List</p>
-      </div>
+      <MoveList movesetData={movesetData} />
     </div>
   );
 };

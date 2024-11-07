@@ -75,7 +75,18 @@ const handlerFunctions = {
 
     const movesetData = await Moveset.findAll({
       where: { pokemonId: id },
-      include: [{ model: Move }],
+      order: [["levelLearnedAt", "ASC"]],
+      include: [
+        {
+          model: Move,
+
+          include: [
+            {
+              model: Type,
+            },
+          ],
+        },
+      ],
     });
 
     res.status(200).send(movesetData);
