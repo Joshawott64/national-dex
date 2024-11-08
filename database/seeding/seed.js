@@ -184,7 +184,10 @@ const movesInDB = allMoves.map(async (move) => {
   }
 
   const newMove = await Move.create({
-    name,
+    name: name
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" "),
     accuracy,
     effectChance: effect_chance,
     pp,
@@ -403,7 +406,10 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
     const moveDetailsInDB = move.version_group_details.map(async (detail) => {
       const levelLearnedAt = detail.level_learned_at;
       const method = detail.move_learn_method.name;
-      const versionGroup = detail.version_group.name;
+      const versionGroup = detail.version_group.name
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
 
       const newMoveSet = await Moveset.create({
         levelLearnedAt,

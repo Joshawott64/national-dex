@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const MoveList = ({ movesetData }) => {
+const MoveList = ({ movesetData, currentVersion }) => {
   const [showLevelMoves, setShowLevelMoves] = useState(true);
   const [showEggMoves, setShowEggMoves] = useState(false);
   const [showMachineMoves, setShowMachineMoves] = useState(false);
@@ -171,33 +171,97 @@ const MoveList = ({ movesetData }) => {
   });
 
   console.log("levelMoves:", levelMoves);
-  //   console.log("eggMoves:", eggMoves);
+  // console.log("eggMoves:", eggMoves);
   //   console.log("machineMoves:", machineMoves);
   //   console.log("tutorMoves:", tutorMoves);
 
   const levelMoveCards = levelMoves.map((move) => (
-    <div>
-      <p>{move.name}</p>
-    </div>
+    <React.Fragment key={move.name}>
+      {move.versionGroups.includes(
+        currentVersion.replace(/(\!|\,|\')/g, "")
+      ) && (
+        <div>
+          <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+            <div
+              className={`flex-1 flex justify-center place-items-center bg-${move.type}-primary w-16 text-text-light rounded-full drop-shadow-lg`}
+            >
+              <p className="drop-shadow-lg">{move.type.toUpperCase()}</p>
+            </div>
+            <p className="flex-1 drop-shadow-lg">{move.name}</p>
+            <p className="flex-1 drop-shadow-lg">Lvl: {move.levelLearnedAt}</p>
+            {/* TODO: Create icons for damageClass (physical, special, status) */}
+            <p className="flex-1 drop-shadow-lg">{move.damageClass}</p>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   ));
   const eggMoveCards = eggMoves.map((move) => (
-    <div>
-      <p>{move.name}</p>
-    </div>
+    <React.Fragment key={move.name}>
+      {move.versionGroups.includes(
+        currentVersion.replace(/(\!|\,|\')/g, "")
+      ) && (
+        <div>
+          <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+            <div
+              className={`flex-1 flex justify-center place-items-center bg-${move.type}-primary w-16 text-text-light rounded-full drop-shadow-lg`}
+            >
+              <p className="drop-shadow-lg">{move.type.toUpperCase()}</p>
+            </div>
+            <p className="flex-1 drop-shadow-lg">{move.name}</p>
+            <p className="flex-1 drop-shadow-lg">Lvl: {move.levelLearnedAt}</p>
+            {/* TODO: Create icons for damageClass (physical, special, status) */}
+            <p className="flex-1 drop-shadow-lg">{move.damageClass}</p>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   ));
   const machineMoveCards = machineMoves.map((move) => (
-    <div>
-      <p>{move.name}</p>
-    </div>
+    <React.Fragment key={move.name}>
+      {move.versionGroups.includes(
+        currentVersion.replace(/(\!|\,|\')/g, "")
+      ) && (
+        <div>
+          <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+            <div
+              className={`flex-1 flex justify-center place-items-center bg-${move.type}-primary w-16 text-text-light rounded-full drop-shadow-lg`}
+            >
+              <p className="drop-shadow-lg">{move.type.toUpperCase()}</p>
+            </div>
+            <p className="flex-1 drop-shadow-lg">{move.name}</p>
+            <p className="flex-1 drop-shadow-lg">Lvl: {move.levelLearnedAt}</p>
+            {/* TODO: Create icons for damageClass (physical, special, status) */}
+            <p className="flex-1 drop-shadow-lg">{move.damageClass}</p>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   ));
   const tutorMoveCards = tutorMoves.map((move) => (
-    <div>
-      <p>{move.name}</p>
-    </div>
+    <React.Fragment key={move.name}>
+      {move.versionGroups.includes(
+        currentVersion.replace(/(\!|\,|\')/g, "")
+      ) && (
+        <div>
+          <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+            <div
+              className={`flex-1 flex justify-center place-items-center bg-${move.type}-primary w-16 text-text-light rounded-full drop-shadow-lg`}
+            >
+              <p className="drop-shadow-lg">{move.type.toUpperCase()}</p>
+            </div>
+            <p className="flex-1 drop-shadow-lg">{move.name}</p>
+            <p className="flex-1 drop-shadow-lg">Lvl: {move.levelLearnedAt}</p>
+            {/* TODO: Create icons for damageClass (physical, special, status) */}
+            <p className="flex-1 drop-shadow-lg">{move.damageClass}</p>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   ));
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full pb-28">
       <div className="w-full">
         <div className="flex justify-center place-items-center text-center text-text-light bg-accent-gray-dark rounded-tl-lg rounded-tr-lg">
           <div
@@ -254,7 +318,7 @@ const MoveList = ({ movesetData }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-full h-96 bg-accent-gray-light rounded-b-lg drop-shadow-lg overflow-y-scroll">
+      <div className="flex flex-col justify-start gap-y-2 w-full h-96 p-2 bg-accent-gray-light rounded-b-lg text-sm drop-shadow-lg overflow-y-scroll">
         {showLevelMoves && levelMoveCards.length > 0 && levelMoveCards}
         {showEggMoves && eggMoveCards.length > 0 && eggMoveCards}
         {showMachineMoves && machineMoveCards.length > 0 && machineMoveCards}

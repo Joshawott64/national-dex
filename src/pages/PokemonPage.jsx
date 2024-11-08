@@ -196,7 +196,7 @@ const PokemonPage = () => {
       <div>
         <p>Abilities</p>
       </div>
-      <MoveList movesetData={movesetData} />
+      <MoveList movesetData={movesetData} currentVersion={currentVersion} />
     </div>
   );
 };
