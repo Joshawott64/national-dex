@@ -541,7 +541,9 @@ DexEntry.init(
 Ability.hasMany(Pokemon, { foreignKey: "abilityId" });
 Ability.hasMany(Pokemon, { foreignKey: "ability2Id" });
 Ability.hasMany(Pokemon, { foreignKey: "ability3Id" });
-Pokemon.belongsTo(Ability, { foreignKey: "abilityId" });
+Pokemon.belongsTo(Ability, { as: "ability1", foreignKey: "abilityId" });
+Pokemon.belongsTo(Ability, { as: "ability2", foreignKey: "ability2Id" });
+Pokemon.belongsTo(Ability, { as: "ability3", foreignKey: "ability3Id" });
 
 Ability.hasMany(UserPokemon, { foreignKey: "abilityId" });
 UserPokemon.belongsTo(Ability, { foreignKey: "abilityId" });

@@ -21,6 +21,10 @@ const FormSelection = ({
   setBaseSpeed,
   setLegacyCry,
   setLatestCry,
+  setMovesetData,
+  setAbility1Data,
+  setAbility2Data,
+  setAbility3Data,
 }) => {
   // handler functions
   const handlePokemonNameChange = async (currentName, formName) => {
@@ -209,6 +213,10 @@ const FormSelection = ({
             setBaseSpeed(form.baseSpeed);
             setLegacyCry(form.legacyCry);
             setLatestCry(form.latestCry);
+            setMovesetData(form.movesets);
+            setAbility1Data(form.ability1);
+            setAbility2Data(form.ability2 ?? null);
+            setAbility3Data(form.ability3 ?? null);
             handlePokemonNameChange(pokemonData.name, form.name);
           }}
           className={`flex justify-center place-items-center h-10 w-10 bg-accent-gray-light border-2 border-accent-gray-dark rounded-lg drop-shadow-lg ${

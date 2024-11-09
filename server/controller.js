@@ -52,6 +52,25 @@ const handlerFunctions = {
           include: [
             { model: Type, as: "type1" },
             { model: Type, as: "type2" },
+            { model: Ability, as: "ability1" },
+            { model: Ability, as: "ability2" },
+            { model: Ability, as: "ability3" },
+            {
+              model: Moveset,
+              separate: true,
+              order: [["levelLearnedAt", "ASC"]],
+              include: [
+                {
+                  model: Move,
+
+                  include: [
+                    {
+                      model: Type,
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],

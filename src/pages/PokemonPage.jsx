@@ -7,6 +7,7 @@ import EntryMenu from "../components/pokemon_page/EntryMenu.jsx";
 import FormSelection from "../components/pokemon_page/FormSelection.jsx";
 import StatsTable from "../components/pokemon_page/StatsTable.jsx";
 import MoveList from "../components/pokemon_page/MoveList.jsx";
+import Abilities from "../components/pokemon_page/Abilities.jsx";
 import { IoMdVolumeHigh } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -17,6 +18,9 @@ const PokemonPage = () => {
   // state values
   const [pokemonData, setPokemonData] = useState("");
   const [movesetData, setMovesetData] = useState([]);
+  const [ability1Data, setAbility1Data] = useState(null);
+  const [ability2Data, setAbility2Data] = useState(null);
+  const [ability3Data, setAbility3Data] = useState(null);
   const [bannerImage, setBannerImage] = useState("");
   const [dexNumber, setDexNumber] = useState(0);
   const [pokemonName, setPokemonName] = useState("");
@@ -65,6 +69,10 @@ const PokemonPage = () => {
       setGiphFemaleShiny(res.data.pokemons[0].giphFemaleShiny);
       setLegacyCry(res.data.pokemons[0].legacyCry);
       setLatestCry(res.data.pokemons[0].latestCry);
+      setMovesetData(res.data.pokemons[0].movesets);
+      setAbility1Data(res.data.pokemons[0].ability1);
+      setAbility2Data(res.data.pokemons[0].ability2 ?? null);
+      setAbility3Data(res.data.pokemons[0].ability3 ?? null);
     });
 
     axios.get(`/api/pokemon/entries/${id}`).then((res) => {
@@ -72,11 +80,6 @@ const PokemonPage = () => {
       setCurrentVersion(res.data[res.data.length - 1].version.name);
       setDexEntries(res.data);
       setCurrentDexEntry(res.data[res.data.length - 1].dexEntry);
-    });
-
-    axios.get(`/api/pokemon/moveset/${id}`).then((res) => {
-      console.log("moveset data:", res.data);
-      setMovesetData(res.data);
     });
   }, [id]);
 
@@ -148,6 +151,10 @@ const PokemonPage = () => {
           setBaseSpeed={setBaseSpeed}
           setLegacyCry={setLegacyCry}
           setLatestCry={setLatestCry}
+          setMovesetData={setMovesetData}
+          setAbility1Data={setAbility1Data}
+          setAbility2Data={setAbility2Data}
+          setAbility3Data={setAbility3Data}
         />
       )}
       <Sprites
@@ -193,9 +200,11 @@ const PokemonPage = () => {
         baseSpecialDefense={baseSpecialDefense}
         baseSpeed={baseSpeed}
       />
-      <div>
-        <p>Abilities</p>
-      </div>
+      <Abilities
+        ability1Data={ability1Data}
+        ability2Data={ability2Data}
+        ability3Data={ability3Data}
+      />
       <MoveList movesetData={movesetData} currentVersion={currentVersion} />
     </div>
   );
