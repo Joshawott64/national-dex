@@ -1,7 +1,7 @@
 const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
-  console.log("ability1Data:", ability1Data);
-  console.log("ability2Data:", ability2Data);
-  console.log("ability3Data:", ability3Data);
+  // console.log("ability1Data:", ability1Data);
+  // console.log("ability2Data:", ability2Data);
+  // console.log("ability3Data:", ability3Data);
   return (
     <div className="w-full bg-accent-gray-light rounded-lg">
       <div className="flex justify-center place-items-center bg-primary rounded-t-lg">

@@ -25,6 +25,7 @@ const FormSelection = ({
   setAbility1Data,
   setAbility2Data,
   setAbility3Data,
+  setShowFemaleSprite,
 }) => {
   // handler functions
   const handlePokemonNameChange = async (currentName, formName) => {
@@ -217,6 +218,7 @@ const FormSelection = ({
             setAbility1Data(form.ability1);
             setAbility2Data(form.ability2 ?? null);
             setAbility3Data(form.ability3 ?? null);
+            setShowFemaleSprite(false);
             handlePokemonNameChange(pokemonData.name, form.name);
           }}
           className={`flex justify-center place-items-center h-10 w-10 bg-accent-gray-light border-2 border-accent-gray-dark rounded-lg drop-shadow-lg ${

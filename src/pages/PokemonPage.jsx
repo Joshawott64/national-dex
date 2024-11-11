@@ -8,7 +8,7 @@ import FormSelection from "../components/pokemon_page/FormSelection.jsx";
 import StatsTable from "../components/pokemon_page/StatsTable.jsx";
 import MoveList from "../components/pokemon_page/MoveList.jsx";
 import Abilities from "../components/pokemon_page/Abilities.jsx";
-import { IoMdVolumeHigh } from "react-icons/io";
+import { IoMdVolumeHigh, IoMdMale, IoMdFemale } from "react-icons/io";
 
 const PokemonPage = () => {
   // bg-bug-primary bg-dark-primary bg-dragon-primary bg-electric-primary bg-fairy-primary bg-fighting-primary bg-fire-primary bg-ghost-primary bg-grass-primary bg-ground-primary bg-ice-primary bg-normal-primary bg-poison-primary bg-flying-primary bg-psychic-primary bg-rock-primary bg-steel-primary bg-water-primary
@@ -43,6 +43,7 @@ const PokemonPage = () => {
   const [dexEntries, setDexEntries] = useState([]);
   const [legacyCry, setLegacyCry] = useState("");
   const [latestCry, setLatestCry] = useState("");
+  const [showFemaleSprite, setShowFemaleSprite] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/pokemon/${id}`).then((res) => {
@@ -81,6 +82,8 @@ const PokemonPage = () => {
       setDexEntries(res.data);
       setCurrentDexEntry(res.data[res.data.length - 1].dexEntry);
     });
+    // reset to false when using the image banner button
+    setShowFemaleSprite(false);
   }, [id]);
 
   // handler functions
@@ -155,13 +158,31 @@ const PokemonPage = () => {
           setAbility1Data={setAbility1Data}
           setAbility2Data={setAbility2Data}
           setAbility3Data={setAbility3Data}
+          setShowFemaleSprite={setShowFemaleSprite}
         />
+      )}
+      {pokemonData.hasGenderDifferences && giphFemale !== null && (
+        <div className="flex flex-row justify-center place-items-center w-24 text-text-light rounded-lg drop-shadow-lg">
+          <div
+            className="flex justify-center place-items-center w-full bg-blue-600 p-1 rounded-l-lg drop-shadow-lg"
+            onClick={() => setShowFemaleSprite(false)}
+          >
+            <IoMdMale />
+          </div>
+          <div
+            className="flex justify-center place-items-center w-full bg-red-600 p-1 rounded-r-lg drop-shadow-lg"
+            onClick={() => setShowFemaleSprite(true)}
+          >
+            <IoMdFemale />
+          </div>
+        </div>
       )}
       <Sprites
         giph={giph}
         giphShiny={giphShiny}
         giphFemale={giphFemale}
         giphFemaleShiny={giphFemaleShiny}
+        showFemaleSprite={showFemaleSprite}
       />
       <div className="flex justify-center place-items-center gap-x-4">
         {legacyCry !== null && (
