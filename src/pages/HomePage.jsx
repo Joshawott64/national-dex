@@ -18,12 +18,14 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="h-full px-10">
-      <Filters />
-      {/* <HamburgerMenu /> */}
-      <SearchBar setSearchString={setSearchString} />
-      <PokemonList pokemonData={pokemonData} searchString={searchString} />
-    </div>
+    <>
+      <HamburgerMenu />
+      <div className="h-full px-10">
+        <Filters />
+        <SearchBar setSearchString={setSearchString} />
+        <PokemonList pokemonData={pokemonData} searchString={searchString} />
+      </div>
+    </>
   );
 };
 
