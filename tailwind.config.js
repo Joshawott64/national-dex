@@ -32,6 +32,19 @@ export default {
         "steel-primary": "#BABABA",
         "water-primary": "#1C8AFF",
       },
+      keyframes: {
+        fade: {
+          "0%": {
+            opacity: 0,
+          },
+          "100%": {
+            opacity: 100,
+          },
+        },
+      },
+      animation: {
+        fadeIn: "fade 0.25s linear",
+      },
     },
   },
   plugins: [],

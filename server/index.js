@@ -22,6 +22,9 @@ const {
   getDexEntries,
   getMovesetsByPokemonId,
   sessionCheck,
+  register,
+  login,
+  logout,
 } = handlerFunctions;
 
 // endpoints
@@ -31,6 +34,9 @@ app.get("/api/pokemon/:id", getPokemonById);
 app.get("/api/pokemon/entries/:id", getDexEntries);
 app.get("/api/pokemon/moveset/:id", getMovesetsByPokemonId);
 app.get("/api/session-check", sessionCheck);
+app.post("/api/register", register);
+app.post("/api/login", login);
+app.post("/api/logout", logout);
 
 ViteExpress.listen(app, port, () =>
   console.log(`Executing on port ${port} http://localhost:${port}`)

@@ -13,6 +13,7 @@ import db, {
   DexEntry,
 } from "../database/model.js";
 import { Sequelize, Op } from "sequelize";
+import bcrypt from "bcryptjs";
 
 const handlerFunctions = {
   getAllPokemonDetails: async (req, res) => {
@@ -127,6 +128,96 @@ const handlerFunctions = {
         success: false,
       });
       return;
+    }
+  },
+  register: async (req, res) => {
+    const { username, password } = req.body;
+
+    // check for existing account
+    const userCheck = await User.findOne({
+      where: { username: username },
+    });
+
+    // if account exists, notify user
+    if (userCheck) {
+      res.status(400).send({
+        message: "Username already exists",
+      });
+    } else {
+      // if user doesn't exist, create one after encrypting password
+
+      const salt = bcrypt.genSaltSync(5);
+      const passHash = bcrypt.hashSync(password, salt);
+
+      const newUser = await User.create({
+        username,
+        password: passHash,
+      });
+
+      // set userId and username in session
+      req.session.userId = newUser.userId;
+      req.session.username = newUser.username;
+
+      // set userId and username on session and send data to front end
+      res.status(200).send({
+        message: "Registration successful!",
+        userId: newUser.userId,
+        username: newUser.username,
+      });
+    }
+  },
+  login: async (req, res) => {
+    const { username, password } = req.body;
+
+    // check for username in database
+    const userCheck = await User.findOne({
+      where: {
+        username: username,
+      },
+    });
+
+    // if no account, notify user
+    if (!userCheck) {
+      res.status(400).send({
+        message: "Username does not exist",
+      });
+    } else {
+      // if account exits, check hashed password
+      const passwordCheck = bcrypt.compareSync(password, userCheck.password);
+
+      // check if password exists
+      if (!passwordCheck) {
+        res.status(403).send({
+          message: "Username or password is incorrect",
+        });
+      } else {
+        // if passwords match
+        // set userId and username on session and send data to front end
+        req.session.userId = userCheck.userId;
+        req.session.username = userCheck.username;
+
+        res.status(200).send({
+          message: "Login successful!",
+          userId: userCheck.userId,
+          username: userCheck.username,
+        });
+      }
+    }
+  },
+  logout: async (req, res) => {
+    // destroy session
+    req.session.destroy();
+
+    if (req.session) {
+      res.status(400).send({
+        message: "That's not true... THATS IMPOSSIBLE!",
+        success: false,
+      });
+    } else {
+      res.status(200).send({
+        message: "Session destroyed",
+        success: true,
+      });
     }
   },
 };
