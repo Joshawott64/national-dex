@@ -114,6 +114,158 @@ const handlerFunctions = {
 
     res.status(200).send(movesetData);
   },
+  postMovesetsByPokemonId: async (req, res) => {
+    const { id } = req.body;
+
+    const movesetData = await Moveset.findAll({
+      where: { pokemonId: id },
+      order: [["name", "ASC"]],
+      include: [
+        {
+          model: Move,
+
+          include: [
+            {
+              model: Type,
+            },
+          ],
+        },
+      ],
+    });
+
+    res.status(200).send(movesetData);
+  },
+  getUserTeams: async (req, res) => {
+    const { userId } = req.body;
+
+    // respond if userId is null (if a logged out user manually navigates to the teams page)
+    if (!userId) {
+      console.log("No userId found");
+      return res
+        .status(404)
+        .send({ success: false, message: "No user ID found." });
+    }
+
+    // get teams (and associated models) that match userId
+    const teamData = await Team.findAll({
+      where: { userId: userId },
+      include: [
+        {
+          model: UserPokemon,
+          as: "userPokemon1",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon2",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon3",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon4",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon5",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon6",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+      ],
+    });
+
+    res.status(200).send(teamData);
+  },
+  getPokemonForTeamSelection: async (req, res) => {
+    const pokemonData = await Pokemon.findAll({
+      order: ["speciesId"],
+      include: [
+        {
+          model: Species,
+          // where: { isDefault: true },
+        },
+        { model: Type, as: "type1" },
+        { model: Type, as: "type2" },
+      ],
+    });
+
+    res.status(200).send(pokemonData);
+  },
   sessionCheck: async (req, res) => {
     if (req.session.userId) {
       res.send({

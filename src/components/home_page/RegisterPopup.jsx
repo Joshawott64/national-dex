@@ -31,7 +31,7 @@ const RegisterPopup = ({ setShowLogin, setShowRegister }) => {
         });
         setUsername("");
         setPassword("");
-        setShowLogin(false);
+        setShowRegister(false);
       }
     } catch (err) {
       setErrorText(err.response.data.message);

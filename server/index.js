@@ -21,6 +21,9 @@ const {
   getPokemonById,
   getDexEntries,
   getMovesetsByPokemonId,
+  postMovesetsByPokemonId,
+  getUserTeams,
+  getPokemonForTeamSelection,
   sessionCheck,
   register,
   login,
@@ -33,6 +36,9 @@ app.get("/api/pokemon/random", getRandomPokemon);
 app.get("/api/pokemon/:id", getPokemonById);
 app.get("/api/pokemon/entries/:id", getDexEntries);
 app.get("/api/pokemon/moveset/:id", getMovesetsByPokemonId);
+app.post("/api/pokemon/moveset", postMovesetsByPokemonId);
+app.post("/api/teams", getUserTeams);
+app.get("/api/pokemon/team/selection", getPokemonForTeamSelection);
 app.get("/api/session-check", sessionCheck);
 app.post("/api/register", register);
 app.post("/api/login", login);

@@ -54,7 +54,14 @@ const HamburgerMenu = ({ setShowLogin }) => {
           />
         </div>
         <div className="flex flex-col gap-y-4 place-self-start text-sm">
-          <p className="drop-shadow-lg">Your teams</p>
+          {userId === null && (
+            <p className="drop-shadow-lg">Login to build your teams</p>
+          )}
+          {userId && (
+            <p onClick={() => navigate("teams")} className="drop-shadow-lg">
+              Your teams
+            </p>
+          )}
           {userId === null && (
             <p
               onClick={() => {
@@ -66,7 +73,7 @@ const HamburgerMenu = ({ setShowLogin }) => {
               Login
             </p>
           )}
-          {userId !== null && (
+          {userId && (
             <p onClick={handleLogout} className="drop-shadow-lg">
               Log out
             </p>

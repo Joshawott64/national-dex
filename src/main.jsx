@@ -13,6 +13,7 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import PokemonPage from "./pages/PokemonPage.jsx";
 import TeamsPage from "./pages/TeamsPage.jsx";
+import NewTeamPage from "./pages/NewTeamPage.jsx";
 import "./index.css";
 
 const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="pokemon/:id" element={<PokemonPage />} />
       <Route path="teams" element={<TeamsPage />} />
+      <Route path="teams/create" element={<NewTeamPage />} />
     </Route>
   )
 );

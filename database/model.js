@@ -447,9 +447,13 @@ UserPokemon.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    nickname: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+    isShiny: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    isFemale: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
   },
   {
@@ -575,7 +579,10 @@ Move.hasMany(UserPokemon, { foreignKey: "move1Id" });
 Move.hasMany(UserPokemon, { foreignKey: "move2Id" });
 Move.hasMany(UserPokemon, { foreignKey: "move3Id" });
 Move.hasMany(UserPokemon, { foreignKey: "move4Id" });
-UserPokemon.belongsTo(Move, { foreignKey: "moveId" });
+UserPokemon.belongsTo(Move, { as: "move1", foreignKey: "move1Id" });
+UserPokemon.belongsTo(Move, { as: "move2", foreignKey: "move2Id" });
+UserPokemon.belongsTo(Move, { as: "move3", foreignKey: "move3Id" });
+UserPokemon.belongsTo(Move, { as: "move4", foreignKey: "move4Id" });
 
 Move.hasMany(Moveset, { foreignKey: "moveId" });
 Moveset.belongsTo(Move, { foreignKey: "moveId" });
@@ -594,11 +601,36 @@ UserPokemon.hasMany(Team, { foreignKey: "userPokemon3Id" });
 UserPokemon.hasMany(Team, { foreignKey: "userPokemon4Id" });
 UserPokemon.hasMany(Team, { foreignKey: "userPokemon5Id" });
 UserPokemon.hasMany(Team, { foreignKey: "userPokemon6Id" });
-Team.belongsTo(UserPokemon, { foreignKey: "userPokemonId" });
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon1",
+  foreignKey: "userPokemon1Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon2",
+  foreignKey: "userPokemon2Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon3",
+  foreignKey: "userPokemon3Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon4",
+  foreignKey: "userPokemon4Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon5",
+  foreignKey: "userPokemon5Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon6",
+  foreignKey: "userPokemon6Id",
+});
 
 // User table relationships
 User.hasMany(UserPokemon, { foreignKey: "userId" });
 UserPokemon.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Team, { foreignKey: "userId" });
+Team.belongsTo(User, { foreignKey: "userId" });
 
 // Version table relationships
 Version.hasMany(DexEntry, { foreignKey: "versionId" });
