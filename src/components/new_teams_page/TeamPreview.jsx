@@ -24,8 +24,8 @@ const TeamPreview = ({
 }) => {
   return (
     <div className="flex flex-col justify-center place-items-center">
-      <div className="relative h-12 flex place-items-center text-xl text-text-dark">
-        <IoMdCreate className="absolute left-2 z-30" />
+      <div className="relative flex place-items-center h-12 px-10 text-xl text-text-dark">
+        <IoMdCreate className="absolute z-30" />
         <input
           className="flex justify-center place-items-center"
           type="text"
@@ -33,15 +33,25 @@ const TeamPreview = ({
           onChange={(e) => setTeamName(e.target.value)}
         />
       </div>
-      <div className="flex gap-x-2 w-full bg-accent-gray-light">
-        <div className="flex justify-center place-items-center">
+      <div className="flex justify-start place-items-end px-2 -space-x-2 w-full h-28">
+        <div className="flex justify-center place-items-end max-w-32">
           <img src={pokemon1Data.giph ?? ""} alt={pokemon1Data.name ?? ""} />
         </div>
-        <img src={pokemon2Data.giph ?? ""} alt={pokemon2Data.name ?? ""} />
-        <img src={pokemon3Data.giph ?? ""} alt={pokemon3Data.name ?? ""} />
-        <img src={pokemon4Data.giph ?? ""} alt={pokemon4Data.name ?? ""} />
-        <img src={pokemon5Data.giph ?? ""} alt={pokemon5Data.name ?? ""} />
-        <img src={pokemon6Data.giph ?? ""} alt={pokemon6Data.name ?? ""} />
+        <div className="flex justify-center place-items-end max-w-32">
+          <img src={pokemon2Data.giph ?? ""} alt={pokemon2Data.name ?? ""} />
+        </div>
+        <div className="flex justify-center place-items-end max-w-32">
+          <img src={pokemon3Data.giph ?? ""} alt={pokemon3Data.name ?? ""} />
+        </div>
+        <div className="flex justify-center place-items-end max-w-32">
+          <img src={pokemon4Data.giph ?? ""} alt={pokemon4Data.name ?? ""} />
+        </div>
+        <div className="flex justify-center place-items-end max-w-32">
+          <img src={pokemon5Data.giph ?? ""} alt={pokemon5Data.name ?? ""} />
+        </div>
+        <div className="flex justify-center place-items-end max-w-32">
+          <img src={pokemon6Data.giph ?? ""} alt={pokemon6Data.name ?? ""} />
+        </div>
       </div>
     </div>
   );

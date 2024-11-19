@@ -101,7 +101,7 @@ const SelectablePokemon = ({
   ));
 
   return (
-    <div className="absolute flex flex-col gap-y-2 h-full bg-accent-gray-light p-2 z-50 rounded-lg overflow-y-scroll">
+    <div className="absolute flex flex-col gap-y-2 w-full h-full bg-accent-gray-light p-2 px-10 z-50 rounded-lg overflow-y-scroll">
       {pokemonCards}
     </div>
   );
