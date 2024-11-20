@@ -21,10 +21,13 @@ const SelectablePokemon = ({
   setPokemon6IsShiny,
   setPokemon6IsFemale,
   slotToFill,
+  showSelectablePokemon,
   setShowSelectablePokemon,
 }) => {
   // state values
   const [selectablePokemonData, setSelectablePokemonData] = useState([]);
+  const [popupPokemonData, setPopupPokemonData] = useState([]);
+  const [showPokemonPopup, setShowPokemonPopup] = useState(false);
 
   useEffect(() => {
     axios.get("/api/pokemon/team/selection").then((res) => {
@@ -101,9 +104,17 @@ const SelectablePokemon = ({
   ));
 
   return (
-    <div className="absolute flex flex-col gap-y-2 w-full h-full bg-accent-gray-light p-2 px-10 z-50 rounded-lg overflow-y-scroll">
-      {pokemonCards}
-    </div>
+    <>
+      <div
+        className={`absolute w-full h-full bg-white pb-48 px-10 z-50 overscroll-y-none ${
+          showSelectablePokemon ? "" : "hidden"
+        }`}
+      >
+        <div className="flex flex-col h-full gap-y-2 p-2 bg-accent-gray-light rounded-lg overflow-y-scroll">
+          {pokemonCards}
+        </div>
+      </div>
+    </>
   );
 };
 
