@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import SelectablePokemon from "../components/new_teams_page/SelectablePokemon.jsx";
 import TeamPreview from "../components/new_teams_page/TeamPreview.jsx";
 import PokemonAndMoves from "../components/new_teams_page/PokemonAndMoves.jsx";
+import Moveset from "../components/new_teams_page/MoveSet.jsx";
+import AbilitySelection from "../components/new_teams_page/AbilitySelection.jsx";
 
 const NewTeamPage = () => {
   // user from redux store
@@ -12,59 +14,110 @@ const NewTeamPage = () => {
   const [pokemon1Data, setPokemon1Data] = useState([]);
   const [pokemon1IsShiny, setPokemon1IsShiny] = useState(false);
   const [pokemon1IsFemale, setPokemon1IsFemale] = useState(false);
-  const [pokemon1Move1, setPokemon1Move1] = useState(0);
-  const [pokemon1Move2, setPokemon1Move2] = useState(0);
-  const [pokemon1Move3, setPokemon1Move3] = useState(0);
-  const [pokemon1Move4, setPokemon1Move4] = useState(0);
-  const [pokemon1Ability, setPokemon1Ability] = useState(0);
+  const [pokemon1Move1, setPokemon1Move1] = useState({
+    move: { name: "Move 1" },
+  });
+  const [pokemon1Move2, setPokemon1Move2] = useState({
+    move: { name: "Move 2" },
+  });
+  const [pokemon1Move3, setPokemon1Move3] = useState({
+    move: { name: "Move 3" },
+  });
+  const [pokemon1Move4, setPokemon1Move4] = useState({
+    move: { name: "Move 4" },
+  });
+  const [pokemon1Ability, setPokemon1Ability] = useState({ name: "Ability" });
 
   const [pokemon2Data, setPokemon2Data] = useState([]);
   const [pokemon2IsShiny, setPokemon2IsShiny] = useState(false);
   const [pokemon2IsFemale, setPokemon2IsFemale] = useState(false);
-  const [pokemon2Move1, setPokemon2Move1] = useState(0);
-  const [pokemon2Move2, setPokemon2Move2] = useState(0);
-  const [pokemon2Move3, setPokemon2Move3] = useState(0);
-  const [pokemon2Move4, setPokemon2Move4] = useState(0);
-  const [pokemon2Ability, setPokemon2Ability] = useState(0);
+  const [pokemon2Move1, setPokemon2Move1] = useState({
+    move: { name: "Move 1" },
+  });
+  const [pokemon2Move2, setPokemon2Move2] = useState({
+    move: { name: "Move 2" },
+  });
+  const [pokemon2Move3, setPokemon2Move3] = useState({
+    move: { name: "Move 3" },
+  });
+  const [pokemon2Move4, setPokemon2Move4] = useState({
+    move: { name: "Move 4" },
+  });
+  const [pokemon2Ability, setPokemon2Ability] = useState({ name: "Ability" });
 
   const [pokemon3Data, setPokemon3Data] = useState([]);
   const [pokemon3IsShiny, setPokemon3IsShiny] = useState(false);
   const [pokemon3IsFemale, setPokemon3IsFemale] = useState(false);
-  const [pokemon3Move1, setPokemon3Move1] = useState(0);
-  const [pokemon3Move2, setPokemon3Move2] = useState(0);
-  const [pokemon3Move3, setPokemon3Move3] = useState(0);
-  const [pokemon3Move4, setPokemon3Move4] = useState(0);
-  const [pokemon3Ability, setPokemon3Ability] = useState(0);
+  const [pokemon3Move1, setPokemon3Move1] = useState({
+    move: { name: "Move 1" },
+  });
+  const [pokemon3Move2, setPokemon3Move2] = useState({
+    move: { name: "Move 2" },
+  });
+  const [pokemon3Move3, setPokemon3Move3] = useState({
+    move: { name: "Move 3" },
+  });
+  const [pokemon3Move4, setPokemon3Move4] = useState({
+    move: { name: "Move 4" },
+  });
+  const [pokemon3Ability, setPokemon3Ability] = useState({ name: "Ability" });
 
   const [pokemon4Data, setPokemon4Data] = useState([]);
   const [pokemon4IsShiny, setPokemon4IsShiny] = useState(false);
   const [pokemon4IsFemale, setPokemon4IsFemale] = useState(false);
-  const [pokemon4Move1, setPokemon4Move1] = useState(0);
-  const [pokemon4Move2, setPokemon4Move2] = useState(0);
-  const [pokemon4Move3, setPokemon4Move3] = useState(0);
-  const [pokemon4Move4, setPokemon4Move4] = useState(0);
-  const [pokemon4Ability, setPokemon4Ability] = useState(0);
+  const [pokemon4Move1, setPokemon4Move1] = useState({
+    move: { name: "Move 1" },
+  });
+  const [pokemon4Move2, setPokemon4Move2] = useState({
+    move: { name: "Move 2" },
+  });
+  const [pokemon4Move3, setPokemon4Move3] = useState({
+    move: { name: "Move 3" },
+  });
+  const [pokemon4Move4, setPokemon4Move4] = useState({
+    move: { name: "Move 4" },
+  });
+  const [pokemon4Ability, setPokemon4Ability] = useState({ name: "Ability" });
 
   const [pokemon5Data, setPokemon5Data] = useState([]);
   const [pokemon5IsShiny, setPokemon5IsShiny] = useState(false);
   const [pokemon5IsFemale, setPokemon5IsFemale] = useState(false);
-  const [pokemon5Move1, setPokemon5Move1] = useState(0);
-  const [pokemon5Move2, setPokemon5Move2] = useState(0);
-  const [pokemon5Move3, setPokemon5Move3] = useState(0);
-  const [pokemon5Move4, setPokemon5Move4] = useState(0);
-  const [pokemon5Ability, setPokemon5Ability] = useState(0);
+  const [pokemon5Move1, setPokemon5Move1] = useState({
+    move: { name: "Move 1" },
+  });
+  const [pokemon5Move2, setPokemon5Move2] = useState({
+    move: { name: "Move 2" },
+  });
+  const [pokemon5Move3, setPokemon5Move3] = useState({
+    move: { name: "Move 3" },
+  });
+  const [pokemon5Move4, setPokemon5Move4] = useState({
+    move: { name: "Move 4" },
+  });
+  const [pokemon5Ability, setPokemon5Ability] = useState({ name: "Ability" });
 
   const [pokemon6Data, setPokemon6Data] = useState([]);
   const [pokemon6IsShiny, setPokemon6IsShiny] = useState(false);
   const [pokemon6IsFemale, setPokemon6IsFemale] = useState(false);
-  const [pokemon6Move1, setPokemon6Move1] = useState(0);
-  const [pokemon6Move2, setPokemon6Move2] = useState(0);
-  const [pokemon6Move3, setPokemon6Move3] = useState(0);
-  const [pokemon6Move4, setPokemon6Move4] = useState(0);
-  const [pokemon6Ability, setPokemon6Ability] = useState(0);
+  const [pokemon6Move1, setPokemon6Move1] = useState({
+    move: { name: "Move 1" },
+  });
+  const [pokemon6Move2, setPokemon6Move2] = useState({
+    move: { name: "Move 2" },
+  });
+  const [pokemon6Move3, setPokemon6Move3] = useState({
+    move: { name: "Move 3" },
+  });
+  const [pokemon6Move4, setPokemon6Move4] = useState({
+    move: { name: "Move 4" },
+  });
+  const [pokemon6Ability, setPokemon6Ability] = useState({ name: "Ability" });
 
   // other state values
   const [showSelectablePokemon, setShowSelectablePokemon] = useState(false);
+  const [showMoveset, setShowMoveset] = useState(false);
+  const [showAbilities, setShowAbilities] = useState(false);
+  const [moveToFill, setMoveToFill] = useState(1);
   const [slotToFill, setSlotToFill] = useState(0);
   const [teamName, setTeamName] = useState("New Team");
 
@@ -93,6 +146,61 @@ const NewTeamPage = () => {
         showSelectablePokemon={showSelectablePokemon}
         setShowSelectablePokemon={setShowSelectablePokemon}
       />
+      {showMoveset && (
+        <Moveset
+          moveToFill={moveToFill}
+          slotToFill={slotToFill}
+          setShowMoveset={setShowMoveset}
+          pokemon1Data={pokemon1Data}
+          setPokemon1Move1={setPokemon1Move1}
+          setPokemon1Move2={setPokemon1Move2}
+          setPokemon1Move3={setPokemon1Move3}
+          setPokemon1Move4={setPokemon1Move4}
+          pokemon2Data={pokemon2Data}
+          setPokemon2Move1={setPokemon2Move1}
+          setPokemon2Move2={setPokemon2Move2}
+          setPokemon2Move3={setPokemon2Move3}
+          setPokemon2Move4={setPokemon2Move4}
+          pokemon3Data={pokemon3Data}
+          setPokemon3Move1={setPokemon3Move1}
+          setPokemon3Move2={setPokemon3Move2}
+          setPokemon3Move3={setPokemon3Move3}
+          setPokemon3Move4={setPokemon3Move4}
+          pokemon4Data={pokemon4Data}
+          setPokemon4Move1={setPokemon4Move1}
+          setPokemon4Move2={setPokemon4Move2}
+          setPokemon4Move3={setPokemon4Move3}
+          setPokemon4Move4={setPokemon4Move4}
+          pokemon5Data={pokemon5Data}
+          setPokemon5Move1={setPokemon5Move1}
+          setPokemon5Move2={setPokemon5Move2}
+          setPokemon5Move3={setPokemon5Move3}
+          setPokemon5Move4={setPokemon5Move4}
+          pokemon6Data={pokemon6Data}
+          setPokemon6Move1={setPokemon6Move1}
+          setPokemon6Move2={setPokemon6Move2}
+          setPokemon6Move3={setPokemon6Move3}
+          setPokemon6Move4={setPokemon6Move4}
+        />
+      )}
+      {showAbilities && (
+        <AbilitySelection
+          setShowAbilities={setShowAbilities}
+          slotToFill={slotToFill}
+          pokemon1Data={pokemon1Data}
+          pokemon2Data={pokemon2Data}
+          pokemon3Data={pokemon3Data}
+          pokemon4Data={pokemon4Data}
+          pokemon5Data={pokemon5Data}
+          pokemon6Data={pokemon6Data}
+          setPokemon1Ability={setPokemon1Ability}
+          setPokemon2Ability={setPokemon2Ability}
+          setPokemon3Ability={setPokemon3Ability}
+          setPokemon4Ability={setPokemon4Ability}
+          setPokemon5Ability={setPokemon5Ability}
+          setPokemon6Ability={setPokemon6Ability}
+        />
+      )}
       <div className="flex flex-col gap-y-4 w-full h-full">
         <TeamPreview
           teamName={teamName}
@@ -209,6 +317,9 @@ const NewTeamPage = () => {
           setPokemon6Ability={setPokemon6Ability}
           setSlotToFill={setSlotToFill}
           setShowSelectablePokemon={setShowSelectablePokemon}
+          setShowMoveset={setShowMoveset}
+          setShowAbilities={setShowAbilities}
+          setMoveToFill={setMoveToFill}
         />
       </div>
     </>

@@ -119,11 +119,10 @@ const handlerFunctions = {
 
     const movesetData = await Moveset.findAll({
       where: { pokemonId: id },
-      order: [["name", "ASC"]],
       include: [
         {
           model: Move,
-
+          order: [["name", "ASC"]],
           include: [
             {
               model: Type,
@@ -134,6 +133,13 @@ const handlerFunctions = {
     });
 
     res.status(200).send(movesetData);
+  },
+  postAbilitiesByPokemonId: async (req, res) => {
+    const { id } = req.body;
+
+    const abilities = await Ability.findAll({
+      where: {},
+    });
   },
   getUserTeams: async (req, res) => {
     const { userId } = req.body;
@@ -261,6 +267,9 @@ const handlerFunctions = {
         },
         { model: Type, as: "type1" },
         { model: Type, as: "type2" },
+        { model: Ability, as: "ability1" },
+        { model: Ability, as: "ability2" },
+        { model: Ability, as: "ability3" },
       ],
     });
 

@@ -94,6 +94,9 @@ const PokemonAndMoves = ({
   setPokemon6Ability,
   setSlotToFill,
   setShowSelectablePokemon,
+  setShowMoveset,
+  setShowAbilities,
+  setMoveToFill,
 }) => {
   // bg-bug-primary bg-dark-primary bg-dragon-primary bg-electric-primary bg-fairy-primary bg-fighting-primary bg-fire-primary bg-ghost-primary bg-grass-primary bg-ground-primary bg-ice-primary bg-normal-primary bg-poison-primary bg-flying-primary bg-psychic-primary bg-rock-primary bg-steel-primary bg-water-primary
 
@@ -185,11 +188,51 @@ const PokemonAndMoves = ({
               )}
             </div>
             <div>
-              <p>Move 1</p>
-              <p>Move 2</p>
-              <p>Move 3</p>
-              <p>Move 4</p>
-              <p>Ability</p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(1);
+                  setSlotToFill(1);
+                }}
+              >
+                {pokemon1Move1.move.name}
+              </p>
+
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(2);
+                  setSlotToFill(1);
+                }}
+              >
+                {pokemon1Move2.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(3);
+                  setSlotToFill(1);
+                }}
+              >
+                {pokemon1Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(4);
+                  setSlotToFill(1);
+                }}
+              >
+                {pokemon1Move4.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setSlotToFill(1);
+                  setShowAbilities(true);
+                }}
+              >
+                {pokemon1Ability.name}
+              </p>
             </div>
           </div>
         </div>
@@ -280,11 +323,50 @@ const PokemonAndMoves = ({
               )}
             </div>
             <div>
-              <p>Move 1</p>
-              <p>Move 2</p>
-              <p>Move 3</p>
-              <p>Move 4</p>
-              <p>Ability</p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(1);
+                  setSlotToFill(2);
+                }}
+              >
+                {pokemon2Move1.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(2);
+                  setSlotToFill(2);
+                }}
+              >
+                {pokemon2Move2.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(3);
+                  setSlotToFill(2);
+                }}
+              >
+                {pokemon2Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(4);
+                  setSlotToFill(2);
+                }}
+              >
+                {pokemon2Move4.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setSlotToFill(2);
+                  setShowAbilities(true);
+                }}
+              >
+                {pokemon2Ability.name}
+              </p>
             </div>
           </div>
         </div>
@@ -375,11 +457,50 @@ const PokemonAndMoves = ({
               )}
             </div>
             <div>
-              <p>Move 1</p>
-              <p>Move 2</p>
-              <p>Move 3</p>
-              <p>Move 4</p>
-              <p>Ability</p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(1);
+                  setSlotToFill(3);
+                }}
+              >
+                {pokemon3Move1.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(2);
+                  setSlotToFill(3);
+                }}
+              >
+                {pokemon3Move2.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(3);
+                  setSlotToFill(3);
+                }}
+              >
+                {pokemon3Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(4);
+                  setSlotToFill(3);
+                }}
+              >
+                {pokemon3Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setSlotToFill(3);
+                  setShowAbilities(true);
+                }}
+              >
+                {pokemon3Ability.name}
+              </p>
             </div>
           </div>
         </div>
@@ -470,11 +591,50 @@ const PokemonAndMoves = ({
               )}
             </div>
             <div>
-              <p>Move 1</p>
-              <p>Move 2</p>
-              <p>Move 3</p>
-              <p>Move 4</p>
-              <p>Ability</p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(1);
+                  setSlotToFill(4);
+                }}
+              >
+                {pokemon4Move1.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(2);
+                  setSlotToFill(4);
+                }}
+              >
+                {pokemon4Move2.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(3);
+                  setSlotToFill(4);
+                }}
+              >
+                {pokemon4Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(4);
+                  setSlotToFill(4);
+                }}
+              >
+                {pokemon4Move4.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setSlotToFill(4);
+                  setShowAbilities(true);
+                }}
+              >
+                {pokemon4Ability.name}
+              </p>
             </div>
           </div>
         </div>
@@ -565,11 +725,50 @@ const PokemonAndMoves = ({
               )}
             </div>
             <div>
-              <p>Move 1</p>
-              <p>Move 2</p>
-              <p>Move 3</p>
-              <p>Move 4</p>
-              <p>Ability</p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(1);
+                  setSlotToFill(5);
+                }}
+              >
+                {pokemon5Move1.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(2);
+                  setSlotToFill(5);
+                }}
+              >
+                {pokemon5Move2.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(3);
+                  setSlotToFill(5);
+                }}
+              >
+                {pokemon5Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(4);
+                  setSlotToFill(5);
+                }}
+              >
+                {pokemon5Move4.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setSlotToFill(5);
+                  setShowAbilities(true);
+                }}
+              >
+                {pokemon5Ability.name}
+              </p>
             </div>
           </div>
         </div>
@@ -660,11 +859,50 @@ const PokemonAndMoves = ({
               )}
             </div>
             <div>
-              <p>Move 1</p>
-              <p>Move 2</p>
-              <p>Move 3</p>
-              <p>Move 4</p>
-              <p>Ability</p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(1);
+                  setSlotToFill(6);
+                }}
+              >
+                {pokemon6Move1.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(2);
+                  setSlotToFill(6);
+                }}
+              >
+                {pokemon6Move2.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(3);
+                  setSlotToFill(6);
+                }}
+              >
+                {pokemon6Move3.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setShowMoveset(true);
+                  setMoveToFill(4);
+                  setSlotToFill(6);
+                }}
+              >
+                {pokemon6Move4.move.name}
+              </p>
+              <p
+                onClick={() => {
+                  setSlotToFill(6);
+                  setShowAbilities(true);
+                }}
+              >
+                {pokemon6Ability.name}
+              </p>
             </div>
           </div>
         </div>
