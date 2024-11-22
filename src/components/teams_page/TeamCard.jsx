@@ -1,15 +1,7 @@
 import { useState } from "react";
 import { IoMdCreate, IoMdTrash } from "react-icons/io";
 
-const TeamCard = ({ team }) => {
-  // state values
-  const [pokemon1, setPokemon1] = useState();
-  const [pokemon2, setPokemon2] = useState();
-  const [pokemon3, setPokemon3] = useState();
-  const [pokemon4, setPokemon4] = useState();
-  const [pokemon5, setPokemon5] = useState();
-  const [pokemon6, setPokemon6] = useState();
-
+const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
   console.log("team:", team);
 
   return (
@@ -90,7 +82,13 @@ const TeamCard = ({ team }) => {
         <div className="flex-1 flex justify-center place-items-center bg-accent-gray-dark">
           <IoMdCreate className="drop-shadow-lg" />
         </div>
-        <div className="flex-1 flex justify-center place-items-center bg-red-600 rounded-r-lg">
+        <div
+          onClick={() => {
+            setTeamToDelete(team);
+            setShowConfirmDelete(true);
+          }}
+          className="flex-1 flex justify-center place-items-center bg-red-600 rounded-r-lg"
+        >
           <IoMdTrash className="drop-shadow-lg" />
         </div>
       </div>

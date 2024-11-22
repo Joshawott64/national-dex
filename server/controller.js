@@ -386,6 +386,15 @@ const handlerFunctions = {
 
     res.status(200).send(newTeam);
   },
+  deleteTeam: async (req, res) => {
+    const { id } = req.params;
+
+    const teamToDelete = await Team.destroy({
+      where: { teamId: id },
+    });
+
+    res.status(200).send({ success: true, message: "Successful deletion!" });
+  },
   sessionCheck: async (req, res) => {
     if (req.session.userId) {
       res.send({

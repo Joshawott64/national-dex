@@ -595,12 +595,30 @@ Pokemon.hasMany(Moveset, { foreignKey: "pokemonId" });
 Moveset.belongsTo(Pokemon, { foreignKey: "pokemonId" });
 
 // UserPokemon table relationships
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon1Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon2Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon3Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon4Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon5Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon6Id" });
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon1Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon2Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon3Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon4Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon5Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon6Id",
+  onDelete: "CASCADE",
+});
 Team.belongsTo(UserPokemon, {
   as: "userPokemon1",
   foreignKey: "userPokemon1Id",
@@ -627,9 +645,9 @@ Team.belongsTo(UserPokemon, {
 });
 
 // User table relationships
-User.hasMany(UserPokemon, { foreignKey: "userId" });
+User.hasMany(UserPokemon, { foreignKey: "userId", onDelete: "CASCADE" });
 UserPokemon.belongsTo(User, { foreignKey: "userId" });
-User.hasMany(Team, { foreignKey: "userId" });
+User.hasMany(Team, { foreignKey: "userId", onDelete: "CASCADE" });
 Team.belongsTo(User, { foreignKey: "userId" });
 
 // Version table relationships
