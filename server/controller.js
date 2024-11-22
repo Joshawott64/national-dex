@@ -389,8 +389,38 @@ const handlerFunctions = {
   deleteTeam: async (req, res) => {
     const { id } = req.params;
 
-    const teamToDelete = await Team.destroy({
+    // find team to delete
+    const teamToDelete = await Team.findOne({
       where: { teamId: id },
+    });
+
+    // delete UserPokemon associated with team
+    const deleteTeamPokemon = await UserPokemon.destroy({
+      where: {
+        userPokemonId: {
+          [Op.in]: [
+            teamToDelete.userPokemon1Id,
+            teamToDelete.userPokemon2Id,
+            teamToDelete.userPokemon3Id,
+            teamToDelete.userPokemon4Id,
+            teamToDelete.userPokemon5Id,
+            teamToDelete.userPokemon6Id,
+          ],
+        },
+      },
+    });
+
+    // delete Team
+    const deleteTeam = await Team.destroy({
+      where: {
+        teamId: teamToDelete.teamId,
+        userPokemon1Id: teamToDelete.userPokemon1Id,
+        userPokemon2Id: teamToDelete.userPokemon2Id,
+        userPokemon3Id: teamToDelete.userPokemon3Id,
+        userPokemon4Id: teamToDelete.userPokemon4Id,
+        userPokemon5Id: teamToDelete.userPokemon5Id,
+        userPokemon6Id: teamToDelete.userPokemon6Id,
+      },
     });
 
     res.status(200).send({ success: true, message: "Successful deletion!" });
