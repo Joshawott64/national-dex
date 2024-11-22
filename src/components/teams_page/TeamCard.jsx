@@ -16,64 +16,76 @@ const TeamCard = ({ team }) => {
     <div className="bg-accent-gray-light text-text-light rounded-lg drop-shadow-lg">
       <div className="flex flex-row">
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
-          <img
-            className="drop-shadow-lg"
-            src={
-              team.userPokemon1.pokemon.legacyIcon ??
-              team.userPokemon1.pokemon.latestIcon
-            }
-            alt={team.userPokemon1.nickname}
-          ></img>
+          {team.userPokemon1.pokemonId && (
+            <img
+              className="drop-shadow-lg"
+              src={
+                team.userPokemon1.pokemon.legacyIcon ??
+                team.userPokemon1.pokemon.latestIcon
+              }
+              alt="pokemon1"
+            ></img>
+          )}
         </div>
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
-          <img
-            className="drop-shadow-lg"
-            src={
-              team.userPokemon2.pokemon.legacyIcon ??
-              team.userPokemon2.pokemon.latestIcon
-            }
-            alt={team.userPokemon2.nickname}
-          ></img>
+          {team.userPokemon2.pokemonId && (
+            <img
+              className="drop-shadow-lg"
+              src={
+                team.userPokemon2.pokemon.legacyIcon ??
+                team.userPokemon2.pokemon.latestIcon
+              }
+              alt="pokemon2"
+            ></img>
+          )}
         </div>
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
-          <img
-            className="drop-shadow-lg"
-            src={
-              team.userPokemon3.pokemon.legacyIcon ??
-              team.userPokemon3.pokemon.latestIcon
-            }
-            alt={team.userPokemon3.nickname}
-          ></img>
+          {team.userPokemon3.pokemonId && (
+            <img
+              className="drop-shadow-lg"
+              src={
+                team.userPokemon3.pokemon.legacyIcon ??
+                team.userPokemon3.pokemon.latestIcon
+              }
+              alt="pokemon3"
+            ></img>
+          )}
         </div>
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
-          <img
-            className="drop-shadow-lg"
-            src={
-              team.userPokemon4.pokemon.legacyIcon ??
-              team.userPokemon4.pokemon.latestIcon
-            }
-            alt={team.userPokemon4.nickname}
-          ></img>
+          {team.userPokemon4.pokemonId && (
+            <img
+              className="drop-shadow-lg"
+              src={
+                team.userPokemon4.pokemon.legacyIcon ??
+                team.userPokemon4.pokemon.latestIcon
+              }
+              alt="pokemon4"
+            ></img>
+          )}
         </div>
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
-          <img
-            className="drop-shadow-lg"
-            src={
-              team.userPokemon5.pokemon.legacyIcon ??
-              team.userPokemon5.pokemon.latestIcon
-            }
-            alt={team.userPokemon5.nickname}
-          ></img>
+          {team.userPokemon5.pokemonId && (
+            <img
+              className="drop-shadow-lg"
+              src={
+                team.userPokemon5.pokemon.legacyIcon ??
+                team.userPokemon5.pokemon.latestIcon
+              }
+              alt="pokemon5"
+            ></img>
+          )}
         </div>
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
-          <img
-            className="drop-shadow-lg"
-            src={
-              team.userPokemon6.pokemon.legacyIcon ??
-              team.userPokemon6.pokemon.latestIcon
-            }
-            alt={team.userPokemon6.nickname}
-          ></img>
+          {team.userPokemon6.pokemonId && (
+            <img
+              className="drop-shadow-lg"
+              src={
+                team.userPokemon6.pokemon.legacyIcon ??
+                team.userPokemon6.pokemon.latestIcon
+              }
+              alt="pokemon6"
+            ></img>
+          )}
         </div>
         <div className="flex-1 flex justify-center place-items-center bg-accent-gray-dark">
           <IoMdCreate className="drop-shadow-lg" />

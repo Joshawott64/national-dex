@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import SelectablePokemon from "../components/new_teams_page/SelectablePokemon.jsx";
 import TeamPreview from "../components/new_teams_page/TeamPreview.jsx";
 import PokemonAndMoves from "../components/new_teams_page/PokemonAndMoves.jsx";
@@ -7,111 +9,132 @@ import Moveset from "../components/new_teams_page/MoveSet.jsx";
 import AbilitySelection from "../components/new_teams_page/AbilitySelection.jsx";
 
 const NewTeamPage = () => {
-  // user from redux store
-  const user = useSelector((state) => state.user);
+  // userId from redux store
+  const userId = useSelector((state) => state.userId);
+
+  // inovoke useNavigate
+  const navigate = useNavigate();
 
   // state values for team pokemon
   const [pokemon1Data, setPokemon1Data] = useState([]);
   const [pokemon1IsShiny, setPokemon1IsShiny] = useState(false);
   const [pokemon1IsFemale, setPokemon1IsFemale] = useState(false);
   const [pokemon1Move1, setPokemon1Move1] = useState({
-    move: { name: "Move 1" },
+    move: { name: "Move 1", moveId: null },
   });
   const [pokemon1Move2, setPokemon1Move2] = useState({
-    move: { name: "Move 2" },
+    move: { name: "Move 2", moveId: null },
   });
   const [pokemon1Move3, setPokemon1Move3] = useState({
-    move: { name: "Move 3" },
+    move: { name: "Move 3", moveId: null },
   });
   const [pokemon1Move4, setPokemon1Move4] = useState({
-    move: { name: "Move 4" },
+    move: { name: "Move 4", moveId: null },
   });
-  const [pokemon1Ability, setPokemon1Ability] = useState({ name: "Ability" });
+  const [pokemon1Ability, setPokemon1Ability] = useState({
+    name: "Ability",
+    abilityId: null,
+  });
 
   const [pokemon2Data, setPokemon2Data] = useState([]);
   const [pokemon2IsShiny, setPokemon2IsShiny] = useState(false);
   const [pokemon2IsFemale, setPokemon2IsFemale] = useState(false);
   const [pokemon2Move1, setPokemon2Move1] = useState({
-    move: { name: "Move 1" },
+    move: { name: "Move 1", moveId: null },
   });
   const [pokemon2Move2, setPokemon2Move2] = useState({
-    move: { name: "Move 2" },
+    move: { name: "Move 2", moveId: null },
   });
   const [pokemon2Move3, setPokemon2Move3] = useState({
-    move: { name: "Move 3" },
+    move: { name: "Move 3", moveId: null },
   });
   const [pokemon2Move4, setPokemon2Move4] = useState({
-    move: { name: "Move 4" },
+    move: { name: "Move 4", moveId: null },
   });
-  const [pokemon2Ability, setPokemon2Ability] = useState({ name: "Ability" });
+  const [pokemon2Ability, setPokemon2Ability] = useState({
+    name: "Ability",
+    abilityId: null,
+  });
 
   const [pokemon3Data, setPokemon3Data] = useState([]);
   const [pokemon3IsShiny, setPokemon3IsShiny] = useState(false);
   const [pokemon3IsFemale, setPokemon3IsFemale] = useState(false);
   const [pokemon3Move1, setPokemon3Move1] = useState({
-    move: { name: "Move 1" },
+    move: { name: "Move 1", moveId: null },
   });
   const [pokemon3Move2, setPokemon3Move2] = useState({
-    move: { name: "Move 2" },
+    move: { name: "Move 2", moveId: null },
   });
   const [pokemon3Move3, setPokemon3Move3] = useState({
-    move: { name: "Move 3" },
+    move: { name: "Move 3", moveId: null },
   });
   const [pokemon3Move4, setPokemon3Move4] = useState({
-    move: { name: "Move 4" },
+    move: { name: "Move 4", moveId: null },
   });
-  const [pokemon3Ability, setPokemon3Ability] = useState({ name: "Ability" });
+  const [pokemon3Ability, setPokemon3Ability] = useState({
+    name: "Ability",
+    abilityId: null,
+  });
 
   const [pokemon4Data, setPokemon4Data] = useState([]);
   const [pokemon4IsShiny, setPokemon4IsShiny] = useState(false);
   const [pokemon4IsFemale, setPokemon4IsFemale] = useState(false);
   const [pokemon4Move1, setPokemon4Move1] = useState({
-    move: { name: "Move 1" },
+    move: { name: "Move 1", moveId: null },
   });
   const [pokemon4Move2, setPokemon4Move2] = useState({
-    move: { name: "Move 2" },
+    move: { name: "Move 2", moveId: null },
   });
   const [pokemon4Move3, setPokemon4Move3] = useState({
-    move: { name: "Move 3" },
+    move: { name: "Move 3", moveId: null },
   });
   const [pokemon4Move4, setPokemon4Move4] = useState({
-    move: { name: "Move 4" },
+    move: { name: "Move 4", moveId: null },
   });
-  const [pokemon4Ability, setPokemon4Ability] = useState({ name: "Ability" });
+  const [pokemon4Ability, setPokemon4Ability] = useState({
+    name: "Ability",
+    abilityId: null,
+  });
 
   const [pokemon5Data, setPokemon5Data] = useState([]);
   const [pokemon5IsShiny, setPokemon5IsShiny] = useState(false);
   const [pokemon5IsFemale, setPokemon5IsFemale] = useState(false);
   const [pokemon5Move1, setPokemon5Move1] = useState({
-    move: { name: "Move 1" },
+    move: { name: "Move 1", moveId: null },
   });
   const [pokemon5Move2, setPokemon5Move2] = useState({
-    move: { name: "Move 2" },
+    move: { name: "Move 2", moveId: null },
   });
   const [pokemon5Move3, setPokemon5Move3] = useState({
-    move: { name: "Move 3" },
+    move: { name: "Move 3", moveId: null },
   });
   const [pokemon5Move4, setPokemon5Move4] = useState({
-    move: { name: "Move 4" },
+    move: { name: "Move 4", moveId: null },
   });
-  const [pokemon5Ability, setPokemon5Ability] = useState({ name: "Ability" });
+  const [pokemon5Ability, setPokemon5Ability] = useState({
+    name: "Ability",
+    abilityId: null,
+  });
 
   const [pokemon6Data, setPokemon6Data] = useState([]);
   const [pokemon6IsShiny, setPokemon6IsShiny] = useState(false);
   const [pokemon6IsFemale, setPokemon6IsFemale] = useState(false);
   const [pokemon6Move1, setPokemon6Move1] = useState({
-    move: { name: "Move 1" },
+    move: { name: "Move 1", moveId: null },
   });
   const [pokemon6Move2, setPokemon6Move2] = useState({
-    move: { name: "Move 2" },
+    move: { name: "Move 2", moveId: null },
   });
   const [pokemon6Move3, setPokemon6Move3] = useState({
-    move: { name: "Move 3" },
+    move: { name: "Move 3", moveId: null },
   });
   const [pokemon6Move4, setPokemon6Move4] = useState({
-    move: { name: "Move 4" },
+    move: { name: "Move 4", moveId: null },
   });
-  const [pokemon6Ability, setPokemon6Ability] = useState({ name: "Ability" });
+  const [pokemon6Ability, setPokemon6Ability] = useState({
+    name: "Ability",
+    abilityId: null,
+  });
 
   // other state values
   const [showSelectablePokemon, setShowSelectablePokemon] = useState(false);
@@ -120,6 +143,82 @@ const NewTeamPage = () => {
   const [moveToFill, setMoveToFill] = useState(1);
   const [slotToFill, setSlotToFill] = useState(0);
   const [teamName, setTeamName] = useState("New Team");
+
+  // handler functions
+  const handleTeamCreation = async () => {
+    console.log("TEAM CREATED!!!");
+
+    const bodyObj = {
+      pokemon1: {
+        data: pokemon1Data,
+        isShiny: pokemon1IsShiny,
+        isFemale: pokemon1IsFemale,
+        move1Id: pokemon1Move1.move.moveId,
+        move2Id: pokemon1Move2.move.moveId,
+        move3Id: pokemon1Move3.move.moveId,
+        move4Id: pokemon1Move4.move.moveId,
+        abilityId: pokemon1Ability.abilityId,
+      },
+      pokemon2: {
+        data: pokemon2Data,
+        isShiny: pokemon2IsShiny,
+        isFemale: pokemon2IsFemale,
+        move1Id: pokemon2Move1.move.moveId,
+        move2Id: pokemon2Move2.move.moveId,
+        move3Id: pokemon2Move3.move.moveId,
+        move4Id: pokemon2Move4.move.moveId,
+        abilityId: pokemon2Ability.abilityId,
+      },
+      pokemon3: {
+        data: pokemon3Data,
+        isShiny: pokemon3IsShiny,
+        isFemale: pokemon3IsFemale,
+        move1Id: pokemon3Move1.move.moveId,
+        move2Id: pokemon3Move2.move.moveId,
+        move3Id: pokemon3Move3.move.moveId,
+        move4Id: pokemon3Move4.move.moveId,
+        abilityId: pokemon3Ability.abilityId,
+      },
+      pokemon4: {
+        data: pokemon4Data,
+        isShiny: pokemon4IsShiny,
+        isFemale: pokemon4IsFemale,
+        move1Id: pokemon4Move1.move.moveId,
+        move2Id: pokemon4Move2.move.moveId,
+        move3Id: pokemon4Move3.move.moveId,
+        move4Id: pokemon4Move4.move.moveId,
+        abilityId: pokemon4Ability.abilityId,
+      },
+      pokemon5: {
+        data: pokemon5Data,
+        isShiny: pokemon5IsShiny,
+        isFemale: pokemon5IsFemale,
+        move1Id: pokemon5Move1.move.moveId,
+        move2Id: pokemon5Move2.move.moveId,
+        move3Id: pokemon5Move3.move.moveId,
+        move4Id: pokemon5Move4.move.moveId,
+        abilityId: pokemon5Ability.abilityId,
+      },
+      pokemon6: {
+        data: pokemon6Data,
+        isShiny: pokemon6IsShiny,
+        isFemale: pokemon6IsFemale,
+        move1Id: pokemon6Move1.move.moveId,
+        move2Id: pokemon6Move2.move.moveId,
+        move3Id: pokemon6Move3.move.moveId,
+        move4Id: pokemon6Move4.move.moveId,
+        abilityId: pokemon6Ability.abilityId,
+      },
+      teamName: teamName,
+      userId: userId,
+    };
+
+    const newTeam = await axios.post("/api/pokemon/team/create", bodyObj);
+
+    console.log("newTeam.data", newTeam.data);
+
+    navigate("/teams");
+  };
 
   return (
     <>
@@ -321,6 +420,10 @@ const NewTeamPage = () => {
           setShowAbilities={setShowAbilities}
           setMoveToFill={setMoveToFill}
         />
+      </div>
+      <div>
+        <p onClick={() => navigate("/teams")}>Discard</p>
+        <p onClick={handleTeamCreation}>Create</p>
       </div>
     </>
   );

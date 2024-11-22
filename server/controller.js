@@ -275,6 +275,117 @@ const handlerFunctions = {
 
     res.status(200).send(pokemonData);
   },
+  createNewTeam: async (req, res) => {
+    const {
+      pokemon1,
+      pokemon2,
+      pokemon3,
+      pokemon4,
+      pokemon5,
+      pokemon6,
+      teamName,
+      userId,
+    } = req.body;
+
+    console.log("req.body:", req.body);
+
+    const newUserPokemon1 = await UserPokemon.create({
+      isShiny: pokemon1.isShiny,
+      isFemale: pokemon1.isFemale,
+      abilityId: pokemon1.abilityId,
+      move1Id: pokemon1.move1Id,
+      move2Id: pokemon1.move2Id,
+      move3Id: pokemon1.move3Id,
+      move4Id: pokemon1.move4Id,
+      move5Id: pokemon1.move5Id,
+      move6Id: pokemon1.move6Id,
+      pokemonId: pokemon1.data.pokemonId,
+      userId: userId,
+    });
+
+    const newUserPokemon2 = await UserPokemon.create({
+      isShiny: pokemon2.isShiny,
+      isFemale: pokemon2.isFemale,
+      abilityId: pokemon2.abilityId,
+      move1Id: pokemon2.move1Id,
+      move2Id: pokemon2.move2Id,
+      move3Id: pokemon2.move3Id,
+      move4Id: pokemon2.move4Id,
+      move5Id: pokemon2.move5Id,
+      move6Id: pokemon2.move6Id,
+      pokemonId: pokemon2.data.pokemonId,
+      userId: userId,
+    });
+
+    const newUserPokemon3 = await UserPokemon.create({
+      isShiny: pokemon3.isShiny,
+      isFemale: pokemon3.isFemale,
+      abilityId: pokemon3.abilityId,
+      move1Id: pokemon3.move1Id,
+      move2Id: pokemon3.move2Id,
+      move3Id: pokemon3.move3Id,
+      move4Id: pokemon3.move4Id,
+      move5Id: pokemon3.move5Id,
+      move6Id: pokemon3.move6Id,
+      pokemonId: pokemon3.data.pokemonId,
+      userId: userId,
+    });
+
+    const newUserPokemon4 = await UserPokemon.create({
+      isShiny: pokemon4.isShiny,
+      isFemale: pokemon4.isFemale,
+      abilityId: pokemon4.abilityId,
+      move1Id: pokemon4.move1Id,
+      move2Id: pokemon4.move2Id,
+      move3Id: pokemon4.move3Id,
+      move4Id: pokemon4.move4Id,
+      move5Id: pokemon4.move5Id,
+      move6Id: pokemon4.move6Id,
+      pokemonId: pokemon4.data.pokemonId,
+      userId: userId,
+    });
+
+    const newUserPokemon5 = await UserPokemon.create({
+      isShiny: pokemon5.isShiny,
+      isFemale: pokemon5.isFemale,
+      abilityId: pokemon5.abilityId,
+      move1Id: pokemon5.move1Id,
+      move2Id: pokemon5.move2Id,
+      move3Id: pokemon5.move3Id,
+      move4Id: pokemon5.move4Id,
+      move5Id: pokemon5.move5Id,
+      move6Id: pokemon5.move6Id,
+      pokemonId: pokemon5.data.pokemonId,
+      userId: userId,
+    });
+
+    const newUserPokemon6 = await UserPokemon.create({
+      isShiny: pokemon6.isShiny,
+      isFemale: pokemon6.isFemale,
+      abilityId: pokemon6.abilityId,
+      move1Id: pokemon6.move1Id,
+      move2Id: pokemon6.move2Id,
+      move3Id: pokemon6.move3Id,
+      move4Id: pokemon6.move4Id,
+      move5Id: pokemon6.move5Id,
+      move6Id: pokemon6.move6Id,
+      pokemonId: pokemon6.data.pokemonId,
+      userId: userId,
+    });
+
+    const newTeam = await Team.create({
+      name: teamName,
+      userPokemon1Id: newUserPokemon1.userPokemonId,
+      userPokemon2Id: newUserPokemon2.userPokemonId,
+      userPokemon3Id: newUserPokemon3.userPokemonId,
+      userPokemon4Id: newUserPokemon4.userPokemonId,
+      userPokemon5Id: newUserPokemon5.userPokemonId,
+      userPokemon6Id: newUserPokemon6.userPokemonId,
+      userId: userId,
+    });
+
+    res.status(200).send(newTeam);
+  },
   sessionCheck: async (req, res) => {
     if (req.session.userId) {
       res.send({
