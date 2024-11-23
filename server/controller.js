@@ -144,6 +144,8 @@ const handlerFunctions = {
   getUserTeams: async (req, res) => {
     const { userId } = req.body;
 
+    console.log("userId:", userId);
+
     // respond if userId is null (if a logged out user manually navigates to the teams page)
     if (!userId) {
       console.log("No userId found");
@@ -257,6 +259,142 @@ const handlerFunctions = {
 
     res.status(200).send(teamData);
   },
+  getTeamByTeamId: async (req, res) => {
+    const { id } = req.params;
+
+    const teamData = await Team.findByPk(id, {
+      include: [
+        {
+          model: UserPokemon,
+          as: "userPokemon1",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+              include: [
+                { model: Species },
+                { model: Type, as: "type1" },
+                { model: Type, as: "type2" },
+              ],
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon2",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+              include: [
+                { model: Species },
+                { model: Type, as: "type1" },
+                { model: Type, as: "type2" },
+              ],
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon3",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+              include: [
+                { model: Species },
+                { model: Type, as: "type1" },
+                { model: Type, as: "type2" },
+              ],
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon4",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+              include: [
+                { model: Species },
+                { model: Type, as: "type1" },
+                { model: Type, as: "type2" },
+              ],
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon5",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+              include: [
+                { model: Species },
+                { model: Type, as: "type1" },
+                { model: Type, as: "type2" },
+              ],
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+        {
+          model: UserPokemon,
+          as: "userPokemon6",
+          include: [
+            { model: Move, as: "move1", include: [{ model: Type }] },
+            { model: Move, as: "move2", include: [{ model: Type }] },
+            { model: Move, as: "move3", include: [{ model: Type }] },
+            { model: Move, as: "move4", include: [{ model: Type }] },
+            {
+              model: Pokemon,
+              include: [
+                { model: Species },
+                { model: Type, as: "type1" },
+                { model: Type, as: "type2" },
+              ],
+            },
+            {
+              model: Ability,
+            },
+          ],
+        },
+      ],
+    });
+
+    res.status(200).send(teamData);
+  },
   getPokemonForTeamSelection: async (req, res) => {
     const pokemonData = await Pokemon.findAll({
       order: ["speciesId"],
@@ -286,8 +424,6 @@ const handlerFunctions = {
       teamName,
       userId,
     } = req.body;
-
-    console.log("req.body:", req.body);
 
     const newUserPokemon1 = await UserPokemon.create({
       isShiny: pokemon1.isShiny,
@@ -385,6 +521,23 @@ const handlerFunctions = {
     });
 
     res.status(200).send(newTeam);
+  },
+  editTeam: async (req, res) => {
+    const {
+      userId,
+      teamId,
+      teamName,
+      pokemon1,
+      pokemon2,
+      pokemon3,
+      pokemon4,
+      pokemon5,
+      pokemon6,
+    } = req.body;
+
+    const teamToEdit = await Team.findByPk(teamId);
+
+    console.log("teamToEdit", teamToEdit);
   },
   deleteTeam: async (req, res) => {
     const { id } = req.params;

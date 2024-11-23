@@ -30,7 +30,7 @@ const SelectablePokemon = ({
   const [showPokemonPopup, setShowPokemonPopup] = useState(false);
 
   useEffect(() => {
-    axios.get("/api/pokemon/team/selection").then((res) => {
+    axios.get("/api/team/pokemon/all").then((res) => {
       console.log("res.data:", res.data);
       setSelectablePokemonData(res.data);
     });

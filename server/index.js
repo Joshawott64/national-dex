@@ -23,8 +23,10 @@ const {
   getMovesetsByPokemonId,
   postMovesetsByPokemonId,
   getUserTeams,
+  getTeamByTeamId,
   getPokemonForTeamSelection,
   createNewTeam,
+  editTeam,
   deleteTeam,
   sessionCheck,
   register,
@@ -40,8 +42,10 @@ app.get("/api/pokemon/entries/:id", getDexEntries);
 app.get("/api/pokemon/moveset/:id", getMovesetsByPokemonId);
 app.post("/api/pokemon/moveset", postMovesetsByPokemonId);
 app.post("/api/teams", getUserTeams);
-app.get("/api/pokemon/team/selection", getPokemonForTeamSelection);
+app.get("/api/pokemon/team/:id", getTeamByTeamId);
+app.get("/api/team/pokemon/all", getPokemonForTeamSelection);
 app.post("/api/pokemon/team/create", createNewTeam);
+app.put("/api/pokemon/team/edit", editTeam);
 app.delete("/api/pokemon/team/delete/:id", deleteTeam);
 app.get("/api/session-check", sessionCheck);
 app.post("/api/register", register);

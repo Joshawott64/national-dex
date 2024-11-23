@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoMdCreate, IoMdTrash } from "react-icons/io";
 
 const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
-  console.log("team:", team);
+  // invoke useNavigate
+  const navigate = useNavigate();
+
+  // console.log("team:", team);
 
   return (
     <div className="bg-accent-gray-light text-text-light rounded-lg drop-shadow-lg">
@@ -80,7 +84,10 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
           )}
         </div>
         <div className="flex-1 flex justify-center place-items-center bg-accent-gray-dark">
-          <IoMdCreate className="drop-shadow-lg" />
+          <IoMdCreate
+            onClick={() => navigate(`/teams/edit/${team.teamId}`)}
+            className="drop-shadow-lg"
+          />
         </div>
         <div
           onClick={() => {
