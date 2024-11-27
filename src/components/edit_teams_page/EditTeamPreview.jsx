@@ -4,6 +4,12 @@ const EditTeamPreview = ({
   teamToEditData,
   newTeamName,
   setNewTeamName,
+  userPokemon1,
+  userPokemon2,
+  userPokemon3,
+  userPokemon4,
+  userPokemon5,
+  userPokemon6,
   pokemon1IsShiny,
   pokemon1IsFemale,
   pokemon2IsShiny,
@@ -33,45 +39,45 @@ const EditTeamPreview = ({
           {/* pokemon is male and not shiny */}
           {!pokemon1IsFemale &&
             !pokemon1IsShiny &&
-            teamToEditData.userPokemon1.pokemonId !== null && (
+            userPokemon1.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon1.pokemon.giph ?? ""}
-                alt={teamToEditData.userPokemon1.pokemon.name ?? ""}
+                src={userPokemon1.pokemon.giph ?? ""}
+                alt={userPokemon1.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and not shiny */}
           {pokemon1IsFemale &&
             !pokemon1IsShiny &&
-            teamToEditData.userPokemon1.pokemonId !== null && (
+            userPokemon1.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon1.pokemon.giphFemale ??
-                  teamToEditData.userPokemon1.pokemon.giph ??
+                  userPokemon1.pokemon.giphFemale ??
+                  userPokemon1.pokemon.giph ??
                   ""
                 }
-                alt={teamToEditData.userPokemon1.pokemon.name ?? ""}
+                alt={userPokemon1.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is male and shiny */}
           {!pokemon1IsFemale &&
             pokemon1IsShiny &&
-            teamToEditData.userPokemon1.pokemonId !== null && (
+            userPokemon1.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon1.pokemon.giphShiny ?? ""}
-                alt={teamToEditData.userPokemon1.pokemon.name ?? ""}
+                src={userPokemon1.pokemon.giphShiny ?? ""}
+                alt={userPokemon1.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and shiny */}
           {pokemon1IsFemale &&
             pokemon1IsShiny &&
-            teamToEditData.userPokemon1.pokemonId !== null && (
+            userPokemon1.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon1.pokemon.giphFemaleShiny ??
-                  teamToEditData.userPokemon1.pokemon.giphShiny ??
+                  userPokemon1.pokemon.giphFemaleShiny ??
+                  userPokemon1.pokemon.giphShiny ??
                   ""
                 }
-                alt={teamToEditData.userPokemon1.pokemon.name ?? ""}
+                alt={userPokemon1.pokemon.name ?? ""}
               />
             )}
         </div>
@@ -80,45 +86,45 @@ const EditTeamPreview = ({
           {/* pokemon is male and not shiny */}
           {!pokemon2IsFemale &&
             !pokemon2IsShiny &&
-            teamToEditData.userPokemon2.pokemonId !== null && (
+            userPokemon2.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon2.pokemon.giph ?? ""}
-                alt={teamToEditData.userPokemon2.pokemon.name ?? ""}
+                src={userPokemon2.pokemon.giph ?? ""}
+                alt={userPokemon2.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and not shiny */}
           {pokemon2IsFemale &&
             !pokemon2IsShiny &&
-            teamToEditData.userPokemon2.pokemonId !== null && (
+            userPokemon2.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon2.pokemon.giphFemale ??
-                  teamToEditData.userPokemon2.pokemon.giph ??
+                  userPokemon2.pokemon.giphFemale ??
+                  userPokemon2.pokemon.giph ??
                   ""
                 }
-                alt={teamToEditData.userPokemon2.pokemon.name ?? ""}
+                alt={userPokemon2.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is male and shiny */}
           {!pokemon2IsFemale &&
             pokemon2IsShiny &&
-            teamToEditData.userPokemon2.pokemonId !== null && (
+            userPokemon2.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon2.pokemon.giphShiny ?? ""}
-                alt={teamToEditData.userPokemon2.pokemon.name ?? ""}
+                src={userPokemon2.pokemon.giphShiny ?? ""}
+                alt={userPokemon2.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and shiny */}
           {pokemon2IsFemale &&
             pokemon2IsShiny &&
-            teamToEditData.userPokemon2.pokemonId !== null && (
+            userPokemon2.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon2.pokemon.giphFemaleShiny ??
-                  teamToEditData.userPokemon2.pokemon.giphShiny ??
+                  userPokemon2.pokemon.giphFemaleShiny ??
+                  userPokemon2.pokemon.giphShiny ??
                   ""
                 }
-                alt={teamToEditData.userPokemon2.pokemon.name ?? ""}
+                alt={userPokemon2.pokemon.name ?? ""}
               />
             )}
         </div>
@@ -127,45 +133,45 @@ const EditTeamPreview = ({
           {/* pokemon is male and not shiny */}
           {!pokemon3IsFemale &&
             !pokemon3IsShiny &&
-            teamToEditData.userPokemon3.pokemonId !== null && (
+            userPokemon3.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon3.pokemon.giph ?? ""}
-                alt={teamToEditData.userPokemon3.pokemon.name ?? ""}
+                src={userPokemon3.pokemon.giph ?? ""}
+                alt={userPokemon3.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and not shiny */}
           {pokemon3IsFemale &&
             !pokemon3IsShiny &&
-            teamToEditData.userPokemon3.pokemonId !== null && (
+            userPokemon3.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon3.pokemon.giphFemale ??
-                  teamToEditData.userPokemon3.pokemon.giph ??
+                  userPokemon3.pokemon.giphFemale ??
+                  userPokemon3.pokemon.giph ??
                   ""
                 }
-                alt={teamToEditData.userPokemon3.pokemon.name ?? ""}
+                alt={userPokemon3.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is male and shiny */}
           {!pokemon3IsFemale &&
             pokemon3IsShiny &&
-            teamToEditData.userPokemon3.pokemonId !== null && (
+            userPokemon3.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon3.pokemon.giphShiny ?? ""}
-                alt={teamToEditData.userPokemon3.pokemon.name ?? ""}
+                src={userPokemon3.pokemon.giphShiny ?? ""}
+                alt={userPokemon3.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and shiny */}
           {pokemon3IsFemale &&
             pokemon3IsShiny &&
-            teamToEditData.userPokemon3.pokemonId !== null && (
+            userPokemon3.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon3.pokemon.giphFemaleShiny ??
-                  teamToEditData.userPokemon3.pokemon.giphShiny ??
+                  userPokemon3.pokemon.giphFemaleShiny ??
+                  userPokemon3.pokemon.giphShiny ??
                   ""
                 }
-                alt={teamToEditData.userPokemon3.pokemon.name ?? ""}
+                alt={userPokemon3.pokemon.name ?? ""}
               />
             )}
         </div>
@@ -174,45 +180,45 @@ const EditTeamPreview = ({
           {/* pokemon is male and not shiny */}
           {!pokemon4IsFemale &&
             !pokemon4IsShiny &&
-            teamToEditData.userPokemon4.pokemonId !== null && (
+            userPokemon4.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon4.pokemon.giph ?? ""}
-                alt={teamToEditData.userPokemon4.pokemon.name ?? ""}
+                src={userPokemon4.pokemon.giph ?? ""}
+                alt={userPokemon4.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and not shiny */}
           {pokemon4IsFemale &&
             !pokemon4IsShiny &&
-            teamToEditData.userPokemon4.pokemonId !== null && (
+            userPokemon4.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon4.pokemon.giphFemale ??
-                  teamToEditData.userPokemon4.pokemon.giph ??
+                  userPokemon4.pokemon.giphFemale ??
+                  userPokemon4.pokemon.giph ??
                   ""
                 }
-                alt={teamToEditData.userPokemon4.pokemon.name ?? ""}
+                alt={userPokemon4.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is male and shiny */}
           {!pokemon4IsFemale &&
             pokemon4IsShiny &&
-            teamToEditData.userPokemon4.pokemonId !== null && (
+            userPokemon4.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon4.pokemon.giphShiny ?? ""}
-                alt={teamToEditData.userPokemon4.pokemon.name ?? ""}
+                src={userPokemon4.pokemon.giphShiny ?? ""}
+                alt={userPokemon4.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and shiny */}
           {pokemon4IsFemale &&
             pokemon4IsShiny &&
-            teamToEditData.userPokemon4.pokemonId !== null && (
+            userPokemon4.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon4.pokemon.giphFemaleShiny ??
-                  teamToEditData.userPokemon4.pokemon.giphShiny ??
+                  userPokemon4.pokemon.giphFemaleShiny ??
+                  userPokemon4.pokemon.giphShiny ??
                   ""
                 }
-                alt={teamToEditData.userPokemon4.pokemon.name ?? ""}
+                alt={userPokemon4.pokemon.name ?? ""}
               />
             )}
         </div>
@@ -221,45 +227,45 @@ const EditTeamPreview = ({
           {/* pokemon is male and not shiny */}
           {!pokemon5IsFemale &&
             !pokemon5IsShiny &&
-            teamToEditData.userPokemon5.pokemonId !== null && (
+            userPokemon5.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon5.pokemon.giph ?? ""}
-                alt={teamToEditData.userPokemon5.pokemon.name ?? ""}
+                src={userPokemon5.pokemon.giph ?? ""}
+                alt={userPokemon5.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and not shiny */}
           {pokemon5IsFemale &&
             !pokemon5IsShiny &&
-            teamToEditData.userPokemon5.pokemonId !== null && (
+            userPokemon5.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon5.pokemon.giphFemale ??
-                  teamToEditData.userPokemon5.pokemon.giph ??
+                  userPokemon5.pokemon.giphFemale ??
+                  userPokemon5.pokemon.giph ??
                   ""
                 }
-                alt={teamToEditData.userPokemon5.pokemon.name ?? ""}
+                alt={userPokemon5.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is male and shiny */}
           {!pokemon5IsFemale &&
             pokemon5IsShiny &&
-            teamToEditData.userPokemon5.pokemonId !== null && (
+            userPokemon5.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon5.pokemon.giphShiny ?? ""}
-                alt={teamToEditData.userPokemon5.pokemon.name ?? ""}
+                src={userPokemon5.pokemon.giphShiny ?? ""}
+                alt={userPokemon5.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and shiny */}
           {pokemon5IsFemale &&
             pokemon5IsShiny &&
-            teamToEditData.userPokemon5.pokemonId !== null && (
+            userPokemon5.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon5.pokemon.giphFemaleShiny ??
-                  teamToEditData.userPokemon5.pokemon.giphShiny ??
+                  userPokemon5.pokemon.giphFemaleShiny ??
+                  userPokemon5.pokemon.giphShiny ??
                   ""
                 }
-                alt={teamToEditData.userPokemon5.pokemon.name ?? ""}
+                alt={userPokemon5.pokemon.name ?? ""}
               />
             )}
         </div>
@@ -268,45 +274,45 @@ const EditTeamPreview = ({
           {/* pokemon is male and not shiny */}
           {!pokemon6IsFemale &&
             !pokemon6IsShiny &&
-            teamToEditData.userPokemon6.pokemonId !== null && (
+            userPokemon6.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon6.pokemon.giph ?? ""}
-                alt={teamToEditData.userPokemon6.pokemon.name ?? ""}
+                src={userPokemon6.pokemon.giph ?? ""}
+                alt={userPokemon6.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and not shiny */}
           {pokemon6IsFemale &&
             !pokemon6IsShiny &&
-            teamToEditData.userPokemon6.pokemonId !== null && (
+            userPokemon6.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon6.pokemon.giphFemale ??
-                  teamToEditData.userPokemon6.pokemon.giph ??
+                  userPokemon6.pokemon.giphFemale ??
+                  userPokemon6.pokemon.giph ??
                   ""
                 }
-                alt={teamToEditData.userPokemon6.pokemon.name ?? ""}
+                alt={userPokemon6.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is male and shiny */}
           {!pokemon6IsFemale &&
             pokemon6IsShiny &&
-            teamToEditData.userPokemon6.pokemonId !== null && (
+            userPokemon6.pokemonId !== null && (
               <img
-                src={teamToEditData.userPokemon6.pokemon.giphShiny ?? ""}
-                alt={teamToEditData.userPokemon6.pokemon.name ?? ""}
+                src={userPokemon6.pokemon.giphShiny ?? ""}
+                alt={userPokemon6.pokemon.name ?? ""}
               />
             )}
           {/* pokemon is female and shiny */}
           {pokemon6IsFemale &&
             pokemon6IsShiny &&
-            teamToEditData.userPokemon6.pokemonId !== null && (
+            userPokemon6.pokemonId !== null && (
               <img
                 src={
-                  teamToEditData.userPokemon6.pokemon.giphFemaleShiny ??
-                  teamToEditData.userPokemon6.pokemon.giphShiny ??
+                  userPokemon6.pokemon.giphFemaleShiny ??
+                  userPokemon6.pokemon.giphShiny ??
                   ""
                 }
-                alt={teamToEditData.userPokemon6.pokemon.name ?? ""}
+                alt={userPokemon6.pokemon.name ?? ""}
               />
             )}
         </div>

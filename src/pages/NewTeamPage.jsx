@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import SelectablePokemon from "../components/new_teams_page/SelectablePokemon.jsx";
 import TeamPreview from "../components/new_teams_page/TeamPreview.jsx";
 import PokemonAndMoves from "../components/new_teams_page/PokemonAndMoves.jsx";
-import Moveset from "../components/new_teams_page/MoveSet.jsx";
+import Moveset from "../components/new_teams_page/Moveset.jsx";
 import AbilitySelection from "../components/new_teams_page/AbilitySelection.jsx";
 
 const NewTeamPage = () => {

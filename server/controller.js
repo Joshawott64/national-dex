@@ -278,6 +278,9 @@ const handlerFunctions = {
                 { model: Species },
                 { model: Type, as: "type1" },
                 { model: Type, as: "type2" },
+                { model: Ability, as: "ability1" },
+                { model: Ability, as: "ability2" },
+                { model: Ability, as: "ability3" },
               ],
             },
             {
@@ -299,6 +302,9 @@ const handlerFunctions = {
                 { model: Species },
                 { model: Type, as: "type1" },
                 { model: Type, as: "type2" },
+                { model: Ability, as: "ability1" },
+                { model: Ability, as: "ability2" },
+                { model: Ability, as: "ability3" },
               ],
             },
             {
@@ -320,6 +326,9 @@ const handlerFunctions = {
                 { model: Species },
                 { model: Type, as: "type1" },
                 { model: Type, as: "type2" },
+                { model: Ability, as: "ability1" },
+                { model: Ability, as: "ability2" },
+                { model: Ability, as: "ability3" },
               ],
             },
             {
@@ -341,6 +350,9 @@ const handlerFunctions = {
                 { model: Species },
                 { model: Type, as: "type1" },
                 { model: Type, as: "type2" },
+                { model: Ability, as: "ability1" },
+                { model: Ability, as: "ability2" },
+                { model: Ability, as: "ability3" },
               ],
             },
             {
@@ -362,6 +374,9 @@ const handlerFunctions = {
                 { model: Species },
                 { model: Type, as: "type1" },
                 { model: Type, as: "type2" },
+                { model: Ability, as: "ability1" },
+                { model: Ability, as: "ability2" },
+                { model: Ability, as: "ability3" },
               ],
             },
             {
@@ -383,6 +398,9 @@ const handlerFunctions = {
                 { model: Species },
                 { model: Type, as: "type1" },
                 { model: Type, as: "type2" },
+                { model: Ability, as: "ability1" },
+                { model: Ability, as: "ability2" },
+                { model: Ability, as: "ability3" },
               ],
             },
             {
@@ -535,9 +553,108 @@ const handlerFunctions = {
       pokemon6,
     } = req.body;
 
+    // query and edit each UserPokemon in Team
+    const userPokemon1 = await UserPokemon.findByPk(pokemon1.userPokemonId, {
+      where: { userId: userId },
+    });
+    userPokemon1.isShiny = pokemon1.isShiny;
+    userPokemon1.isFemale = pokemon1.isFemale;
+    userPokemon1.abilityId = pokemon1.abilityId;
+    userPokemon1.move1Id = pokemon1.move1Id;
+    userPokemon1.move2Id = pokemon1.move2Id;
+    userPokemon1.move3Id = pokemon1.move3Id;
+    userPokemon1.move4Id = pokemon1.move4Id;
+    userPokemon1.pokemonId = pokemon1.pokemonId;
+
+    await userPokemon1.save();
+
+    const userPokemon2 = await UserPokemon.findByPk(pokemon2.userPokemonId, {
+      where: { userId: userId },
+    });
+
+    userPokemon2.isShiny = pokemon2.isShiny;
+    userPokemon2.isFemale = pokemon2.isFemale;
+    userPokemon2.abilityId = pokemon2.abilityId;
+    userPokemon2.move1Id = pokemon2.move1Id;
+    userPokemon2.move2Id = pokemon2.move2Id;
+    userPokemon2.move3Id = pokemon2.move3Id;
+    userPokemon2.move4Id = pokemon2.move4Id;
+    userPokemon2.pokemonId = pokemon2.pokemonId;
+
+    await userPokemon2.save();
+
+    const userPokemon3 = await UserPokemon.findByPk(pokemon3.userPokemonId, {
+      where: { userId: userId },
+    });
+
+    userPokemon3.isShiny = pokemon3.isShiny;
+    userPokemon3.isFemale = pokemon3.isFemale;
+    userPokemon3.abilityId = pokemon3.abilityId;
+    userPokemon3.move1Id = pokemon3.move1Id;
+    userPokemon3.move2Id = pokemon3.move2Id;
+    userPokemon3.move3Id = pokemon3.move3Id;
+    userPokemon3.move4Id = pokemon3.move4Id;
+    userPokemon3.pokemonId = pokemon3.pokemonId;
+
+    await userPokemon3.save();
+
+    const userPokemon4 = await UserPokemon.findByPk(pokemon4.userPokemonId, {
+      where: { userId: userId },
+    });
+
+    userPokemon4.isShiny = pokemon4.isShiny;
+    userPokemon4.isFemale = pokemon4.isFemale;
+    userPokemon4.abilityId = pokemon4.abilityId;
+    userPokemon4.move1Id = pokemon4.move1Id;
+    userPokemon4.move2Id = pokemon4.move2Id;
+    userPokemon4.move3Id = pokemon4.move3Id;
+    userPokemon4.move4Id = pokemon4.move4Id;
+    userPokemon4.pokemonId = pokemon4.pokemonId;
+
+    await userPokemon4.save();
+
+    const userPokemon5 = await UserPokemon.findByPk(pokemon5.userPokemonId, {
+      where: { userId: userId },
+    });
+
+    userPokemon5.isShiny = pokemon5.isShiny;
+    userPokemon5.isFemale = pokemon5.isFemale;
+    userPokemon5.abilityId = pokemon5.abilityId;
+    userPokemon5.move1Id = pokemon5.move1Id;
+    userPokemon5.move2Id = pokemon5.move2Id;
+    userPokemon5.move3Id = pokemon5.move3Id;
+    userPokemon5.move4Id = pokemon5.move4Id;
+    userPokemon5.pokemonId = pokemon5.pokemonId;
+
+    await userPokemon5.save();
+
+    const userPokemon6 = await UserPokemon.findByPk(pokemon6.userPokemonId, {
+      where: { userId: userId },
+    });
+
+    userPokemon6.isShiny = pokemon6.isShiny;
+    userPokemon6.isFemale = pokemon6.isFemale;
+    userPokemon6.abilityId = pokemon6.abilityId;
+    userPokemon6.move1Id = pokemon6.move1Id;
+    userPokemon6.move2Id = pokemon6.move2Id;
+    userPokemon6.move3Id = pokemon6.move3Id;
+    userPokemon6.move4Id = pokemon6.move4Id;
+    userPokemon6.pokemonId = pokemon6.pokemonId;
+
+    await userPokemon6.save();
+
+    // edit Team with new user pokemon data
     const teamToEdit = await Team.findByPk(teamId);
 
-    console.log("teamToEdit", teamToEdit);
+    teamToEdit.name = teamName;
+    teamToEdit.userPokemon1 = userPokemon1;
+    teamToEdit.userPokemon2 = userPokemon2;
+    teamToEdit.userPokemon3 = userPokemon3;
+    teamToEdit.userPokemon4 = userPokemon4;
+    teamToEdit.userPokemon5 = userPokemon5;
+    teamToEdit.userPokemon6 = userPokemon6;
+
+    res.status(200).send({ success: true });
   },
   deleteTeam: async (req, res) => {
     const { id } = req.params;

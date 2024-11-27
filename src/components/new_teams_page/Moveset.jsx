@@ -38,7 +38,6 @@ const Moveset = ({
 }) => {
   // state values
   const [movesetData, setMovesetData] = useState([]);
-  const [pokemonId, setPokemonId] = useState(1);
 
   useEffect(() => {
     // determine which pokemonId to use in POST

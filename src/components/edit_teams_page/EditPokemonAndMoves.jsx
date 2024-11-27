@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoIosAddCircle, IoMdMale, IoMdFemale } from "react-icons/io";
 import { HiSparkles, HiOutlineSparkles } from "react-icons/hi2";
 
 const EditPokemonAndMoves = ({
   teamToEditData,
-  userPokemon,
   setTeamToEditData,
+  userPokemon,
+  setUserPokemon,
   pokemonIsShiny,
   pokemonIsFemale,
   setPokemonIsShiny,
   setPokemonIsFemale,
+  moveToFill,
+  setMoveToFill,
+  setShowMoveset,
+  setShowAbilities,
+  setShowSelectablePokemon,
   slotToFill,
+  setSlotToFill,
+  slotNum,
+  newMove,
+  newAbility,
+  newPokemon,
 }) => {
   // state values
-  const [moveToFill, setMoveToFill] = useState(1);
   const [userPokemonMove1, setUserPokemonMove1] = useState(userPokemon.move1);
   const [userPokemonMove2, setUserPokemonMove2] = useState(userPokemon.move2);
   const [userPokemonMove3, setUserPokemonMove3] = useState(userPokemon.move3);
@@ -22,7 +33,454 @@ const EditPokemonAndMoves = ({
     userPokemon.ability
   );
 
-  //   console.log("userPokemon:", userPokemon);
+  // fires whenever newMove state value is changed in EditMoveset.jsx
+  useEffect(() => {
+    // copy teamToEditData
+    const copy = teamToEditData;
+
+    if (slotToFill !== slotNum) {
+      return;
+    }
+
+    switch (slotToFill) {
+      case 1:
+        if (moveToFill === 1) {
+          setUserPokemonMove1(newMove);
+          copy.userPokemon1.move1 = newMove;
+          copy.userPokemon1.move1Id = newMove.moveId;
+        } else if (moveToFill === 2) {
+          setUserPokemonMove2(newMove);
+          copy.userPokemon1.move2 = newMove;
+          copy.userPokemon1.move2Id = newMove.moveId;
+        } else if (moveToFill === 3) {
+          setUserPokemonMove3(newMove);
+          copy.userPokemon1.move3 = newMove;
+          copy.userPokemon1.move3Id = newMove.moveId;
+        } else {
+          setUserPokemonMove4(newMove);
+          copy.userPokemon1.move4 = newMove;
+          copy.userPokemon1.move4Id = newMove.moveId;
+        }
+        break;
+      case 2:
+        if (moveToFill === 1) {
+          setUserPokemonMove1(newMove);
+          copy.userPokemon2.move1 = newMove;
+          copy.userPokemon2.move1Id = newMove.moveId;
+        } else if (moveToFill === 2) {
+          setUserPokemonMove2(newMove);
+          copy.userPokemon2.move2 = newMove;
+          copy.userPokemon2.move2Id = newMove.moveId;
+        } else if (moveToFill === 3) {
+          setUserPokemonMove3(newMove);
+          copy.userPokemon2.move3 = newMove;
+          copy.userPokemon2.move3Id = newMove.moveId;
+        } else {
+          setUserPokemonMove4(newMove);
+          copy.userPokemon2.move4 = newMove;
+          copy.userPokemon2.move4Id = newMove.moveId;
+        }
+        break;
+      case 3:
+        if (moveToFill === 1) {
+          setUserPokemonMove1(newMove);
+          copy.userPokemon3.move1 = newMove;
+          copy.userPokemon3.move1Id = newMove.moveId;
+        } else if (moveToFill === 2) {
+          setUserPokemonMove2(newMove);
+          copy.userPokemon3.move2 = newMove;
+          copy.userPokemon3.move2Id = newMove.moveId;
+        } else if (moveToFill === 3) {
+          setUserPokemonMove3(newMove);
+          copy.userPokemon3.move3 = newMove;
+          copy.userPokemon3.move3Id = newMove.moveId;
+        } else {
+          setUserPokemonMove4(newMove);
+          copy.userPokemon3.move4 = newMove;
+          copy.userPokemon3.move4Id = newMove.moveId;
+        }
+        break;
+      case 4:
+        if (moveToFill === 1) {
+          setUserPokemonMove1(newMove);
+          copy.userPokemon4.move1 = newMove;
+          copy.userPokemon4.move1Id = newMove.moveId;
+        } else if (moveToFill === 2) {
+          setUserPokemonMove2(newMove);
+          copy.userPokemon4.move2 = newMove;
+          copy.userPokemon4.move2Id = newMove.moveId;
+        } else if (moveToFill === 3) {
+          setUserPokemonMove3(newMove);
+          copy.userPokemon4.move3 = newMove;
+          copy.userPokemon4.move3Id = newMove.moveId;
+        } else {
+          setUserPokemonMove4(newMove);
+          copy.userPokemon4.move4 = newMove;
+          copy.userPokemon4.move4Id = newMove.moveId;
+        }
+        break;
+      case 5:
+        if (moveToFill === 1) {
+          setUserPokemonMove1(newMove);
+          copy.userPokemon5.move1 = newMove;
+          copy.userPokemon5.move1Id = newMove.moveId;
+        } else if (moveToFill === 2) {
+          setUserPokemonMove2(newMove);
+          copy.userPokemon5.move2 = newMove;
+          copy.userPokemon5.move2Id = newMove.moveId;
+        } else if (moveToFill === 3) {
+          setUserPokemonMove3(newMove);
+          copy.userPokemon5.move3 = newMove;
+          copy.userPokemon5.move3Id = newMove.moveId;
+        } else {
+          setUserPokemonMove4(newMove);
+          copy.userPokemon5.move4 = newMove;
+          copy.userPokemon5.move4Id = newMove.moveId;
+        }
+        break;
+      case 6:
+        if (moveToFill === 1) {
+          setUserPokemonMove1(newMove);
+          copy.userPokemon6.move1 = newMove;
+          copy.userPokemon6.move1Id = newMove.moveId;
+        } else if (moveToFill === 2) {
+          setUserPokemonMove2(newMove);
+          copy.userPokemon6.move2 = newMove;
+          copy.userPokemon6.move2Id = newMove.moveId;
+        } else if (moveToFill === 3) {
+          setUserPokemonMove3(newMove);
+          copy.userPokemon6.move3 = newMove;
+          copy.userPokemon6.move3Id = newMove.moveId;
+        } else {
+          setUserPokemonMove4(newMove);
+          copy.userPokemon6.move4 = newMove;
+          copy.userPokemon6.move4Id = newMove.moveId;
+        }
+        break;
+      default:
+        break;
+    }
+    setTeamToEditData(copy);
+    setShowMoveset(false);
+  }, [newMove]);
+
+  // fires whenever newMove state value is changed in EditMoveset.jsx
+  useEffect(() => {
+    // copy teamToEditData
+    const copy = teamToEditData;
+
+    if (slotToFill !== slotNum) {
+      return;
+    }
+
+    switch (slotToFill) {
+      case 1:
+        setUserPokemonAbility(newAbility);
+        copy.userPokemon1.ability = newAbility;
+        copy.userPokemon1.abilityId = newAbility.abilityId;
+        break;
+      case 2:
+        setUserPokemonAbility(newAbility);
+        copy.userPokemon2.ability = newAbility;
+        copy.userPokemon2.abilityId = newAbility.abilityId;
+        break;
+      case 3:
+        setUserPokemonAbility(newAbility);
+        copy.userPokemon3.ability = newAbility;
+        copy.userPokemon3.abilityId = newAbility.abilityId;
+        break;
+      case 4:
+        setUserPokemonAbility(newAbility);
+        copy.userPokemon4.ability = newAbility;
+        copy.userPokemon4.abilityId = newAbility.abilityId;
+        break;
+      case 5:
+        setUserPokemonAbility(newAbility);
+        copy.userPokemon5.ability = newAbility;
+        copy.userPokemon5.abilityId = newAbility.abilityId;
+        break;
+      case 6:
+        setUserPokemonAbility(newAbility);
+        copy.userPokemon6.ability = newAbility;
+        copy.userPokemon6.abilityId = newAbility.abilityId;
+        break;
+      default:
+        break;
+    }
+    setTeamToEditData(copy);
+    setShowAbilities(false);
+  }, [newAbility]);
+
+  // fires whenever newPokemon state value is changed in EditSelectablePokemon.jsx
+  useEffect(() => {
+    // copy teamToEditData
+    const copy = teamToEditData;
+
+    if (slotToFill !== slotNum) {
+      return;
+    }
+
+    switch (slotToFill) {
+      case 1:
+        setUserPokemon({
+          ability: null,
+          abilityId: null,
+          createdAt: userPokemon.createdAt,
+          isFemale: false,
+          isShiny: false,
+          move1: null,
+          move1Id: null,
+          move2: null,
+          move2Id: null,
+          move3: null,
+          move3Id: null,
+          move4: null,
+          move4Id: null,
+          pokemon: newPokemon,
+          pokemonId: newPokemon.pokemonId,
+          userId: userPokemon.userId,
+          userPokemonId: userPokemon.userPokemonId,
+        });
+        setUserPokemonMove1(null);
+        setUserPokemonMove2(null);
+        setUserPokemonMove3(null);
+        setUserPokemonMove4(null);
+        setUserPokemonAbility(null);
+        setPokemonIsFemale(false);
+        setPokemonIsShiny(false);
+        copy.userPokemon1.pokemon = newPokemon;
+        copy.userPokemon1.pokemonId = newPokemon.pokemonId;
+        copy.userPokemon1.ability = null;
+        copy.userPokemon1.abilityId = null;
+        copy.userPokemon1.isFemale = false;
+        copy.userPokemon1.isShiny = false;
+        copy.userPokemon1.move1 = null;
+        copy.userPokemon1.move1Id = null;
+        copy.userPokemon1.move2 = null;
+        copy.userPokemon1.move2Id = null;
+        copy.userPokemon1.move3 = null;
+        copy.userPokemon1.move3Id = null;
+        copy.userPokemon1.move4 = null;
+        copy.userPokemon1.move4Id = null;
+        break;
+      case 2:
+        setUserPokemon({
+          ability: null,
+          abilityId: null,
+          createdAt: userPokemon.createdAt,
+          isFemale: false,
+          isShiny: false,
+          move1: null,
+          move1Id: null,
+          move2: null,
+          move2Id: null,
+          move3: null,
+          move3Id: null,
+          move4: null,
+          move4Id: null,
+          pokemon: newPokemon,
+          pokemonId: newPokemon.pokemonId,
+          userId: userPokemon.userId,
+          userPokemonId: userPokemon.userPokemonId,
+        });
+        setUserPokemonMove1(null);
+        setUserPokemonMove2(null);
+        setUserPokemonMove3(null);
+        setUserPokemonMove4(null);
+        setUserPokemonAbility(null);
+        setPokemonIsFemale(false);
+        setPokemonIsShiny(false);
+        copy.userPokemon2.pokemon = newPokemon;
+        copy.userPokemon2.pokemonId = newPokemon.pokemonId;
+        copy.userPokemon2.ability = null;
+        copy.userPokemon2.abilityId = null;
+        copy.userPokemon2.isFemale = false;
+        copy.userPokemon2.isShiny = false;
+        copy.userPokemon2.move1 = null;
+        copy.userPokemon2.move1Id = null;
+        copy.userPokemon2.move2 = null;
+        copy.userPokemon2.move2Id = null;
+        copy.userPokemon2.move3 = null;
+        copy.userPokemon2.move3Id = null;
+        copy.userPokemon2.move4 = null;
+        copy.userPokemon2.move4Id = null;
+        break;
+      case 3:
+        setUserPokemon({
+          ability: null,
+          abilityId: null,
+          createdAt: userPokemon.createdAt,
+          isFemale: false,
+          isShiny: false,
+          move1: null,
+          move1Id: null,
+          move2: null,
+          move2Id: null,
+          move3: null,
+          move3Id: null,
+          move4: null,
+          move4Id: null,
+          pokemon: newPokemon,
+          pokemonId: newPokemon.pokemonId,
+          userId: userPokemon.userId,
+          userPokemonId: userPokemon.userPokemonId,
+        });
+        setUserPokemonMove1(null);
+        setUserPokemonMove2(null);
+        setUserPokemonMove3(null);
+        setUserPokemonMove4(null);
+        setUserPokemonAbility(null);
+        setPokemonIsFemale(false);
+        setPokemonIsShiny(false);
+        copy.userPokemon3.pokemon = newPokemon;
+        copy.userPokemon3.pokemonId = newPokemon.pokemonId;
+        copy.userPokemon3.ability = null;
+        copy.userPokemon3.abilityId = null;
+        copy.userPokemon3.isFemale = false;
+        copy.userPokemon3.isShiny = false;
+        copy.userPokemon3.move1 = null;
+        copy.userPokemon3.move1Id = null;
+        copy.userPokemon3.move2 = null;
+        copy.userPokemon3.move2Id = null;
+        copy.userPokemon3.move3 = null;
+        copy.userPokemon3.move3Id = null;
+        copy.userPokemon3.move4 = null;
+        copy.userPokemon3.move4Id = null;
+        break;
+      case 4:
+        setUserPokemon({
+          ability: null,
+          abilityId: null,
+          createdAt: userPokemon.createdAt,
+          isFemale: false,
+          isShiny: false,
+          move1: null,
+          move1Id: null,
+          move2: null,
+          move2Id: null,
+          move3: null,
+          move3Id: null,
+          move4: null,
+          move4Id: null,
+          pokemon: newPokemon,
+          pokemonId: newPokemon.pokemonId,
+          userId: userPokemon.userId,
+          userPokemonId: userPokemon.userPokemonId,
+        });
+        setUserPokemonMove1(null);
+        setUserPokemonMove2(null);
+        setUserPokemonMove3(null);
+        setUserPokemonMove4(null);
+        setUserPokemonAbility(null);
+        setPokemonIsFemale(false);
+        setPokemonIsShiny(false);
+        copy.userPokemon4.pokemon = newPokemon;
+        copy.userPokemon4.pokemonId = newPokemon.pokemonId;
+        copy.userPokemon4.ability = null;
+        copy.userPokemon4.abilityId = null;
+        copy.userPokemon4.isFemale = false;
+        copy.userPokemon4.isShiny = false;
+        copy.userPokemon4.move1 = null;
+        copy.userPokemon4.move1Id = null;
+        copy.userPokemon4.move2 = null;
+        copy.userPokemon4.move2Id = null;
+        copy.userPokemon4.move3 = null;
+        copy.userPokemon4.move3Id = null;
+        copy.userPokemon4.move4 = null;
+        copy.userPokemon4.move4Id = null;
+        break;
+      case 5:
+        setUserPokemon({
+          ability: null,
+          abilityId: null,
+          createdAt: userPokemon.createdAt,
+          isFemale: false,
+          isShiny: false,
+          move1: null,
+          move1Id: null,
+          move2: null,
+          move2Id: null,
+          move3: null,
+          move3Id: null,
+          move4: null,
+          move4Id: null,
+          pokemon: newPokemon,
+          pokemonId: newPokemon.pokemonId,
+          userId: userPokemon.userId,
+          userPokemonId: userPokemon.userPokemonId,
+        });
+        setUserPokemonMove1(null);
+        setUserPokemonMove2(null);
+        setUserPokemonMove3(null);
+        setUserPokemonMove4(null);
+        setUserPokemonAbility(null);
+        setPokemonIsFemale(false);
+        setPokemonIsShiny(false);
+        copy.userPokemon5.pokemon = newPokemon;
+        copy.userPokemon5.pokemonId = newPokemon.pokemonId;
+        copy.userPokemon5.ability = null;
+        copy.userPokemon5.abilityId = null;
+        copy.userPokemon5.isFemale = false;
+        copy.userPokemon5.isShiny = false;
+        copy.userPokemon5.move1 = null;
+        copy.userPokemon5.move1Id = null;
+        copy.userPokemon5.move2 = null;
+        copy.userPokemon5.move2Id = null;
+        copy.userPokemon5.move3 = null;
+        copy.userPokemon5.move3Id = null;
+        copy.userPokemon5.move4 = null;
+        copy.userPokemon5.move4Id = null;
+        break;
+      case 6:
+        setUserPokemon({
+          ability: null,
+          abilityId: null,
+          createdAt: userPokemon.createdAt,
+          isFemale: false,
+          isShiny: false,
+          move1: null,
+          move1Id: null,
+          move2: null,
+          move2Id: null,
+          move3: null,
+          move3Id: null,
+          move4: null,
+          move4Id: null,
+          pokemon: newPokemon,
+          pokemonId: newPokemon.pokemonId,
+          userId: userPokemon.userId,
+          userPokemonId: userPokemon.userPokemonId,
+        });
+        setUserPokemonMove1(null);
+        setUserPokemonMove2(null);
+        setUserPokemonMove3(null);
+        setUserPokemonMove4(null);
+        setUserPokemonAbility(null);
+        setPokemonIsFemale(false);
+        setPokemonIsShiny(false);
+        copy.userPokemon6.pokemon = newPokemon;
+        copy.userPokemon6.pokemonId = newPokemon.pokemonId;
+        copy.userPokemon6.ability = null;
+        copy.userPokemon6.abilityId = null;
+        copy.userPokemon6.isFemale = false;
+        copy.userPokemon6.isShiny = false;
+        copy.userPokemon6.move1 = null;
+        copy.userPokemon6.move1Id = null;
+        copy.userPokemon6.move2 = null;
+        copy.userPokemon6.move2Id = null;
+        copy.userPokemon6.move3 = null;
+        copy.userPokemon6.move3Id = null;
+        copy.userPokemon6.move4 = null;
+        copy.userPokemon6.move4Id = null;
+        break;
+      default:
+        break;
+    }
+    setTeamToEditData(copy);
+    setShowSelectablePokemon(false);
+    console.log("copy:", copy);
+    console.log("teamToEditData:", teamToEditData);
+  }, [newPokemon]);
 
   // handler functions
   const handleShinyToggle = () => {
@@ -120,7 +578,13 @@ const EditPokemonAndMoves = ({
               // }}
               className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
             >
-              <div className="flex justify-center place-items-center h-10 w-10">
+              <div
+                onClick={() => {
+                  setSlotToFill(slotNum);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={
@@ -155,19 +619,28 @@ const EditPokemonAndMoves = ({
                 {pokemonIsShiny && (
                   <HiSparkles
                     className="text-lg drop-shadow-lg"
-                    onClick={handleShinyToggle}
+                    onClick={() => {
+                      setSlotToFill(slotNum);
+                      handleShinyToggle();
+                    }}
                   />
                 )}
                 {!pokemonIsShiny && (
                   <HiOutlineSparkles
                     className="text-lg drop-shadow-lg"
-                    onClick={handleShinyToggle}
+                    onClick={() => {
+                      setSlotToFill(slotNum);
+                      handleShinyToggle();
+                    }}
                   />
                 )}
               </div>
               {userPokemon.pokemon.species.hasGenderDifferences && (
                 <div
-                  onClick={handleGenderToggle}
+                  onClick={() => {
+                    setSlotToFill(slotNum);
+                    handleGenderToggle();
+                  }}
                   className="flex flex-row justify-center place-items-center w-16 text-text-light rounded-lg drop-shadow-lg"
                 >
                   <div
@@ -186,110 +659,110 @@ const EditPokemonAndMoves = ({
               )}
             </div>
             <div>
-              {userPokemon.move1 && (
+              {userPokemonMove1 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(1);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(1);
+                    setSlotToFill(slotNum);
+                  }}
                 >
-                  {userPokemon.move1.name}
+                  {userPokemonMove1.name}
                 </p>
               )}
-              {!userPokemon.move1 && (
+              {!userPokemonMove1 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(1);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(1);
+                    setSlotToFill(slotNum);
+                  }}
                 >
                   Move 1
                 </p>
               )}
-              {userPokemon.move2 && (
+              {userPokemonMove2 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(2);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(2);
+                    setSlotToFill(slotNum);
+                  }}
                 >
-                  {userPokemon.move2.name}
+                  {userPokemonMove2.name}
                 </p>
               )}
-              {!userPokemon.move2 && (
+              {!userPokemonMove2 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(2);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(2);
+                    setSlotToFill(slotNum);
+                  }}
                 >
                   Move 2
                 </p>
               )}
-              {userPokemon.move3 && (
+              {userPokemonMove3 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(3);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(3);
+                    setSlotToFill(slotNum);
+                  }}
                 >
-                  {userPokemon.move3.name}
+                  {userPokemonMove3.name}
                 </p>
               )}
-              {!userPokemon.move3 && (
+              {!userPokemonMove3 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(3);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(3);
+                    setSlotToFill(slotNum);
+                  }}
                 >
                   Move 3
                 </p>
               )}
-              {userPokemon.move4 && (
+              {userPokemonMove4 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(4);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(4);
+                    setSlotToFill(slotNum);
+                  }}
                 >
-                  {userPokemon.move4.name}
+                  {userPokemonMove4.name}
                 </p>
               )}
               {!userPokemon.move4 && (
                 <p
-                // onClick={() => {
-                //   setShowMoveset(true);
-                //   setMoveToFill(4);
-                //   setSlotToFill(1);
-                // }}
+                  onClick={() => {
+                    setShowMoveset(true);
+                    setMoveToFill(4);
+                    setSlotToFill(slotNum);
+                  }}
                 >
                   Move 4
                 </p>
               )}
-              {userPokemon.ability && (
+              {userPokemonAbility && (
                 <p
-                // onClick={() => {
-                //   setSlotToFill(1);
-                //   setShowAbilities(true);
-                // }}
+                  onClick={() => {
+                    setSlotToFill(slotNum);
+                    setShowAbilities(true);
+                  }}
                 >
-                  {userPokemon.ability.name}
+                  {userPokemonAbility.name}
                 </p>
               )}
-              {!userPokemon.ability && (
+              {!userPokemonAbility && (
                 <p
-                // onClick={() => {
-                //   setSlotToFill(1);
-                //   setShowAbilities(true);
-                // }}
+                  onClick={() => {
+                    setSlotToFill(slotNum);
+                    setShowAbilities(true);
+                  }}
                 >
                   Ability
                 </p>
