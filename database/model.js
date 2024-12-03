@@ -336,10 +336,6 @@ Species.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    chainId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     dexNumber: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -541,6 +537,124 @@ DexEntry.init(
   }
 );
 
+export class Chain extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Chain.init(
+  {
+    chainId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    babyTriggerItem: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+  },
+  {
+    modelName: "chain",
+    sequelize: db,
+  }
+);
+
+export class Evolution extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Evolution.init(
+  {
+    evolutionId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    trigger: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    gender: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    heldItem: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    item: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    knownMove: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    knownMoveType: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    location: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    minAffection: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minBeauty: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minHappiness: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minLevel: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    needsOverworldRain: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    partySpecies: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    partyType: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    relativePhysicalStats: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    timeOfDay: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    tradeSpecies: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    turnUpsideDown: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+  },
+  {
+    modelName: "evolution",
+    sequelize: db,
+  }
+);
+
 // Ability table relationships
 Ability.hasMany(Pokemon, { foreignKey: "abilityId" });
 Ability.hasMany(Pokemon, { foreignKey: "ability2Id" });
@@ -566,6 +680,12 @@ Species.hasMany(Pokemon, { foreignKey: "speciesId" });
 Pokemon.belongsTo(Species, { foreignKey: "speciesId" });
 Species.hasMany(DexEntry, { foreignKey: "speciesId" });
 DexEntry.belongsTo(Species, { foreignKey: "speciesId" });
+Species.hasOne(Evolution, { foreignKey: "speciesId" });
+Evolution.belongsTo(Species, { foreignKey: "speciesId" });
+
+// Chain table relationships
+Chain.hasMany(Evolution, { foreignKey: "chainId" });
+Evolution.belongsTo(Chain, { foreignKey: "chainId" });
 
 // Generation table relationships
 Generation.hasMany(Species, { foreignKey: "generationId" });

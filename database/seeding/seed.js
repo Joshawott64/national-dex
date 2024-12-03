@@ -11,6 +11,8 @@ import db, {
   Team,
   DexEntry,
   Version,
+  Evolution,
+  Chain,
 } from "../model.js";
 import abilityData0 from "../seeding/table_JSONs/abilities/all_abilities_0.json" assert { type: "json" };
 import abilityData1 from "../seeding/table_JSONs/abilities/all_abilities_1.json" assert { type: "json" };
@@ -33,6 +35,9 @@ import pokemonSpeciesData2 from "../seeding/table_JSONs/species/all_pokemon_spec
 import pokemonSpeciesData3 from "../seeding/table_JSONs/species/all_pokemon_species_3.json" assert { type: "json" };
 import pokemonSpeciesData4 from "../seeding/table_JSONs/species/all_pokemon_species_4.json" assert { type: "json" };
 import pokemonSpeciesData5 from "../seeding/table_JSONs/species/all_pokemon_species_5.json" assert { type: "json" };
+import evolutionChainData0 from "../seeding/table_JSONs/chains/all_evolution_chains_0.json" assert { type: "json" };
+import evolutionChainData1 from "../seeding/table_JSONs/chains/all_evolution_chains_1.json" assert { type: "json" };
+import evolutionChainData2 from "../seeding/table_JSONs/chains/all_evolution_chains_2.json" assert { type: "json" };
 import typeData from "../seeding/table_JSONs/types/all_types_0.json" assert { type: "json" };
 import versionData from "../seeding/table_JSONs/versions/all_versions_0.json" assert { type: "json" };
 
@@ -67,6 +72,12 @@ const allPokemonSpecies = [
   ...pokemonSpeciesData3,
   ...pokemonSpeciesData4,
   ...pokemonSpeciesData5,
+];
+
+const allEvolutionChains = [
+  ...evolutionChainData0,
+  ...evolutionChainData1,
+  ...evolutionChainData2,
 ];
 
 const abilitiesInDB = allAbilities.map(async (ability) => {
@@ -114,10 +125,11 @@ const generationsInDB = generationData.map(async (generation) => {
 });
 
 const typesInDB = typeData.map(async (type) => {
-  const { name } = type;
+  const { id, name } = type;
 
   const newType = await Type.create({
-    name,
+    typeId: id,
+    name: name,
   });
 
   return newType;
@@ -179,10 +191,6 @@ const movesInDB = allMoves.map(async (move) => {
     ""
   );
 
-  if (typeId === "10002") {
-    typeId = 21;
-  }
-
   const newMove = await Move.create({
     name: name
       .split("-")
@@ -235,10 +243,6 @@ const speciesInDB = allPokemonSpecies.map(async (species) => {
         return name.language.name === "en";
       })
     ].name;
-  const chainId = species["evolution_chain"].url.replace(
-    /(^https\:\/\/pokeapi\.co\/api\/v2\/evolution\-chain\/|\/$)/g,
-    ""
-  );
   const generationId = species.generation.url.replace(
     /(^https\:\/\/pokeapi\.co\/api\/v2\/generation\/|\/$)/g,
     ""
@@ -258,7 +262,6 @@ const speciesInDB = allPokemonSpecies.map(async (species) => {
 
   const newSpecies = await Species.create({
     name,
-    chainId,
     generationId,
     dexNumber,
     isBaby,
@@ -425,6 +428,215 @@ const pokemonInDB = allPokemon.map(async (pokemon) => {
 
   return newPokemon;
 });
+
+// create evolutions and chains tables
+const evolutionChainsInDB = allEvolutionChains.map(async (chain) => {
+  // create new chain entry
+  const newChain = await Chain.create({
+    chainId: chain.id,
+    babyTriggerItem:
+      chain.baby_trigger_item === null ? null : chain.baby_trigger_item.name,
+  });
+
+  // create evolution entry for first pokemon in chain
+  const firstEvolution = await Evolution.create({
+    speciesId: chain.chain.species.url.replace(
+      /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
+      ""
+    ),
+    chainId: chain.id,
+    trigger: null,
+    gender: null,
+    heldItem: null,
+    item: null,
+    knownMove: null,
+    knowMovesType: null,
+    location: null,
+    minAffection: null,
+    minBeauty: null,
+    minHappiness: null,
+    minLevel: null,
+    needsOverworldRain: null,
+    partySpecies: null,
+    partyType: null,
+    relativePhysicalStats: null,
+    timeOfDay: null,
+    tradeSpecies: null,
+    turnUpsideDown: null,
+  });
+
+  // invoke recursive function if current pokemon species can evolve
+  if (chain.chain.evolves_to.length > 0) {
+    createEvolutionEntry(chain.chain.evolves_to, chain);
+  }
+});
+
+// recursive function for populating evolutions table
+const createEvolutionEntry = async (evolvesTo, chain) => {
+  // delcare variables for evolution creation
+  let speciesId = null;
+  let chainId = chain.id;
+  let trigger = null;
+  let gender = null;
+  let heldItem = null;
+  let item = null;
+  let knownMove = null;
+  let knownMovesType = null;
+  let location = null;
+  let minAffection = null;
+  let minBeauty = null;
+  let minHappiness = null;
+  let minLevel = null;
+  let needsOverworldRain = null;
+  let partySpecies = null;
+  let partyType = null;
+  let relativePhysicalStats = null;
+  let timeOfDay = null;
+  let tradeSpecies = null;
+  let turnUpsideDown = null;
+
+  // map over evolvesTo and evolutionDetails in applicable cases
+  const evolutionList = evolvesTo.map(async (evolution) => {
+    // reassign speciesId
+    speciesId = evolution.species.url.replace(
+      /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
+      ""
+    );
+
+    const evolutionDetailsList = await evolution.evolution_details.map(
+      async (evolutionDetails) => {
+        // reassign evolution details
+        trigger =
+          evolutionDetails.trigger === null
+            ? null
+            : evolutionDetails.trigger.name;
+        gender = evolutionDetails.gender;
+        heldItem =
+          evolutionDetails.held_item === null
+            ? null
+            : evolutionDetails.held_item.name;
+        item =
+          evolutionDetails.item === null ? null : evolutionDetails.item.name;
+        knownMove =
+          evolutionDetails.known_move === null
+            ? null
+            : evolutionDetails.known_move.name;
+        knownMovesType =
+          evolutionDetails.known_moves_type === null
+            ? null
+            : evolutionDetails.name;
+        location =
+          evolutionDetails.location === null
+            ? null
+            : evolutionDetails.location.name;
+        minAffection = evolutionDetails.min_affection;
+        minBeauty = evolutionDetails.min_beauty;
+        minHappiness = evolutionDetails.min_happiness;
+        minLevel = evolutionDetails.min_level;
+        needsOverworldRain = evolutionDetails.needs_overworld_rain;
+        partySpecies =
+          evolutionDetails.party_species === null
+            ? null
+            : evolutionDetails.party_species.name;
+        partyType =
+          evolutionDetails.party_type === null
+            ? null
+            : evolutionDetails.party_type.name;
+        relativePhysicalStats = evolutionDetails.relative_physical_stats;
+        timeOfDay = evolutionDetails.time_of_day;
+        tradeSpecies =
+          evolutionDetails.trade_species === null
+            ? null
+            : evolutionDetails.trade_species.name;
+        turnUpsideDown = evolutionDetails.turn_upside_down;
+
+        // const newEvolution = await Evolution.create({
+        //   speciesId: evolution.species.url.replace(
+        //     /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
+        //     ""
+        //   ),
+        //   chainId: chain.id,
+        //   trigger:
+        //     evolutionDetails.trigger === null
+        //       ? null
+        //       : evolutionDetails.trigger.name,
+        //   gender: evolutionDetails.gender,
+        //   heldItem:
+        //     evolutionDetails.held_item === null
+        //       ? null
+        //       : evolutionDetails.held_item.name,
+        //   item:
+        //     evolutionDetails.item === null ? null : evolutionDetails.item.name,
+        //   knownMove:
+        //     evolutionDetails.known_move === null
+        //       ? null
+        //       : evolutionDetails.known_move.name,
+        //   knownMovesType:
+        //     evolutionDetails.known_moves_type === null
+        //       ? null
+        //       : evolutionDetails.name,
+        //   location:
+        //     evolutionDetails.location === null
+        //       ? null
+        //       : evolutionDetails.location.name,
+        //   minAffection: evolutionDetails.min_affection,
+        //   minBeauty: evolutionDetails.min_beauty,
+        //   minHappiness: evolutionDetails.min_happiness,
+        //   minLevel: evolutionDetails.min_level,
+        //   needsOverworldRain: evolutionDetails.needs_overworld_rain,
+        //   partySpecies:
+        //     evolutionDetails.party_species === null
+        //       ? null
+        //       : evolutionDetails.party_species.name,
+        //   partyType:
+        //     evolutionDetails.party_type === null
+        //       ? null
+        //       : evolutionDetails.party_type.name,
+        //   relativePhysicalStats: evolutionDetails.relative_physical_stats,
+        //   timeOfDay: evolutionDetails.time_of_day,
+        //   tradeSpecies:
+        //     evolutionDetails.trade_species === null
+        //       ? null
+        //       : evolutionDetails.trade_species.name,
+        //   turnUpsideDown: evolutionDetails.turn_upside_down,
+        // });
+      }
+    );
+    // create new evolution entry
+    const newEvolution = await Evolution.create({
+      speciesId: evolution.species.url.replace(
+        /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
+        ""
+      ),
+      chainId: chainId,
+      trigger: trigger,
+      gender: gender,
+      heldItem: heldItem,
+      knownMove: knownMove,
+      knownMovesType: knownMovesType,
+      location: location,
+      minAffection: minAffection,
+      minBeauty: minBeauty,
+      minHappiness: minHappiness,
+      minLevel: minLevel,
+      needsOverworldRain: needsOverworldRain,
+      partySpecies: partySpecies,
+      partyType: partyType,
+      relativePhysicalStats: relativePhysicalStats,
+      timeOfDay: timeOfDay,
+      tradeSpecies: tradeSpecies,
+      turnUpsideDown: turnUpsideDown,
+    });
+
+    // check if there are more evolutions in current chain
+    if (evolution.evolves_to && evolution.evolves_to.length > 0) {
+      createEvolutionEntry(evolution.evolves_to, chain);
+    }
+    // else {
+    //   return;
+    // }
+  });
+};
 
 // await db.close();
 

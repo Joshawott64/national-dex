@@ -1199,7 +1199,7 @@
       },
       {
         "pokemon": {
-          "name": "oinkologne",
+          "name": "oinkologne-male",
           "url": "https://pokeapi.co/api/v2/pokemon/916/"
         },
         "slot": 1
@@ -1213,7 +1213,7 @@
       },
       {
         "pokemon": {
-          "name": "maushold",
+          "name": "maushold-family-of-four",
           "url": "https://pokeapi.co/api/v2/pokemon/925/"
         },
         "slot": 1
@@ -1241,7 +1241,7 @@
       },
       {
         "pokemon": {
-          "name": "squawkabilly",
+          "name": "squawkabilly-green-plumage",
           "url": "https://pokeapi.co/api/v2/pokemon/931/"
         },
         "slot": 1
@@ -1276,7 +1276,7 @@
       },
       {
         "pokemon": {
-          "name": "dudunsparce",
+          "name": "dudunsparce-two-segment",
           "url": "https://pokeapi.co/api/v2/pokemon/982/"
         },
         "slot": 1
@@ -3486,7 +3486,7 @@
       },
       {
         "pokemon": {
-          "name": "squawkabilly",
+          "name": "squawkabilly-green-plumage",
           "url": "https://pokeapi.co/api/v2/pokemon/931/"
         },
         "slot": 2
@@ -12169,7 +12169,7 @@
       },
       {
         "pokemon": {
-          "name": "palafin",
+          "name": "palafin-zero",
           "url": "https://pokeapi.co/api/v2/pokemon/964/"
         },
         "slot": 1
@@ -12190,7 +12190,7 @@
       },
       {
         "pokemon": {
-          "name": "tatsugiri",
+          "name": "tatsugiri-curly",
           "url": "https://pokeapi.co/api/v2/pokemon/978/"
         },
         "slot": 2
@@ -17652,7 +17652,7 @@
       },
       {
         "pokemon": {
-          "name": "tatsugiri",
+          "name": "tatsugiri-curly",
           "url": "https://pokeapi.co/api/v2/pokemon/978/"
         },
         "slot": 1

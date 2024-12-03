@@ -19,6 +19,7 @@ const {
   getAllPokemonDetails,
   getRandomPokemon,
   getPokemonById,
+  getEvolutionChainBySpeciesId,
   getDexEntries,
   getMovesetsByPokemonId,
   postMovesetsByPokemonId,
@@ -38,6 +39,7 @@ const {
 app.get("/api/pokemon/details/all", getAllPokemonDetails);
 app.get("/api/pokemon/random", getRandomPokemon);
 app.get("/api/pokemon/:id", getPokemonById);
+app.get("/api/pokemon/evolution-chain/:id", getEvolutionChainBySpeciesId);
 app.get("/api/pokemon/entries/:id", getDexEntries);
 app.get("/api/pokemon/moveset/:id", getMovesetsByPokemonId);
 app.post("/api/pokemon/moveset", postMovesetsByPokemonId);

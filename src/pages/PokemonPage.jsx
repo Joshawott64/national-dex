@@ -8,6 +8,7 @@ import FormSelection from "../components/pokemon_page/FormSelection.jsx";
 import StatsTable from "../components/pokemon_page/StatsTable.jsx";
 import MoveList from "../components/pokemon_page/MoveList.jsx";
 import Abilities from "../components/pokemon_page/Abilities.jsx";
+import EvolutionChain from "../components/pokemon_page/EvolutionChain.jsx";
 import { IoMdVolumeHigh, IoMdMale, IoMdFemale } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -18,6 +19,7 @@ const PokemonPage = () => {
   // state values
   const [pokemonData, setPokemonData] = useState("");
   const [movesetData, setMovesetData] = useState([]);
+  const [evolutionChainData, setEvolutionChainData] = useState([]);
   const [ability1Data, setAbility1Data] = useState(null);
   const [ability2Data, setAbility2Data] = useState(null);
   const [ability3Data, setAbility3Data] = useState(null);
@@ -82,6 +84,12 @@ const PokemonPage = () => {
       setDexEntries(res.data);
       setCurrentDexEntry(res.data[res.data.length - 1].dexEntry);
     });
+
+    axios.get(`/api/pokemon/evolution-chain/${id}`).then((res) => {
+      console.log("evolutionChainData:", res.data);
+      setEvolutionChainData(res.data);
+    });
+
     // reset to false when using the image banner button
     setShowFemaleSprite(false);
   }, [id]);
@@ -213,6 +221,7 @@ const PokemonPage = () => {
           <p className="text-center drop-shadow-lg">{currentDexEntry}</p>
         </div>
       )}
+      <EvolutionChain evolutionChainData={evolutionChainData} />
       <StatsTable
         baseHp={baseHp}
         baseAttack={baseAttack}

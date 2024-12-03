@@ -11,6 +11,8 @@ import db, {
   Team,
   Version,
   DexEntry,
+  Evolution,
+  Chain,
 } from "../database/model.js";
 import { Sequelize, Op } from "sequelize";
 import bcrypt from "bcryptjs";
@@ -81,6 +83,29 @@ const handlerFunctions = {
     });
 
     res.status(200).send(pokemonData);
+  },
+  getEvolutionChainBySpeciesId: async (req, res) => {
+    const id = req.params.id;
+
+    const chain = await Evolution.findOne({
+      where: { speciesId: id },
+    });
+
+    const chainId = chain.chainId;
+
+    const evolutionChainDetails = await Evolution.findAll({
+      order: ["speciesId"],
+      where: { chainId: chainId },
+      include: [
+        { model: Chain },
+        {
+          model: Species,
+          include: [{ model: Pokemon, where: { isDefault: true } }],
+        },
+      ],
+    });
+
+    res.status(200).send(evolutionChainDetails);
   },
   getDexEntries: async (req, res) => {
     const id = req.params.id;
