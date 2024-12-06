@@ -463,6 +463,10 @@ const evolutionChainsInDB = allEvolutionChains.map(async (chain) => {
     timeOfDay: null,
     tradeSpecies: null,
     turnUpsideDown: null,
+    alolan: false,
+    galarian: false,
+    hisuian: false,
+    paldean: false,
   });
 
   // invoke recursive function if current pokemon species can evolve
@@ -550,83 +554,69 @@ const createEvolutionEntry = async (evolvesTo, chain) => {
             : evolutionDetails.trade_species.name;
         turnUpsideDown = evolutionDetails.turn_upside_down;
 
-        // const newEvolution = await Evolution.create({
-        //   speciesId: evolution.species.url.replace(
-        //     /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
-        //     ""
-        //   ),
-        //   chainId: chain.id,
-        //   trigger:
-        //     evolutionDetails.trigger === null
-        //       ? null
-        //       : evolutionDetails.trigger.name,
-        //   gender: evolutionDetails.gender,
-        //   heldItem:
-        //     evolutionDetails.held_item === null
-        //       ? null
-        //       : evolutionDetails.held_item.name,
-        //   item:
-        //     evolutionDetails.item === null ? null : evolutionDetails.item.name,
-        //   knownMove:
-        //     evolutionDetails.known_move === null
-        //       ? null
-        //       : evolutionDetails.known_move.name,
-        //   knownMovesType:
-        //     evolutionDetails.known_moves_type === null
-        //       ? null
-        //       : evolutionDetails.name,
-        //   location:
-        //     evolutionDetails.location === null
-        //       ? null
-        //       : evolutionDetails.location.name,
-        //   minAffection: evolutionDetails.min_affection,
-        //   minBeauty: evolutionDetails.min_beauty,
-        //   minHappiness: evolutionDetails.min_happiness,
-        //   minLevel: evolutionDetails.min_level,
-        //   needsOverworldRain: evolutionDetails.needs_overworld_rain,
-        //   partySpecies:
-        //     evolutionDetails.party_species === null
-        //       ? null
-        //       : evolutionDetails.party_species.name,
-        //   partyType:
-        //     evolutionDetails.party_type === null
-        //       ? null
-        //       : evolutionDetails.party_type.name,
-        //   relativePhysicalStats: evolutionDetails.relative_physical_stats,
-        //   timeOfDay: evolutionDetails.time_of_day,
-        //   tradeSpecies:
-        //     evolutionDetails.trade_species === null
-        //       ? null
-        //       : evolutionDetails.trade_species.name,
-        //   turnUpsideDown: evolutionDetails.turn_upside_down,
-        // });
+        const newEvolution = await Evolution.create({
+          speciesId: evolution.species.url.replace(
+            /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
+            ""
+          ),
+          chainId: chainId,
+          trigger: trigger,
+          gender: gender,
+          heldItem: heldItem,
+          item: item,
+          knownMove: knownMove,
+          knownMovesType: knownMovesType,
+          location: location,
+          minAffection: minAffection,
+          minBeauty: minBeauty,
+          minHappiness: minHappiness,
+          minLevel: minLevel,
+          needsOverworldRain: needsOverworldRain,
+          partySpecies: partySpecies,
+          partyType: partyType,
+          relativePhysicalStats: relativePhysicalStats,
+          timeOfDay: timeOfDay,
+          tradeSpecies: tradeSpecies,
+          turnUpsideDown: turnUpsideDown,
+          alolan: false,
+          galarian: false,
+          hisuian: false,
+          paldean: false,
+        });
       }
     );
-    // create new evolution entry
-    const newEvolution = await Evolution.create({
-      speciesId: evolution.species.url.replace(
-        /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
-        ""
-      ),
-      chainId: chainId,
-      trigger: trigger,
-      gender: gender,
-      heldItem: heldItem,
-      knownMove: knownMove,
-      knownMovesType: knownMovesType,
-      location: location,
-      minAffection: minAffection,
-      minBeauty: minBeauty,
-      minHappiness: minHappiness,
-      minLevel: minLevel,
-      needsOverworldRain: needsOverworldRain,
-      partySpecies: partySpecies,
-      partyType: partyType,
-      relativePhysicalStats: relativePhysicalStats,
-      timeOfDay: timeOfDay,
-      tradeSpecies: tradeSpecies,
-      turnUpsideDown: turnUpsideDown,
-    });
+    // create new evolution entry for edge cases (e.g. Manaphy)
+    if (evolution.evolution_details.length === 0 && evolution.species) {
+      const newEvolution = await Evolution.create({
+        speciesId: evolution.species.url.replace(
+          /(^https\:\/\/pokeapi\.co\/api\/v2\/pokemon-species\/|\/$)/g,
+          ""
+        ),
+        chainId: chainId,
+        trigger: trigger,
+        gender: gender,
+        heldItem: heldItem,
+        item: item,
+        knownMove: knownMove,
+        knownMovesType: knownMovesType,
+        location: location,
+        minAffection: minAffection,
+        minBeauty: minBeauty,
+        minHappiness: minHappiness,
+        minLevel: minLevel,
+        needsOverworldRain: needsOverworldRain,
+        partySpecies: partySpecies,
+        partyType: partyType,
+        relativePhysicalStats: relativePhysicalStats,
+        timeOfDay: timeOfDay,
+        tradeSpecies: tradeSpecies,
+        turnUpsideDown: turnUpsideDown,
+        alolan: false,
+        galarian: false,
+        hisuian: false,
+        paldean: false,
+      });
+    }
 
     // check if there are more evolutions in current chain
     if (evolution.evolves_to && evolution.evolves_to.length > 0) {

@@ -648,6 +648,22 @@ Evolution.init(
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
+    alolan: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    galarian: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    hisuian: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    paldean: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
   },
   {
     modelName: "evolution",

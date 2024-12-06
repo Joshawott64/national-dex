@@ -94,13 +94,13 @@ const handlerFunctions = {
     const chainId = chain.chainId;
 
     const evolutionChainDetails = await Evolution.findAll({
-      order: ["speciesId"],
+      order: ["evolutionId"],
       where: { chainId: chainId },
       include: [
         { model: Chain },
         {
           model: Species,
-          include: [{ model: Pokemon, where: { isDefault: true } }],
+          include: [{ model: Pokemon, order: ["pokemonId"] }],
         },
       ],
     });
