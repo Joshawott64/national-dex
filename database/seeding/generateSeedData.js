@@ -4,6 +4,8 @@ import typesList from "./api_JSONs/pokeapi_all_types.json" assert { type: "json"
 import movesList from "./api_JSONs/pokeapi_all_moves.json" assert { type: "json" };
 import abilitiesList from "./api_JSONs/pokeapi_all_abilities.json" assert { type: "json" };
 import generationsList from "./api_JSONs/pokeapi_all_generations.json" assert { type: "json" };
+import versionsList from "./api_JSONs/pokeapi_all_versions.json" assert { type: "json" };
+import chainList from "./api_JSONs/pokeapi_all_evolution_chains.json" assert { type: "json" };
 import { createWriteStream } from "fs";
 import JSONStream from "JSONStream";
 import axios from "axios";
@@ -88,4 +90,18 @@ await generateJSONs(
   "./database/seeding/table_JSONs/generations/all_generations_",
   generationsList,
   20
+);
+
+// generate versions jsons
+await generateJSONs(
+  "./database/seeding/table_JSONs/versions/all_versions_",
+  versionsList,
+  200
+);
+
+// generate chain jsons
+await generateJSONs(
+  "./database/seeding/table_JSONs/chains/all_evolution_chains_",
+  chainList,
+  200
 );

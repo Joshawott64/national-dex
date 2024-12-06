@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import Navbar from "./components/navbar/Navbar.jsx";
+import LoginPopup from "./components/home_page/LoginPopup.jsx";
+import RegisterPopup from "./components/home_page/RegisterPopup.jsx";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // invoke useDispatch
+  const dispatch = useDispatch();
+
+  // state values
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
+  const sessionCheck = async () => {
+    const res = await axios.get("/api/session-check");
+
+    if (res.data.success) {
+      console.log("sessionCheck: SUCCESS");
+      dispatch({
+        type: "USER_AUTH",
+        payload: res.data.userId,
+      });
+    } else {
+      console.log("sessionCheck: FAILURE");
+    }
+  };
+
+  useEffect(() => {
+    sessionCheck();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="h-svh">
+      {showRegister && (
+        <RegisterPopup
+          setShowLogin={setShowLogin}
+          setShowRegister={setShowRegister}
+        />
+      )}
+      {showLogin && (
+        <LoginPopup
+          setShowLogin={setShowLogin}
+          setShowRegister={setShowRegister}
+        />
+      )}
+      <div className="absolute w-full">
+        <Navbar />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="h-full w-full pt-36 pb-28">
+        <Outlet context={[setShowLogin]} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

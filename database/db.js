@@ -9,6 +9,12 @@ async function connectToDB(dbURI) {
       underscored: true,
       timestamps: true,
     },
+    pool: {
+      max: 20,
+      min: 0,
+      acquire: 1200000,
+      idle: 10000,
+    },
     password: "admin",
   });
 

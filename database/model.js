@@ -241,6 +241,18 @@ Moveset.init(
       autoIncrement: true,
       primaryKey: true,
     },
+    levelLearnedAt: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    method: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    versionGroup: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   },
   {
     modelName: "moveset",
@@ -324,10 +336,34 @@ Species.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    // chainId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
+    dexNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    isBaby: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    isLegendary: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    isMythical: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    formsSwitchable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    genus: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    hasGenderDifferences: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
   },
   {
     modelName: "species",
@@ -407,9 +443,13 @@ UserPokemon.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    nickname: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+    isShiny: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    isFemale: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
   },
   {
@@ -443,19 +483,210 @@ Team.init(
   }
 );
 
+export class Version extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Version.init(
+  {
+    versionId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+  },
+  {
+    modelName: "version",
+    sequelize: db,
+  }
+);
+
+export class DexEntry extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+DexEntry.init(
+  {
+    dexEntryId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    dexEntry: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    language: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+  },
+  {
+    modelName: "dex_entry",
+    sequelize: db,
+  }
+);
+
+export class Chain extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Chain.init(
+  {
+    chainId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    babyTriggerItem: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+  },
+  {
+    modelName: "chain",
+    sequelize: db,
+  }
+);
+
+export class Evolution extends Model {
+  // simplify console logs
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Evolution.init(
+  {
+    evolutionId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    trigger: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    gender: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    heldItem: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    item: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    knownMove: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    knownMoveType: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    location: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    minAffection: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minBeauty: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minHappiness: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    minLevel: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    needsOverworldRain: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    partySpecies: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    partyType: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    relativePhysicalStats: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    timeOfDay: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    tradeSpecies: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    turnUpsideDown: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    alolan: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    galarian: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    hisuian: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    paldean: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+  },
+  {
+    modelName: "evolution",
+    sequelize: db,
+  }
+);
+
 // Ability table relationships
-Ability.hasMany(Pokemon, { foreignKey: "ability1Id" });
+Ability.hasMany(Pokemon, { foreignKey: "abilityId" });
 Ability.hasMany(Pokemon, { foreignKey: "ability2Id" });
 Ability.hasMany(Pokemon, { foreignKey: "ability3Id" });
-Pokemon.belongsTo(Ability, { foreignKey: "abilityId" });
+Pokemon.belongsTo(Ability, { as: "ability1", foreignKey: "abilityId" });
+Pokemon.belongsTo(Ability, { as: "ability2", foreignKey: "ability2Id" });
+Pokemon.belongsTo(Ability, { as: "ability3", foreignKey: "ability3Id" });
 
 Ability.hasMany(UserPokemon, { foreignKey: "abilityId" });
 UserPokemon.belongsTo(Ability, { foreignKey: "abilityId" });
 
 // Type table relationships
-Type.hasMany(Pokemon, { foreignKey: "type1Id" });
+Type.hasMany(Pokemon, { foreignKey: "typeId" });
 Type.hasMany(Pokemon, { foreignKey: "type2Id" });
-Pokemon.belongsTo(Type, { foreignKey: "typeId" });
+Pokemon.belongsTo(Type, { as: "type1", foreignKey: "typeId" });
+Pokemon.belongsTo(Type, { as: "type2", foreignKey: "type2Id" });
 
 Type.hasMany(Move, { foreignKey: "typeId" });
 Move.belongsTo(Type, { foreignKey: "typeId" });
@@ -463,6 +694,14 @@ Move.belongsTo(Type, { foreignKey: "typeId" });
 // Species table relationships
 Species.hasMany(Pokemon, { foreignKey: "speciesId" });
 Pokemon.belongsTo(Species, { foreignKey: "speciesId" });
+Species.hasMany(DexEntry, { foreignKey: "speciesId" });
+DexEntry.belongsTo(Species, { foreignKey: "speciesId" });
+Species.hasOne(Evolution, { foreignKey: "speciesId" });
+Evolution.belongsTo(Species, { foreignKey: "speciesId" });
+
+// Chain table relationships
+Chain.hasMany(Evolution, { foreignKey: "chainId" });
+Evolution.belongsTo(Chain, { foreignKey: "chainId" });
 
 // Generation table relationships
 Generation.hasMany(Species, { foreignKey: "generationId" });
@@ -476,7 +715,10 @@ Move.hasMany(UserPokemon, { foreignKey: "move1Id" });
 Move.hasMany(UserPokemon, { foreignKey: "move2Id" });
 Move.hasMany(UserPokemon, { foreignKey: "move3Id" });
 Move.hasMany(UserPokemon, { foreignKey: "move4Id" });
-UserPokemon.belongsTo(Move, { foreignKey: "moveId" });
+UserPokemon.belongsTo(Move, { as: "move1", foreignKey: "move1Id" });
+UserPokemon.belongsTo(Move, { as: "move2", foreignKey: "move2Id" });
+UserPokemon.belongsTo(Move, { as: "move3", foreignKey: "move3Id" });
+UserPokemon.belongsTo(Move, { as: "move4", foreignKey: "move4Id" });
 
 Move.hasMany(Moveset, { foreignKey: "moveId" });
 Moveset.belongsTo(Move, { foreignKey: "moveId" });
@@ -489,16 +731,69 @@ Pokemon.hasMany(Moveset, { foreignKey: "pokemonId" });
 Moveset.belongsTo(Pokemon, { foreignKey: "pokemonId" });
 
 // UserPokemon table relationships
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon1Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon2Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon3Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon4Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon5Id" });
-UserPokemon.hasMany(Team, { foreignKey: "userPokemon6Id" });
-Team.belongsTo(UserPokemon, { foreignKey: "userPokemonId" });
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon1Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon2Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon3Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon4Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon5Id",
+  onDelete: "CASCADE",
+});
+UserPokemon.hasMany(Team, {
+  foreignKey: "userPokemon6Id",
+  onDelete: "CASCADE",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon1",
+  foreignKey: "userPokemon1Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon2",
+  foreignKey: "userPokemon2Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon3",
+  foreignKey: "userPokemon3Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon4",
+  foreignKey: "userPokemon4Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon5",
+  foreignKey: "userPokemon5Id",
+});
+Team.belongsTo(UserPokemon, {
+  as: "userPokemon6",
+  foreignKey: "userPokemon6Id",
+});
 
 // User table relationships
-User.hasMany(UserPokemon, { foreignKey: "userId" });
+User.hasMany(UserPokemon, { foreignKey: "userId", onDelete: "CASCADE" });
 UserPokemon.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Team, { foreignKey: "userId", onDelete: "CASCADE" });
+Team.belongsTo(User, { foreignKey: "userId" });
+
+// Version table relationships
+Version.hasMany(DexEntry, { foreignKey: "versionId" });
+DexEntry.belongsTo(Version, { foreignKey: "versionId" });
+
+if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
+  console.log("Syncing database...");
+  await db.sync();
+  console.log("Finished syncing database!");
+}
 
 export default db;
