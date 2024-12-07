@@ -5,29 +5,57 @@ const SelectablePokemon = ({
   setPokemon1Data,
   setPokemon1IsShiny,
   setPokemon1IsFemale,
+  setPokemon1Move1,
+  setPokemon1Move2,
+  setPokemon1Move3,
+  setPokemon1Move4,
+  setPokemon1Ability,
   setPokemon2Data,
   setPokemon2IsShiny,
   setPokemon2IsFemale,
+  setPokemon2Move1,
+  setPokemon2Move2,
+  setPokemon2Move3,
+  setPokemon2Move4,
+  setPokemon2Ability,
   setPokemon3Data,
   setPokemon3IsShiny,
   setPokemon3IsFemale,
+  setPokemon3Move1,
+  setPokemon3Move2,
+  setPokemon3Move3,
+  setPokemon3Move4,
+  setPokemon3Ability,
   setPokemon4Data,
   setPokemon4IsShiny,
   setPokemon4IsFemale,
+  setPokemon4Move1,
+  setPokemon4Move2,
+  setPokemon4Move3,
+  setPokemon4Move4,
+  setPokemon4Ability,
   setPokemon5Data,
   setPokemon5IsShiny,
   setPokemon5IsFemale,
+  setPokemon5Move1,
+  setPokemon5Move2,
+  setPokemon5Move3,
+  setPokemon5Move4,
+  setPokemon5Ability,
   setPokemon6Data,
   setPokemon6IsShiny,
   setPokemon6IsFemale,
+  setPokemon6Move1,
+  setPokemon6Move2,
+  setPokemon6Move3,
+  setPokemon6Move4,
+  setPokemon6Ability,
   slotToFill,
   showSelectablePokemon,
   setShowSelectablePokemon,
 }) => {
   // state values
   const [selectablePokemonData, setSelectablePokemonData] = useState([]);
-  const [popupPokemonData, setPopupPokemonData] = useState([]);
-  const [showPokemonPopup, setShowPokemonPopup] = useState(false);
 
   useEffect(() => {
     axios.get("/api/team/pokemon/all").then((res) => {
@@ -41,26 +69,122 @@ const SelectablePokemon = ({
     switch (slotToFill) {
       case 1:
         setPokemon1Data(pokemon);
+        setPokemon1Move1({
+          move: { name: "Move 1", moveId: null },
+        });
+        setPokemon1Move2({
+          move: { name: "Move 2", moveId: null },
+        });
+        setPokemon1Move3({
+          move: { name: "Move 3", moveId: null },
+        });
+        setPokemon1Move4({
+          move: { name: "Move 4", moveId: null },
+        });
+        setPokemon1Ability({
+          name: "Ability",
+          abilityId: null,
+        });
         setShowSelectablePokemon(false);
         break;
       case 2:
         setPokemon2Data(pokemon);
+        setPokemon2Move1({
+          move: { name: "Move 1", moveId: null },
+        });
+        setPokemon2Move2({
+          move: { name: "Move 2", moveId: null },
+        });
+        setPokemon2Move3({
+          move: { name: "Move 3", moveId: null },
+        });
+        setPokemon2Move4({
+          move: { name: "Move 4", moveId: null },
+        });
+        setPokemon2Ability({
+          name: "Ability",
+          abilityId: null,
+        });
         setShowSelectablePokemon(false);
         break;
       case 3:
         setPokemon3Data(pokemon);
+        setPokemon3Move1({
+          move: { name: "Move 1", moveId: null },
+        });
+        setPokemon3Move2({
+          move: { name: "Move 2", moveId: null },
+        });
+        setPokemon3Move3({
+          move: { name: "Move 3", moveId: null },
+        });
+        setPokemon3Move4({
+          move: { name: "Move 4", moveId: null },
+        });
+        setPokemon3Ability({
+          name: "Ability",
+          abilityId: null,
+        });
         setShowSelectablePokemon(false);
         break;
       case 4:
         setPokemon4Data(pokemon);
+        setPokemon4Move1({
+          move: { name: "Move 1", moveId: null },
+        });
+        setPokemon4Move2({
+          move: { name: "Move 2", moveId: null },
+        });
+        setPokemon4Move3({
+          move: { name: "Move 3", moveId: null },
+        });
+        setPokemon4Move4({
+          move: { name: "Move 4", moveId: null },
+        });
+        setPokemon4Ability({
+          name: "Ability",
+          abilityId: null,
+        });
         setShowSelectablePokemon(false);
         break;
       case 5:
         setPokemon5Data(pokemon);
+        setPokemon5Move1({
+          move: { name: "Move 1", moveId: null },
+        });
+        setPokemon5Move2({
+          move: { name: "Move 2", moveId: null },
+        });
+        setPokemon5Move3({
+          move: { name: "Move 3", moveId: null },
+        });
+        setPokemon5Move4({
+          move: { name: "Move 4", moveId: null },
+        });
+        setPokemon5Ability({
+          name: "Ability",
+          abilityId: null,
+        });
         setShowSelectablePokemon(false);
         break;
       case 6:
         setPokemon6Data(pokemon);
+        setPokemon6Move1({
+          move: { name: "Move 1", moveId: null },
+        });
+        setPokemon6Move2({
+          move: { name: "Move 2", moveId: null },
+        });
+        setPokemon6Move3({
+          move: { name: "Move 3", moveId: null },
+        });
+        setPokemon6Move4({
+          move: { name: "Move 4", moveId: null },
+        });
+        setPokemon6Ability({
+          name: "Ability",
+          abilityId: null,
+        });
         setShowSelectablePokemon(false);
         break;
       default:

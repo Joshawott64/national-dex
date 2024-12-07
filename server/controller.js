@@ -578,6 +578,8 @@ const handlerFunctions = {
       pokemon6,
     } = req.body;
 
+    console.log("req.body:", req.body);
+
     // query and edit each UserPokemon in Team
     const userPokemon1 = await UserPokemon.findByPk(pokemon1.userPokemonId, {
       where: { userId: userId },
@@ -678,6 +680,8 @@ const handlerFunctions = {
     teamToEdit.userPokemon4 = userPokemon4;
     teamToEdit.userPokemon5 = userPokemon5;
     teamToEdit.userPokemon6 = userPokemon6;
+
+    await teamToEdit.save();
 
     res.status(200).send({ success: true });
   },

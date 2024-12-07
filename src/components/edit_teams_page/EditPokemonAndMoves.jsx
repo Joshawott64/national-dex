@@ -488,13 +488,12 @@ const EditPokemonAndMoves = ({
     const copy = teamToEditData;
 
     // determine which pokemon to edit and toggle isShiny boolean
-    switch (slotToFill) {
+    switch (slotNum) {
       case 1:
         copy.userPokemon1.isShiny = !copy.userPokemon1.isShiny;
         break;
       case 2:
         copy.userPokemon2.isShiny = !copy.userPokemon2.isShiny;
-
         break;
       case 3:
         copy.userPokemon3.isShiny = !copy.userPokemon3.isShiny;
@@ -524,7 +523,7 @@ const EditPokemonAndMoves = ({
     const copy = teamToEditData;
 
     // determine which pokemon to edit and toggle isFemale boolean
-    switch (slotToFill) {
+    switch (slotNum) {
       case 1:
         copy.userPokemon1.isFemale = !copy.userPokemon1.isFemale;
         break;
@@ -560,7 +559,13 @@ const EditPokemonAndMoves = ({
       {!userPokemon.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div className="flex justify-start place-items-center gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+            <div
+              onClick={() => {
+                setSlotToFill(slotNum);
+                setShowSelectablePokemon(true);
+              }}
+              className="flex justify-start place-items-center gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
+            >
               <IoIosAddCircle className="text-lg drop-shadow-lg" />
               <p className="drop-shadow-lg">Add Pokemon</p>
             </div>
@@ -571,13 +576,7 @@ const EditPokemonAndMoves = ({
       {userPokemon.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
               <div
                 onClick={() => {
                   setSlotToFill(slotNum);
@@ -620,7 +619,7 @@ const EditPokemonAndMoves = ({
                   <HiSparkles
                     className="text-lg drop-shadow-lg"
                     onClick={() => {
-                      setSlotToFill(slotNum);
+                      // setSlotToFill(slotNum);
                       handleShinyToggle();
                     }}
                   />
@@ -629,7 +628,7 @@ const EditPokemonAndMoves = ({
                   <HiOutlineSparkles
                     className="text-lg drop-shadow-lg"
                     onClick={() => {
-                      setSlotToFill(slotNum);
+                      // setSlotToFill(slotNum);
                       handleShinyToggle();
                     }}
                   />
@@ -638,21 +637,15 @@ const EditPokemonAndMoves = ({
               {userPokemon.pokemon.species.hasGenderDifferences && (
                 <div
                   onClick={() => {
-                    setSlotToFill(slotNum);
+                    // setSlotToFill(slotNum);
                     handleGenderToggle();
                   }}
                   className="flex flex-row justify-center place-items-center w-16 text-text-light rounded-lg drop-shadow-lg"
                 >
-                  <div
-                    className="flex justify-center place-items-center w-full bg-blue-600 p-1 rounded-l-lg drop-shadow-lg"
-                    // onClick={() => setPokemon1IsFemale(false)}
-                  >
+                  <div className="flex justify-center place-items-center w-full bg-blue-600 p-1 rounded-l-lg drop-shadow-lg">
                     <IoMdMale className="text-xs drop-shadow-lg" />
                   </div>
-                  <div
-                    className="flex justify-center place-items-center w-full bg-red-600 p-1 rounded-r-lg drop-shadow-lg"
-                    // onClick={() => setPokemon1IsFemale(true)}
-                  >
+                  <div className="flex justify-center place-items-center w-full bg-red-600 p-1 rounded-r-lg drop-shadow-lg">
                     <IoMdFemale className="text-xs drop-shadow-lg" />
                   </div>
                 </div>

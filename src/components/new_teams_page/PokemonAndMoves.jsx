@@ -121,14 +121,14 @@ const PokemonAndMoves = ({
       {pokemon1Data.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
-              <div className="flex justify-center place-items-center h-10 w-10">
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+              <div
+                onClick={() => {
+                  setSlotToFill(1);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={pokemon1Data.legacyIcon ?? pokemon1Data.latestIcon}
@@ -256,14 +256,14 @@ const PokemonAndMoves = ({
       {pokemon2Data.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
-              <div className="flex justify-center place-items-center h-10 w-10">
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+              <div
+                onClick={() => {
+                  setSlotToFill(2);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={pokemon2Data.legacyIcon ?? pokemon2Data.latestIcon}
@@ -390,14 +390,14 @@ const PokemonAndMoves = ({
       {pokemon3Data.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
-              <div className="flex justify-center place-items-center h-10 w-10">
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+              <div
+                onClick={() => {
+                  setSlotToFill(3);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={pokemon3Data.legacyIcon ?? pokemon3Data.latestIcon}
@@ -524,14 +524,14 @@ const PokemonAndMoves = ({
       {pokemon4Data.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
-              <div className="flex justify-center place-items-center h-10 w-10">
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+              <div
+                onClick={() => {
+                  setSlotToFill(4);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={pokemon4Data.legacyIcon ?? pokemon4Data.latestIcon}
@@ -658,14 +658,14 @@ const PokemonAndMoves = ({
       {pokemon5Data.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
-              <div className="flex justify-center place-items-center h-10 w-10">
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+              <div
+                onClick={() => {
+                  setSlotToFill(5);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={pokemon5Data.legacyIcon ?? pokemon5Data.latestIcon}
@@ -792,14 +792,14 @@ const PokemonAndMoves = ({
       {pokemon6Data.pokemonId && (
         <div className="flex flex-col gap-y-3">
           <div className="flex flex-col">
-            <div
-              // onClick={() => {
-              //   setSlotToFill(1);
-              //   setShowSelectablePokemon(true);
-              // }}
-              className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
-            >
-              <div className="flex justify-center place-items-center h-10 w-10">
+            <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light rounded-lg drop-shadow-lg">
+              <div
+                onClick={() => {
+                  setSlotToFill(6);
+                  setShowSelectablePokemon(true);
+                }}
+                className="flex justify-center place-items-center h-10 w-10"
+              >
                 <img
                   className="drop-shadow-lg"
                   src={pokemon6Data.legacyIcon ?? pokemon6Data.latestIcon}
