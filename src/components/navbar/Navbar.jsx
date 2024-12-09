@@ -5,7 +5,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-center place-items-center h-36 w-full bg-primary drop-shadow-lg">
+    <div className="flex flex-col justify-center place-items-center h-24 w-full bg-primary drop-shadow-lg">
       <div className="absolute w-full h-4 bg-black"></div>
       <div className="absolute flex justify-center place-items-center left-2 h-10 w-10 rounded-full bg-black">
         <div className="h-7 w-7 rounded-full bg-navbar-circle"></div>

@@ -17,17 +17,24 @@ const TeamsPage = () => {
   const [teamData, setTeamData] = useState([]);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [teamToDelete, setTeamToDelete] = useState();
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     axios.post("/api/teams", { userId: userId }).then((res) => {
       setTeamData(res.data);
       // console.log("teamData:", res.data);
     });
+
+    if (userId) {
+      axios.get(`/api/users/${userId}`).then((res) => {
+        setUsername(res.data.username);
+      });
+    }
   }, [userId, showConfirmDelete]);
 
   const userTeams = teamData.map((team) => (
-    <div key={team.teamId}>
-      <p>{team.name}</p>
+    <div key={team.teamId} className="flex flex-col gap-y-1 w-full h-[68px]">
+      <p className="font-medium drop-shadow-lg">{team.name}</p>
       <TeamCard
         team={team}
         setShowConfirmDelete={setShowConfirmDelete}
@@ -44,15 +51,21 @@ const TeamsPage = () => {
           setShowConfirmDelete={setShowConfirmDelete}
         />
       )}
-      <div className="flex flex-col gap-y-4 w-full h-full px-10">
-        <p>Your teams</p>
-        <div className="max-h-full overflow-y-scroll">{userTeams}</div>
+      <div className="flex flex-col justify-start place-items-center gap-y-4 w-full h-full px-10 pt-4">
+        <p className="text-xl lg:text-2xl font-medium drop-shadow-lg md:hidden lg:block xl:block">
+          {username}'s Teams
+        </p>
+        <div className="md:grid md:grid-cols-2 flex flex-col gap-x-2 gap-y-2 w-full max-h-full py-2 rounded-lg overflow-y-scroll">
+          {userTeams}
+        </div>
         <div
           onClick={() => navigate("/teams/create")}
-          className="flex justify-start place-items-center gap-x-2 h-10 px-2 bg-accent-gray-light rounded-lg drop-shadow-lg"
+          className="group flex justify-start place-items-center gap-x-2 w-full md:w-1/2 min-h-10 h-10 px-2 bg-accent-gray-light rounded-lg drop-shadow-lg cursor-pointer"
         >
-          <IoIosAddCircle className="text-xl drop-shadow-lg" />
-          <p className="drop-shadow-lg">New team</p>
+          <IoIosAddCircle className="text-xl drop-shadow-lg group-hover:text-accent-gray-dark transition-colors duration-300" />
+          <p className="drop-shadow-lg group-hover:text-accent-gray-dark transition-colors duration-300">
+            New team
+          </p>
         </div>
       </div>
     </>

@@ -9,12 +9,12 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
   // console.log("team:", team);
 
   return (
-    <div className="bg-accent-gray-light text-text-light rounded-lg drop-shadow-lg">
+    <div className="w-full h-10 bg-accent-gray-light text-text-light rounded-lg drop-shadow-lg">
       <div className="flex flex-row">
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
           {team.userPokemon1.pokemonId && (
             <img
-              className="drop-shadow-lg"
+              className="max-h-10 drop-shadow-lg"
               src={
                 team.userPokemon1.pokemon.legacyIcon ??
                 team.userPokemon1.pokemon.latestIcon
@@ -26,7 +26,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
           {team.userPokemon2.pokemonId && (
             <img
-              className="drop-shadow-lg"
+              className="max-h-10 drop-shadow-lg"
               src={
                 team.userPokemon2.pokemon.legacyIcon ??
                 team.userPokemon2.pokemon.latestIcon
@@ -38,7 +38,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
           {team.userPokemon3.pokemonId && (
             <img
-              className="drop-shadow-lg"
+              className="max-h-10 drop-shadow-lg"
               src={
                 team.userPokemon3.pokemon.legacyIcon ??
                 team.userPokemon3.pokemon.latestIcon
@@ -50,7 +50,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
           {team.userPokemon4.pokemonId && (
             <img
-              className="drop-shadow-lg"
+              className="max-h-10 drop-shadow-lg"
               src={
                 team.userPokemon4.pokemon.legacyIcon ??
                 team.userPokemon4.pokemon.latestIcon
@@ -62,7 +62,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
           {team.userPokemon5.pokemonId && (
             <img
-              className="drop-shadow-lg"
+              className="max-h-10 drop-shadow-lg"
               src={
                 team.userPokemon5.pokemon.legacyIcon ??
                 team.userPokemon5.pokemon.latestIcon
@@ -74,7 +74,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
         <div className="flex-1 flex justify-center place-items-center h-10 w-10">
           {team.userPokemon6.pokemonId && (
             <img
-              className="drop-shadow-lg"
+              className="max-h-10 drop-shadow-lg"
               src={
                 team.userPokemon6.pokemon.legacyIcon ??
                 team.userPokemon6.pokemon.latestIcon
@@ -83,7 +83,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
             ></img>
           )}
         </div>
-        <div className="flex-1 flex justify-center place-items-center bg-accent-gray-dark">
+        <div className="flex-1 flex justify-center place-items-center bg-accent-gray-dark cursor-pointer hover:text-accent-gray-light hover:text-xl transition-all duration-300">
           <IoMdCreate
             onClick={() => navigate(`/teams/edit/${team.teamId}`)}
             className="drop-shadow-lg"
@@ -94,7 +94,7 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
             setTeamToDelete(team);
             setShowConfirmDelete(true);
           }}
-          className="flex-1 flex justify-center place-items-center bg-red-600 rounded-r-lg"
+          className="flex-1 flex justify-center place-items-center bg-red-600 rounded-r-lg cursor-pointer hover:text-accent-gray-light hover:text-xl transition-all duration-300"
         >
           <IoMdTrash className="drop-shadow-lg" />
         </div>

@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div className="h-svh">
+    <div className="h-svh select-none">
       {showRegister && (
         <RegisterPopup
           setShowLogin={setShowLogin}
@@ -50,8 +50,11 @@ function App() {
       <div className="absolute w-full">
         <Navbar />
       </div>
-      <div className="h-full w-full pt-36 pb-28">
+      <div className="flex flex-col justify-start h-full w-full pt-24 pb-20">
         <Outlet context={[setShowLogin]} />
+        <div className="flex justify-center place-items-center w-full">
+          <p className="p-6 drop-shadow-lg">BuyMeACoffee Link</p>
+        </div>
       </div>
     </div>
   );

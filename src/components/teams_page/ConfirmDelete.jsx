@@ -7,13 +7,11 @@ const ConfirmDelete = ({ teamToDelete, setShowConfirmDelete }) => {
       `/api/pokemon/team/delete/${teamToDelete.teamId}`
     );
     setShowConfirmDelete(false);
-
-    console.log("TEAM DELETED!!!");
   };
 
   return (
     <div className="absolute flex justify-center place-items-start w-full h-full bg-black bg-opacity-60 z-50 animate-fadeIn">
-      <div className="bg-white">
+      <div className="bg-white rounded-lg drop-shadow-lg">
         <div>
           <p>Are you sure you want to delete {teamToDelete.name}?</p>
           <p>This cannot be undone</p>

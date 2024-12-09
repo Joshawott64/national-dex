@@ -29,6 +29,7 @@ const {
   createNewTeam,
   editTeam,
   deleteTeam,
+  getUsernameByUserId,
   sessionCheck,
   register,
   login,
@@ -49,6 +50,7 @@ app.get("/api/team/pokemon/all", getPokemonForTeamSelection);
 app.post("/api/pokemon/team/create", createNewTeam);
 app.put("/api/pokemon/team/edit", editTeam);
 app.delete("/api/pokemon/team/delete/:id", deleteTeam);
+app.get("/api/users/:id", getUsernameByUserId);
 app.get("/api/session-check", sessionCheck);
 app.post("/api/register", register);
 app.post("/api/login", login);

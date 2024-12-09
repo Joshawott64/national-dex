@@ -182,6 +182,7 @@ const handlerFunctions = {
     // get teams (and associated models) that match userId
     const teamData = await Team.findAll({
       where: { userId: userId },
+      order: ["teamId"],
       include: [
         {
           model: UserPokemon,
@@ -723,6 +724,15 @@ const handlerFunctions = {
     });
 
     res.status(200).send({ success: true, message: "Successful deletion!" });
+  },
+  getUsernameByUserId: async (req, res) => {
+    const { id } = req.params;
+
+    const username = await User.findByPk(id, {
+      attributes: ["username"],
+    });
+
+    res.status(200).send(username);
   },
   sessionCheck: async (req, res) => {
     if (req.session.userId) {
