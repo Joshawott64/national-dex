@@ -41,14 +41,16 @@ const LoginPopup = ({ setShowLogin, setShowRegister }) => {
   return (
     <form action="submit">
       <div className="fixed flex flex-col justify-center place-items-center w-full h-full px-10 bg-black bg-opacity-60 z-50 animate-fadeIn">
-        <div className="flex flex-col justify-center place-items-center gap-y-8 w-full h-fit p-4 pb-8 mx-4 my-10 mb-32 bg-accent-gray-light rounded-lg drop-shadow-lg">
+        <div className="flex flex-col justify-center place-items-center gap-y-8 w-80 3xl:w-96 h-fit p-4 pb-8 bg-accent-gray-light rounded-lg drop-shadow-lg">
           <div className="place-self-start">
             <IoIosCloseCircle
-              className="text-text-dark text-2xl drop-shadow-lg"
+              className="text-text-dark text-2xl 3xl:text-3xl drop-shadow-lg"
               onClick={() => setShowLogin(false)}
             />
           </div>
-          <h3 className="text-text-dark text-3xl drop-shadow-lg">Login</h3>
+          <h3 className="text-text-dark text-3xl 3xl:text-4xl drop-shadow-lg">
+            Login
+          </h3>
           <div className="w-full">
             <div className="flex">
               <p className="flex-1 text-text-dark drop-shadow-lg">Username</p>
@@ -76,7 +78,9 @@ const LoginPopup = ({ setShowLogin, setShowRegister }) => {
               onClick={handleLogin}
               className="w-full bg-primary p-1 rounded-md"
             >
-              <p className="text-text-light text-lg drop-shadow-lg">Submit</p>
+              <p className="text-text-light text-lg 3xl:text-xl drop-shadow-lg">
+                Submit
+              </p>
             </button>
           </div>
           <div className="flex flex-row justify-center place-items-center gap-x-2">

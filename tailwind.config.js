@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        "3xl": "2000px",
+      },
       colors: {
         primary: "#FB5A5A",
         "navbar-circle": "#48F6F6",
