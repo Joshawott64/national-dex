@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { IoMdTrash, IoIosArrowDown } from "react-icons/io";
 import axios from "axios";
 
 const Filters = ({
@@ -104,12 +105,12 @@ const Filters = ({
   return (
     <div
       className={`absolute flex justify-end w-full z-30 transition-transform duration-300 ease-in-out ${
-        showFilters ? "translate-y-0 drop-shadow-lg" : "-translate-y-96"
+        showFilters ? "translate-y-0 drop-shadow-lg" : "-translate-y-[464px]"
       }`}
     >
       <div className="flex flex-col justify-center text-text-light">
         <div
-          className={`flex flex-col justify-start place-items-center w-72 h-96 p-2 bg-primary ${
+          className={`flex flex-col justify-start place-items-center gap-y-2 w-72 h-[464px] p-2 bg-primary rounded-bl-lg ${
             showFilters ? "drop-shadow-lg" : ""
           }`}
         >
@@ -125,34 +126,48 @@ const Filters = ({
               {generationList}
             </div>
           </div>
-          <div className="flex-1 flex gap-x-4 text-sm text-center">
-            <div
-              onClick={() => setLegendaryFilter(!legendaryFilter)}
-              className={`flex justify-center place-items-center w-20 border-2 border-text-light rounded-full drop-shadow-lg transition-colors duration-100 ease-in-out ${
-                legendaryFilter ? `bg-accent-gray-dark` : "bg-transparent"
-              }`}
-            >
-              <p className="drop-shadow-lg">Legendary</p>
-            </div>
-            <div
-              onClick={() => setMythicalFilter(!mythicalFilter)}
-              className={`flex justify-center place-items-center w-20 border-2 border-text-light rounded-full drop-shadow-lg transition-colors duration-100 ease-in-out ${
-                mythicalFilter ? `bg-accent-gray-dark` : "bg-transparent"
-              }`}
-            >
-              <p className="drop-shadow-lg">Mythical</p>
+          <div className="flex-1 flex flex-col justify-center place-items-center gap-y-2 w-full">
+            <p className="drop-shadow-lg">Other</p>
+            <div className="flex gap-x-4 text-sm text-center">
+              <div
+                onClick={() => setLegendaryFilter(!legendaryFilter)}
+                className={`flex justify-center place-items-center w-20 border-2 border-text-light rounded-full drop-shadow-lg transition-colors duration-100 ease-in-out ${
+                  legendaryFilter ? `bg-accent-gray-dark` : "bg-transparent"
+                }`}
+              >
+                <p className="drop-shadow-lg">Legendary</p>
+              </div>
+              <div
+                onClick={() => setMythicalFilter(!mythicalFilter)}
+                className={`flex justify-center place-items-center w-20 border-2 border-text-light rounded-full drop-shadow-lg transition-colors duration-100 ease-in-out ${
+                  mythicalFilter ? `bg-accent-gray-dark` : "bg-transparent"
+                }`}
+              >
+                <p className="drop-shadow-lg">Mythical</p>
+              </div>
             </div>
           </div>
-          <div onClick={() => handleClearFilters()} className="flex-1 ">
-            <p>Clear filters</p>
+          <div
+            onClick={() => handleClearFilters()}
+            className="flex-1 flex justify-center place-items-center w-full"
+          >
+            <div className="flex justify-center place-items-center gap-x-1 w-20 border-2 border-text-light rounded-full drop-shadow-lg">
+              <p className="drop-shadow-lg">Clear</p>
+              <IoMdTrash className="drop-shadow-lg" />
+            </div>
           </div>
         </div>
         <div className="flex justify-end w-full">
           <div
             onClick={() => setShowFilters(!showFilters)}
-            className="w-fit bg-primary rounded-b-lg drop-shadow-lg"
+            className="flex justify-center place-items-center gap-x-1 px-2 py-1 w-fit text-sm text-center bg-primary rounded-b-lg drop-shadow-lg"
           >
-            <p className="px-4 py-1 text-sm drop-shadow-lg">Filters</p>
+            <p className="drop-shadow-lg">Filters</p>
+            <IoIosArrowDown
+              className={`drop-shadow-lg transition-transform duration-300 ${
+                showFilters ? "rotate-180" : ""
+              }`}
+            />
           </div>
         </div>
       </div>
