@@ -18,6 +18,8 @@ app.use(
 const {
   getAllPokemonDetails,
   getRandomPokemon,
+  getTypes,
+  getGenerations,
   getPokemonById,
   getEvolutionChainBySpeciesId,
   getDexEntries,
@@ -39,6 +41,8 @@ const {
 // endpoints
 app.get("/api/pokemon/details/all", getAllPokemonDetails);
 app.get("/api/pokemon/random", getRandomPokemon);
+app.get("/api/types", getTypes);
+app.get("/api/generations", getGenerations);
 app.get("/api/pokemon/:id", getPokemonById);
 app.get("/api/pokemon/evolution-chain/:id", getEvolutionChainBySpeciesId);
 app.get("/api/pokemon/entries/:id", getDexEntries);

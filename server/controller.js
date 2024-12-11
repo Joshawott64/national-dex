@@ -45,6 +45,18 @@ const handlerFunctions = {
 
     res.status(200).send(randomPokemonData);
   },
+  getTypes: async (req, res) => {
+    const typeData = await Type.findAll({
+      where: { typeId: { [Op.lt]: 19 } },
+    });
+
+    res.status(200).send(typeData);
+  },
+  getGenerations: async (req, res) => {
+    const generationData = await Generation.findAll();
+
+    res.status(200).send(generationData);
+  },
   getPokemonById: async (req, res) => {
     const id = req.params.id;
 
