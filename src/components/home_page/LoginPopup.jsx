@@ -44,7 +44,7 @@ const LoginPopup = ({ setShowLogin, setShowRegister }) => {
         <div className="flex flex-col justify-center place-items-center gap-y-8 w-80 3xl:w-96 h-fit p-4 pb-8 bg-accent-gray-light rounded-lg drop-shadow-lg">
           <div className="place-self-start">
             <IoIosCloseCircle
-              className="text-text-dark text-2xl 3xl:text-3xl drop-shadow-lg"
+              className="text-text-dark text-2xl 3xl:text-3xl drop-shadow-lg cursor-pointer hover:text-accent-gray-dark transition-colors duration-300"
               onClick={() => setShowLogin(false)}
             />
           </div>
@@ -52,16 +52,16 @@ const LoginPopup = ({ setShowLogin, setShowRegister }) => {
             Login
           </h3>
           <div className="w-full">
-            <div className="flex">
+            <div className="flex place-items-center">
               <p className="flex-1 text-text-dark drop-shadow-lg">Username</p>
-              <p className="flex-1 text-text-dark drop-shadow-lg">
+              <p className="flex-1 text-orange-500 text-xs drop-shadow-lg">
                 {errorText}
               </p>
             </div>
             <input
               type="text"
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-1 rounded-md drop-shadow-lg"
+              className="w-full p-1 rounded-md drop-shadow-lg border-2 border-white focus:outline-none focus:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             />
           </div>
           <div className="w-full">
@@ -69,14 +69,14 @@ const LoginPopup = ({ setShowLogin, setShowRegister }) => {
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-1 rounded-md drop-shadow-lg"
+              className="w-full p-1 rounded-md drop-shadow-lg border-2 border-white focus:outline-none focus:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             />
           </div>
           <div className="flex justify-center place-items-center w-full drop-shadow-lg">
             <button
               type="submit"
               onClick={handleLogin}
-              className="w-full bg-primary p-1 rounded-md"
+              className="w-full bg-primary p-1 rounded-md hover:bg-primary-darkened transition-all duration-300"
             >
               <p className="text-text-light text-lg 3xl:text-xl drop-shadow-lg">
                 Submit
@@ -84,12 +84,13 @@ const LoginPopup = ({ setShowLogin, setShowRegister }) => {
             </button>
           </div>
           <div className="flex flex-row justify-center place-items-center gap-x-2">
-            <p>New to NationalDex?</p>
+            <p className="drop-shadow-lg">New to NationalDex?</p>
             <p
               onClick={() => {
                 setShowLogin(false);
                 setShowRegister(true);
               }}
+              className="text-primary drop-shadow-lg cursor-pointer hover:text-primary-darkened"
             >
               Sign up here
             </p>

@@ -8,6 +8,7 @@ export default {
       },
       colors: {
         primary: "#FB5A5A",
+        "primary-darkened": "#e34d4d",
         "navbar-circle": "#48F6F6",
         "title-yellow": "#FFD029",
         "title-blue": "#1970C0",
