@@ -52,7 +52,7 @@ function App() {
       </div>
       <div className="flex flex-col justify-start h-full w-full pt-24 pb-20">
         <Outlet context={[setShowLogin]} />
-        <div className="flex justify-center place-items-center w-full">
+        <div className="flex justify-center place-items-center w-full h-1/3">
           <p className="p-6 drop-shadow-lg">BuyMeACoffee Link</p>
         </div>
       </div>

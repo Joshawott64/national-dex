@@ -39,12 +39,12 @@ const PokemonList = ({
           : pokemon.speciesId) && (
           <div
             onClick={() => navigate(`/pokemon/${pokemon.speciesId}`)}
-            className="flex justify-center place-items-center gap-x-1 w-full px-2 text-xs lg:text-sm xl:text-base text-center bg-white rounded-lg drop-shadow-lg"
+            className="flex justify-center place-items-center gap-x-1 w-full px-2 text-xs lg:text-sm xl:text-base text-center bg-white rounded-lg drop-shadow-lg cursor-pointer"
           >
-            <p className="w-9 lg:w-16 xl:w-20 2xl:w-28 3xl:w-48 drop-shadow-lg">
+            <p className="w-9 xl:w-14 2xl:w-20 3xl:w-28 drop-shadow-lg">
               #{pokemon.dexNumber}
             </p>
-            <div className="flex justify-center place-items-center h-10 w-10 lg:w-16 xl:w-20 2xl:w-28 3xl:w-48">
+            <div className="flex justify-center place-items-center h-10 w-10 xl:w-14 2xl:w-20 3xl:w-28">
               <img
                 className="max-h-10 max-w-10 drop-shadow-lg"
                 src={
@@ -54,12 +54,12 @@ const PokemonList = ({
                 alt={pokemon.name}
               ></img>
             </div>
-            <p className="w-20 lg:w-28 xl:w-32 2xl:w-40 3xl:w-52 drop-shadow-lg">
+            <p className="w-20 xl:w-24 2xl:w-32 3xl:w-40 drop-shadow-lg">
               {pokemon.name}
             </p>
-            <div className="flex justify-center place-items-center gap-x-1 w-36 lg:w-44 xl:w-52 2xl:w-60 3xl:w-72 text-text-light">
+            <div className="flex justify-center place-items-center gap-x-1 w-36 xl:w-40 2xl:w-48 3xl:w-56 text-text-light">
               <div
-                className={`flex justify-center place-items-center bg-${pokemon.pokemons[0].type1.name}-primary w-16 xl:w-20 rounded-full drop-shadow-lg`}
+                className={`flex justify-center place-items-center bg-${pokemon.pokemons[0].type1.name}-primary w-16 lg:w-20 rounded-full drop-shadow-lg`}
               >
                 <p className="drop-shadow-lg">
                   {pokemon.pokemons[0].type1.name.toUpperCase()}
@@ -67,7 +67,7 @@ const PokemonList = ({
               </div>
               {pokemon.pokemons[0].type2 !== null && (
                 <div
-                  className={`flex justify-center place-items-center bg-${pokemon.pokemons[0].type2.name}-primary w-16 xl:w-20 rounded-full drop-shadow-lg`}
+                  className={`flex justify-center place-items-center bg-${pokemon.pokemons[0].type2.name}-primary w-16 lg:w-20 rounded-full drop-shadow-lg`}
                 >
                   <p className="drop-shadow-lg">
                     {pokemon.pokemons[0].type2.name.toUpperCase()}
@@ -81,7 +81,7 @@ const PokemonList = ({
   ));
 
   return (
-    <div className="flex flex-col gap-y-2 h-full w-full sm:w-2/3 md:w-1/2 bg-accent-gray-light rounded-lg p-2 overflow-y-scroll">
+    <div className="flex flex-col gap-y-2 w-full h-svh bg-accent-gray-light rounded-lg p-2 overflow-y-scroll">
       {pokemonCards}
     </div>
   );
