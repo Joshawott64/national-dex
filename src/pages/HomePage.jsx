@@ -47,7 +47,7 @@ const HomePage = () => {
   }, [typeFilters, generationFilters, legendaryFilter, mythicalFilter]);
 
   return (
-    <>
+    <div className="h-full w-full">
       <HamburgerMenu setShowLogin={setShowLogin} />
       <Filters
         useFilters={useFilters}
@@ -88,7 +88,7 @@ const HomePage = () => {
           setMythicalFilter={setMythicalFilter}
         />
       </div>
-    </>
+    </div>
   );
 };
 

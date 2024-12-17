@@ -110,7 +110,7 @@ const Filters = ({
     >
       <div className="flex flex-col justify-center text-text-light">
         <div
-          className={`flex flex-col justify-start place-items-center gap-y-2 w-72 h-fit p-2 bg-primary rounded-bl-lg ${
+          className={`flex flex-col justify-start place-items-center gap-y-2 w-72 h-[464px] p-2 bg-primary rounded-bl-lg ${
             showFilters ? "drop-shadow-lg" : ""
           }`}
         >

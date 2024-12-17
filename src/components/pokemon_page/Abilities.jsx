@@ -3,13 +3,13 @@ const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
   // console.log("ability2Data:", ability2Data);
   // console.log("ability3Data:", ability3Data);
   return (
-    <div className="w-full bg-accent-gray-light rounded-lg">
-      <div className="flex justify-center place-items-center bg-primary rounded-t-lg">
+    <div className="w-full h-fit bg-accent-gray-light rounded-lg drop-shadow-lg">
+      <div className="flex justify-center place-items-center bg-primary rounded-t-lg drop-shadow-lg">
         <p className="p-1 text-text-light drop-shadow-lg">Abilities</p>
       </div>
-      <div className="flex flex-col gap-y-4 w-full p-2  drop-shadow-lg">
+      <div className="flex flex-col gap-y-4 w-full p-2 drop-shadow-lg">
         {ability1Data !== null && (
-          <div className="flex flex-col gap-x-1">
+          <div className="flex flex-col gap-y-1">
             <p className="font-semibold drop-shadow-lg">
               {ability1Data.name
                 .split("-")
@@ -20,7 +20,7 @@ const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
           </div>
         )}
         {ability2Data !== null && (
-          <div className="flex flex-col gap-x-1">
+          <div className="flex flex-col gap-y-1">
             <p className="font-semibold drop-shadow-lg">
               {ability2Data.name
                 .split("-")
@@ -32,7 +32,7 @@ const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
           </div>
         )}
         {ability3Data !== null && (
-          <div className="flex flex-col gap-x-1">
+          <div className="flex flex-col gap-y-1">
             <p className="font-semibold drop-shadow-lg">
               {ability3Data.name
                 .split("-")
