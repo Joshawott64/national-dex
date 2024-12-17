@@ -9,6 +9,7 @@ import StatsTable from "../components/pokemon_page/StatsTable.jsx";
 import MoveList from "../components/pokemon_page/MoveList.jsx";
 import Abilities from "../components/pokemon_page/Abilities.jsx";
 import EvolutionChain from "../components/pokemon_page/EvolutionChain.jsx";
+import AudioButtons from "../components/pokemon_page/AudioButtons.jsx";
 import { IoMdVolumeHigh, IoMdMale, IoMdFemale } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -94,20 +95,6 @@ const PokemonPage = () => {
     setShowFemaleSprite(false);
   }, [id]);
 
-  // handler functions
-  const handleCryAudio = (time) => {
-    switch (time) {
-      case "legacy":
-        new Audio(legacyCry).play();
-        break;
-      case "latest":
-        new Audio(latestCry).play();
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className="w-full h-fit md:text-lg">
       <div className="flex flex-col justify-start place-items-center gap-y-2 w-full h-full px-10 ">
@@ -173,13 +160,21 @@ const PokemonPage = () => {
         {pokemonData.hasGenderDifferences && giphFemale !== null && (
           <div className="flex flex-row justify-center place-items-center w-24 text-text-light rounded-lg drop-shadow-lg">
             <div
-              className="flex justify-center place-items-center w-full bg-blue-600 p-1 rounded-l-lg drop-shadow-lg"
+              className={`flex justify-center place-items-center w-full p-1 border-2 border-blue-600 rounded-l-lg drop-shadow-lg ${
+                showFemaleSprite
+                  ? "bg-transparent text-blue-600 cursor-pointer"
+                  : "bg-blue-600"
+              }`}
               onClick={() => setShowFemaleSprite(false)}
             >
               <IoMdMale />
             </div>
             <div
-              className="flex justify-center place-items-center w-full bg-red-600 p-1 rounded-r-lg drop-shadow-lg"
+              className={`flex justify-center place-items-center w-full bg-red-600 p-1 border-2 border-red-600 rounded-r-lg drop-shadow-lg ${
+                showFemaleSprite
+                  ? "bg-red-600"
+                  : "bg-transparent text-red-600 cursor-pointer"
+              }`}
               onClick={() => setShowFemaleSprite(true)}
             >
               <IoMdFemale />
@@ -193,24 +188,9 @@ const PokemonPage = () => {
           giphFemaleShiny={giphFemaleShiny}
           showFemaleSprite={showFemaleSprite}
         />
-        <div className="flex justify-center place-items-center gap-x-4">
-          {legacyCry !== null && (
-            <div
-              onClick={() => handleCryAudio("legacy")}
-              className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
-            >
-              <p className="drop-shadow-lg">Legacy</p>
-              <IoMdVolumeHigh className="drop-shadow-lg" />
-            </div>
-          )}
-          <div
-            onClick={() => handleCryAudio("latest")}
-            className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
-          >
-            <p className="drop-shadow-lg">Latest</p>
-            <IoMdVolumeHigh className="drop-shadow-lg" />
-          </div>
-        </div>
+        {latestCry && (
+          <AudioButtons legacyCry={legacyCry} latestCry={latestCry} />
+        )}
         <EntryMenu
           currentVersion={currentVersion}
           setCurrentVersion={setCurrentVersion}

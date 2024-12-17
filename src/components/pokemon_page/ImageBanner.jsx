@@ -11,7 +11,7 @@ const ImageBanner = ({ pokemonData, bannerImage }) => {
           <button
             onClick={() => navigate(`/pokemon/${pokemonData.speciesId - 1}`)}
             disabled={pokemonData.speciesId === 1}
-            className="flex justify-center place-items-center h-full px-1 bg-primary text-text-light text-2xl md:text-3xl rounded-l-xl disabled:bg-accent-gray-dark"
+            className="flex justify-center place-items-center h-full px-1 bg-primary text-text-light text-2xl md:text-3xl rounded-l-xl hover:bg-primary-darkened disabled:bg-accent-gray-dark disabled:cursor-not-allowed transition-colors duration-300"
           >
             <IoIosArrowBack className="drop-shadow-lg" />
           </button>
@@ -25,7 +25,7 @@ const ImageBanner = ({ pokemonData, bannerImage }) => {
           <button
             onClick={() => navigate(`/pokemon/${pokemonData.speciesId + 1}`)}
             disabled={pokemonData.speciesId === 1025}
-            className="flex justify-center place-items-center h-full px-1 bg-primary text-text-light text-2xl md:text-3xl rounded-r-xl disabled:bg-accent-gray-dark"
+            className="flex justify-center place-items-center h-full px-1 bg-primary text-text-light text-2xl md:text-3xl rounded-r-xl hover:bg-primary-darkened disabled:bg-accent-gray-dark disabled:cursor-not-allowed transition-colors duration-300"
           >
             <IoIosArrowForward className="drop-shadow-lg" />
           </button>

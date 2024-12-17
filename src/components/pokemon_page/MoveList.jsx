@@ -11,6 +11,8 @@ const MoveList = ({ movesetData, currentVersion }) => {
   const machineMoves = [];
   const tutorMoves = [];
 
+  console.log("movesetData:", movesetData);
+
   const populateLevelMoves = movesetData.map((move) => {
     if (move.method !== "level-up") {
       return;
@@ -181,7 +183,7 @@ const MoveList = ({ movesetData, currentVersion }) => {
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
       <div>
-        <div className="flex justify-start place-items-center gap-x-1 h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+        <div className="flex justify-start place-items-center gap-x-1 h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
               className={`flex justify-center place-items-center bg-${move.type}-primary w-20 text-text-light rounded-full drop-shadow-lg`}
@@ -204,7 +206,7 @@ const MoveList = ({ movesetData, currentVersion }) => {
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
       <div>
-        <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+        <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
               className={`flex justify-center place-items-center bg-${move.type}-primary w-20 text-text-light rounded-full drop-shadow-lg`}
@@ -227,7 +229,7 @@ const MoveList = ({ movesetData, currentVersion }) => {
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
       <div>
-        <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+        <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
               className={`flex justify-center place-items-center bg-${move.type}-primary w-20 text-text-light rounded-full drop-shadow-lg`}
@@ -250,7 +252,7 @@ const MoveList = ({ movesetData, currentVersion }) => {
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
       <div>
-        <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg">
+        <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
               className={`flex justify-center place-items-center bg-${move.type}-primary w-20 text-text-light rounded-full drop-shadow-lg`}
@@ -273,8 +275,10 @@ const MoveList = ({ movesetData, currentVersion }) => {
       <div className="w-full text-base">
         <div className="flex justify-center place-items-center text-center text-text-light bg-accent-gray-dark rounded-tl-lg rounded-tr-lg">
           <div
-            className={`flex-1 w-full h-full p-1 rounded-tl-lg ${
-              showLevelMoves ? "bg-primary" : ""
+            className={`flex-1 w-full h-full p-1 rounded-tl-lg transition-colors duration-200 ${
+              showLevelMoves
+                ? "bg-primary"
+                : "cursor-pointer hover:bg-primary-darkened"
             }`}
             onClick={() => {
               setShowLevelMoves(true);
@@ -286,8 +290,10 @@ const MoveList = ({ movesetData, currentVersion }) => {
             <p className="drop-shadow-lg">Level</p>
           </div>
           <div
-            className={`flex-1 w-full h-full p-1  ${
-              showEggMoves ? "bg-primary" : ""
+            className={`flex-1 w-full h-full p-1 transition-colors duration-200 ${
+              showEggMoves
+                ? "bg-primary"
+                : "cursor-pointer hover:bg-primary-darkened"
             }`}
             onClick={() => {
               setShowLevelMoves(false);
@@ -299,8 +305,10 @@ const MoveList = ({ movesetData, currentVersion }) => {
             <p className="drop-shadow-lg">Egg</p>
           </div>
           <div
-            className={`flex-1 w-full h-full p-1  ${
-              showMachineMoves ? "bg-primary" : ""
+            className={`flex-1 w-full h-full p-1 transition-colors duration-200 ${
+              showMachineMoves
+                ? "bg-primary"
+                : "cursor-pointer hover:bg-primary-darkened"
             }`}
             onClick={() => {
               setShowLevelMoves(false);
@@ -312,8 +320,10 @@ const MoveList = ({ movesetData, currentVersion }) => {
             <p className="drop-shadow-lg">TM</p>
           </div>
           <div
-            className={`flex-1 w-full h-full p-1 rounded-tr-lg  ${
-              showTutorMoves ? "bg-primary" : ""
+            className={`flex-1 w-full h-full p-1 rounded-tr-lg transition-colors duration-200 ${
+              showTutorMoves
+                ? "bg-primary"
+                : "cursor-pointer hover:bg-primary-darkened"
             }`}
             onClick={() => {
               setShowLevelMoves(false);

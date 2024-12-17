@@ -221,9 +221,9 @@ const FormSelection = ({
             setShowFemaleSprite(false);
             handlePokemonNameChange(pokemonData.name, form.name);
           }}
-          className={`flex justify-center place-items-center h-10 md:h-12 w-10 md:w-12 bg-accent-gray-light border-2 md:border-[3px] border-accent-gray-dark rounded-lg drop-shadow-lg ${
+          className={`flex justify-center place-items-center h-10 md:h-12 w-10 md:w-12 bg-accent-gray-light border-2 md:border-[3px] border-accent-gray-dark rounded-lg drop-shadow-lg cursor-pointer ${
             form.name === pokemonNameSimple
-              ? "border-[3px] md:border-[4.5px] border-primary"
+              ? "border-[3px] md:border-[4.5px] border-primary cursor-default"
               : ""
           }`}
         >

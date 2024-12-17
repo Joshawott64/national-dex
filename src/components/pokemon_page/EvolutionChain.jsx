@@ -92,7 +92,7 @@ const EvolutionChain = ({ evolutionChainData }) => {
     return (
       <div
         key={evolution.evolutionId}
-        className="flex flex-col justify-center place-items-center w-24 md:w-28 h-24 md:h-28 bg-accent-gray-light rounded-lg drop-shadow-lg"
+        className="group flex flex-col justify-center place-items-center w-24 md:w-28 h-24 md:h-28 bg-accent-gray-light rounded-lg drop-shadow-lg cursor-pointer"
         onClick={() => navigate(`/pokemon/${evolution.speciesId}`)}
       >
         <img
@@ -100,7 +100,7 @@ const EvolutionChain = ({ evolutionChainData }) => {
           alt={evolution.species.name}
           className="flex-1 w-16 md:w-20"
         />
-        <div className="flex-1 flex justify-center place-items-center w-full bg-primary rounded-b-lg">
+        <div className="flex-1 flex justify-center place-items-center w-full bg-primary rounded-b-lg group-hover:bg-primary-darkened transition-colors duration-300">
           <p className="text-white text-center text-xs md:text-sm drop-shadow-lg">
             {flavorText}
           </p>
