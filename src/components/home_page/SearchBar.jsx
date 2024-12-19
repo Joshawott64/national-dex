@@ -2,7 +2,7 @@ import { IoMdSearch } from "react-icons/io";
 
 const SearchBar = ({ setSearchString }) => {
   return (
-    <div className="relative w-full h-9 flex place-items-center text-base text-text-dark">
+    <div className="relative flex place-items-center w-full h-9 text-base text-text-dark">
       <IoMdSearch className="absolute left-2 z-30" />
       <input
         type="text"

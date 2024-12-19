@@ -156,10 +156,10 @@ const handlerFunctions = {
 
     const movesetData = await Moveset.findAll({
       where: { pokemonId: id },
+      order: [[{ model: Move }, "name", "ASC"]],
       include: [
         {
           model: Move,
-          order: [["name", "ASC"]],
           include: [
             {
               model: Type,

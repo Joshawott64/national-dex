@@ -230,11 +230,11 @@ const SelectablePokemon = ({
   return (
     <>
       <div
-        className={`absolute w-full h-full bg-white pb-48 px-10 z-50 overscroll-y-none ${
+        className={`absolute w-full h-full bg-white pb-48 px-10 z-50 ${
           showSelectablePokemon ? "" : "hidden"
         }`}
       >
-        <div className="flex flex-col h-full gap-y-2 p-2 bg-accent-gray-light rounded-lg overflow-y-scroll">
+        <div className="flex flex-col gap-y-2 h-full p-2 bg-accent-gray-light rounded-lg overflow-y-scroll">
           {pokemonCards}
         </div>
       </div>

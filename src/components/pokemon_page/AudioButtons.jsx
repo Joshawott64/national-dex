@@ -7,11 +7,9 @@ const AudioButtons = ({ legacyCry, latestCry }) => {
     switch (time) {
       case "legacy":
         new Audio(legacyCry).play();
-        // playLegacy();
         break;
       case "latest":
         new Audio(latestCry).play();
-        // playLatest();
         break;
       default:
         break;

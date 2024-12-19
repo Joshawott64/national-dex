@@ -45,9 +45,18 @@ export default {
             opacity: 100,
           },
         },
+        slide: {
+          "0%": {
+            transform: "translateY(100%)",
+          },
+          "100%": {
+            transform: "translateY(0%)",
+          },
+        },
       },
       animation: {
         fadeIn: "fade 0.25s linear",
+        slideIn: "slide 0.25s ease-in-out",
       },
     },
   },

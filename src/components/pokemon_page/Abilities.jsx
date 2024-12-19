@@ -16,7 +16,7 @@ const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(" ")}
             </p>
-            <p className="">{ability1Data.shortEffect}</p>
+            <p className="drop-shadow-lg">{ability1Data.shortEffect}</p>
           </div>
         )}
         {ability2Data !== null && (
@@ -28,7 +28,7 @@ const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
                 .join(" ")}
               {ability3Data === null ? " (Hidden)" : ""}
             </p>
-            <p className="">{ability2Data.shortEffect}</p>
+            <p className="drop-shadow-lg">{ability2Data.shortEffect}</p>
           </div>
         )}
         {ability3Data !== null && (
@@ -40,7 +40,7 @@ const Abilities = ({ ability1Data, ability2Data, ability3Data }) => {
                 .join(" ")}{" "}
               (Hidden)
             </p>
-            <p className="">{ability3Data.shortEffect}</p>
+            <p className="drop-shadow-lg">{ability3Data.shortEffect}</p>
           </div>
         )}
       </div>

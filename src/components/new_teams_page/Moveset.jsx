@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { IoIosBackspace } from "react-icons/io";
 
 const Moveset = ({
   moveToFill,
@@ -75,6 +76,7 @@ const Moveset = ({
   const handleServerRequest = async (pokemonId) => {
     const moveset = await axios.post("/api/pokemon/moveset", { id: pokemonId });
     setMovesetData(moveset.data);
+    // console.log("moveset.data:", moveset.data);
   };
 
   const handleMoveSelection = (move) => {
@@ -151,16 +153,58 @@ const Moveset = ({
     setShowMoveset(false);
   };
 
+  // filtered movesetData
+  const filteredMovesetData = [];
+
   // map over movesetData
-  const moveset = movesetData.map((move) => (
-    <div>
-      <p onClick={() => handleMoveSelection(move)}>{move.move.name}</p>
-    </div>
-  ));
+  const moveset = movesetData.map((move) => {
+    // check if move already exists
+    if (!filteredMovesetData.some((el) => el.name === move.move.name)) {
+      filteredMovesetData.push(move.move);
+      return (
+        <div
+          key={move.moveId}
+          onClick={() => handleMoveSelection(move)}
+          className="flex justify-start place-items-center gap-x-1 w-full h-10 px-2 text-xs text-center bg-white rounded-lg drop-shadow-lg"
+        >
+          <div
+            className={`flex-1 flex justify-center place-items-center bg-${move.move.type.name}-primary w-16 rounded-full drop-shadow-lg`}
+          >
+            <p className="text-text-light drop-shadow-lg">
+              {move.move.type.name.toUpperCase()}
+            </p>
+          </div>
+          <p className="flex-1 flex justify-center place-items-center h-10 text-center drop-shadow-lg">
+            {move.move.name}
+          </p>
+          <p className="flex-1 flex justify-center place-items-center h-10 text-center drop-shadow-lg">
+            {move.move.damageClass}
+          </p>
+          <div className="flex-1 flex flex-col justify-center place-items-center h-10 text-center">
+            <p className="drop-shadow-lg">Power:</p>
+            <p className="drop-shadow-lg">{move.move.power ?? "N/A"}</p>
+          </div>
+          <div className="flex-1 flex flex-col justify-center place-items-center h-10 text-center">
+            <p className="drop-shadow-lg">PP:</p>
+            <p className="drop-shadow-lg">{move.move.pp}</p>
+          </div>
+        </div>
+      );
+    }
+  });
 
   return (
-    <div className="absolute flex flex-col gap-y-2 w-full h-full bg-accent-gray-light p-2 z-50 rounded-lg overflow-y-scroll">
-      {moveset}
+    <div className="fixed flex flex-col justify-center place-items-center gap-y-2 w-full h-full bg-white px-5 pt-5 pb-28 z-50 animate-slideIn">
+      <div className="flex flex-col justify-center place-items-center w-full">
+        <IoIosBackspace
+          onClick={() => setShowMoveset(false)}
+          className="absolute place-self-start text-2xl drop-shadow-lg"
+        />
+        <p className="font-semibold text-lg drop-shadow-lg">Move Selection</p>
+      </div>
+      <div className="flex flex-col gap-y-2 w-full h-full p-2 z-50 bg-accent-gray-light rounded-lg overflow-y-scroll">
+        {moveset}
+      </div>
     </div>
   );
 };

@@ -47,7 +47,7 @@ function App() {
           setShowRegister={setShowRegister}
         />
       )}
-      <div className="absolute w-full">
+      <div className="fixed z-50 w-full">
         <Navbar />
       </div>
       <div className="flex flex-col justify-start h-full w-full pt-24 pb-20">
