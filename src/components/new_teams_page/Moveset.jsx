@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { IoIosBackspace } from "react-icons/io";
+import { VscLoading } from "react-icons/vsc";
 
 const Moveset = ({
   moveToFill,
@@ -194,15 +195,18 @@ const Moveset = ({
   });
 
   return (
-    <div className="fixed flex flex-col justify-center place-items-center gap-y-2 w-full h-full bg-white px-5 pt-5 pb-28 z-50 animate-slideIn">
+    <div className="fixed flex flex-col justify-center place-items-center gap-y-2 w-full h-full bg-white px-10 pt-5 pb-28 z-50 animate-slideIn">
       <div className="flex flex-col justify-center place-items-center w-full">
         <IoIosBackspace
           onClick={() => setShowMoveset(false)}
-          className="absolute place-self-start text-2xl drop-shadow-lg"
+          className="absolute place-self-start text-2xl"
         />
-        <p className="font-semibold text-lg drop-shadow-lg">Move Selection</p>
+        <p className="font-semibold text-lg">Move Selection</p>
       </div>
-      <div className="flex flex-col gap-y-2 w-full h-full p-2 z-50 bg-accent-gray-light rounded-lg overflow-y-scroll">
+      <div className="flex flex-col place-items-center gap-y-2 w-full h-full p-2 z-50 bg-accent-gray-light rounded-lg overflow-y-scroll">
+        {movesetData.length === 0 && (
+          <VscLoading className="text-2xl animate-spin" />
+        )}
         {moveset}
       </div>
     </div>

@@ -453,7 +453,7 @@ const handlerFunctions = {
   },
   getPokemonForTeamSelection: async (req, res) => {
     const pokemonData = await Pokemon.findAll({
-      order: ["speciesId"],
+      order: ["speciesId", "pokemonId"],
       include: [
         {
           model: Species,
@@ -466,7 +466,6 @@ const handlerFunctions = {
         { model: Ability, as: "ability3" },
       ],
     });
-
     res.status(200).send(pokemonData);
   },
   createNewTeam: async (req, res) => {

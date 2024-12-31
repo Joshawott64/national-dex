@@ -92,7 +92,6 @@ const AbilitySelection = ({
 
   // map over abilitiesData
   const abilityList = abilitiesData.map((ability, i) => {
-    console.log("ability:", ability);
     return (
       <div
         key={ability.abilityId}
@@ -104,7 +103,9 @@ const AbilitySelection = ({
             .split("-")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ")}
-          {i === abilitiesData.length - 1 ? " (Hidden)" : ""}
+          {i === abilitiesData.length - 1 && abilitiesData.length > 1
+            ? " (Hidden)"
+            : ""}
         </p>
         <p className="drop-shadow-lg">{ability.shortEffect}</p>
       </div>

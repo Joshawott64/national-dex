@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { IoIosBackspace } from "react-icons/io";
+import { VscLoading } from "react-icons/vsc";
 
 const SelectablePokemon = ({
   setPokemon1Data,
@@ -85,6 +87,8 @@ const SelectablePokemon = ({
           name: "Ability",
           abilityId: null,
         });
+        setPokemon1IsShiny(false);
+        setPokemon1IsFemale(false);
         setShowSelectablePokemon(false);
         break;
       case 2:
@@ -105,6 +109,8 @@ const SelectablePokemon = ({
           name: "Ability",
           abilityId: null,
         });
+        setPokemon2IsShiny(false);
+        setPokemon2IsFemale(false);
         setShowSelectablePokemon(false);
         break;
       case 3:
@@ -125,6 +131,8 @@ const SelectablePokemon = ({
           name: "Ability",
           abilityId: null,
         });
+        setPokemon3IsShiny(false);
+        setPokemon3IsFemale(false);
         setShowSelectablePokemon(false);
         break;
       case 4:
@@ -145,6 +153,8 @@ const SelectablePokemon = ({
           name: "Ability",
           abilityId: null,
         });
+        setPokemon4IsShiny(false);
+        setPokemon4IsFemale(false);
         setShowSelectablePokemon(false);
         break;
       case 5:
@@ -165,6 +175,8 @@ const SelectablePokemon = ({
           name: "Ability",
           abilityId: null,
         });
+        setPokemon5IsShiny(false);
+        setPokemon5IsFemale(false);
         setShowSelectablePokemon(false);
         break;
       case 6:
@@ -185,6 +197,8 @@ const SelectablePokemon = ({
           name: "Ability",
           abilityId: null,
         });
+        setPokemon6IsShiny(false);
+        setPokemon6IsFemale(false);
         setShowSelectablePokemon(false);
         break;
       default:
@@ -209,7 +223,7 @@ const SelectablePokemon = ({
           alt={pokemon.name}
         ></img>
       </div>
-      <p className="w-20 drop-shadow-lg">{pokemon.name}</p>
+      <p className="w-20 drop-shadow-lg">{pokemon.species.name}</p>
       <div className="flex justify-center place-items-center gap-x-1 w-36 text-text-light">
         <div
           className={`flex justify-center place-items-center bg-${pokemon.type1.name}-primary w-16 rounded-full drop-shadow-lg`}
@@ -229,12 +243,18 @@ const SelectablePokemon = ({
 
   return (
     <>
-      <div
-        className={`absolute w-full h-full bg-white pb-48 px-10 z-50 ${
-          showSelectablePokemon ? "" : "hidden"
-        }`}
-      >
-        <div className="flex flex-col gap-y-2 h-full p-2 bg-accent-gray-light rounded-lg overflow-y-scroll">
+      <div className="fixed flex flex-col justify-center place-items-center gap-y-2 w-full h-svh bg-white px-10 pt-5 pb-28 z-50 animate-slideIn">
+        <div className="flex flex-col justify-center place-items-center w-full">
+          <IoIosBackspace
+            onClick={() => setShowSelectablePokemon(false)}
+            className="absolute place-self-start text-2xl"
+          />
+          <p className="font-semibold text-lg">Pokemon Selection</p>
+        </div>
+        <div className="flex flex-col place-items-center gap-y-2 w-full h-full p-2 bg-accent-gray-light rounded-lg overflow-y-scroll">
+          {selectablePokemonData.length === 0 && (
+            <VscLoading className="text-2xl animate-spin" />
+          )}
           {pokemonCards}
         </div>
       </div>

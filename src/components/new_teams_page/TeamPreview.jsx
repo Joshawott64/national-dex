@@ -1,4 +1,9 @@
-import { IoMdCreate } from "react-icons/io";
+import { useNavigate, useNavigationType } from "react-router-dom";
+import {
+  IoMdCreate,
+  IoMdCheckmarkCircleOutline,
+  IoMdTrash,
+} from "react-icons/io";
 
 const TeamPreview = ({
   teamName,
@@ -21,19 +26,41 @@ const TeamPreview = ({
   pokemon6Data,
   pokemon6IsFemale,
   pokemon6IsShiny,
+  handleTeamCreation,
 }) => {
+  // invoke useNavigate
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col justify-center place-items-center gap-y-16 w-full">
-      <div className="relative flex justify-start place-items-center h-12 z-30 text-xl text-text-dark">
-        <IoMdCreate className="absolute h-7 left-2 z-40 bg-accent-gray-light" />
-        <input
-          className="flex justify-center place-items-center text-center bg-accent-gray-light border-2 border-accent-gray-light focus:outline-none focus:border-accent-gray-dark transition-colors duratino-300 ease-in-out rounded-lg drop-shadow-lg"
-          type="text"
-          defaultValue={teamName}
-          onChange={(e) => setTeamName(e.target.value)}
-        />
+      <div>
+        <div className="relative flex justify-start place-items-center h-12 z-30 text-xl text-text-dark">
+          <IoMdCreate className="absolute h-7 left-2 z-40 bg-accent-gray-light" />
+          <input
+            className="flex justify-center place-items-center text-center bg-accent-gray-light border-2 border-text-dark focus:outline-none focus:border-accent-gray-dark transition-colors duratino-300 ease-in-out rounded-lg drop-shadow-lg"
+            type="text"
+            defaultValue={teamName}
+            onChange={(e) => setTeamName(e.target.value)}
+          />
+        </div>
+        <div className="flex justify-center place-items-center gap-x-4">
+          <div
+            onClick={() => navigate("/teams")}
+            className="flex justify-center place-items-center gap-x-1 bg-red-600 p-1 px-2 text-text-light rounded-full drop-shadow-lg"
+          >
+            <p className="drop-shadow-lg">Discard</p>
+            <IoMdTrash className="drop-shadow-lg" />
+          </div>
+          <div
+            onClick={handleTeamCreation}
+            className="flex justify-center place-items-center gap-x-1 bg-accent-gray-dark p-1 px-2 text-text-light rounded-full drop-shadow-lg"
+          >
+            <p className="drop-shadow-lg">Create</p>
+            <IoMdCheckmarkCircleOutline className="drop-shadow-lg" />
+          </div>
+        </div>
       </div>
-      <div className="flex justify-start place-items-end px-5 -space-x-2 w-full h-28">
+      <div className="flex justify-center place-items-end px-5 -space-x-2 w-full h-28">
         <div className="flex-1 flex justify-center place-items-end max-w-32">
           {/* pokemon is male and not shiny */}
           <img
