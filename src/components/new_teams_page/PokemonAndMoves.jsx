@@ -25,13 +25,13 @@ const PokemonAndMoves = ({
   return (
     <>
       {!pokemonData.pokemonId && (
-        <div className="flex flex-col">
+        <div className="flex flex-col md:text-lg">
           <div
             onClick={() => {
               setSlotToFill(slotNum);
               setShowSelectablePokemon(true);
             }}
-            className="flex justify-start place-items-center gap-x-2 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+            className="flex justify-start place-items-center gap-x-2 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg cursor-pointer hover:text-accent-gray-dark hover:border-accent-gray-dark transition-colors duration-300 ease-in-out"
           >
             <IoIosAddCircle className="text-lg drop-shadow-lg" />
             <p className="drop-shadow-lg">Add Pokemon</p>
@@ -39,14 +39,14 @@ const PokemonAndMoves = ({
         </div>
       )}
       {pokemonData.pokemonId && (
-        <div className="flex flex-col gap-y-2">
-          <div className="flex justify-start place-items-center w-full h-16 gap-x-2 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg">
+        <div className="flex flex-col gap-y-2 md:text-lg">
+          <div className="flex justify-start place-items-center w-full h-16 gap-x-0.5 sm:gap-x-8 lg:gap-x-0.5 2xl:gap-x-4 3xl:gap-x-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg">
             <div
               onClick={() => {
                 setSlotToFill(slotNum);
                 setShowSelectablePokemon(true);
               }}
-              className="flex justify-center place-items-center"
+              className="flex justify-center place-items-center w-14 sm:w-16 md:w-24 lg:w-16 xl:w-24 2xl:w-28 3xl:w-36 cursor-pointer"
             >
               <div className="flex justify-center place-items-center h-10 w-10">
                 <img
@@ -57,54 +57,62 @@ const PokemonAndMoves = ({
               </div>
               <IoMdSwap className="rotate-90 drop-shadow-lg" />
             </div>
-            <div className="flex justify-center place-items-center w-24 text-center">
+            <div className="flex justify-center place-items-center w-24 sm:w-28 md:w-32 lg:w-28 xl:w-32 2xl:w-36 3xl:w-44 text-center">
               <p className="drop-shadow-lg">{pokemonData.species.name}</p>
             </div>
-            <div className="flex justify-center place-items-center gap-x-1 w-32 text-text-light">
+            <div className="flex justify-center place-items-center gap-x-1 w-32 sm:w-36 md:w-40 lg:w-36 xl:w-40 2xl:w-44 3xl:w-52 text-text-light">
               <div
-                className={`flex justify-center place-items-center bg-${pokemonData.type1.name}-primary w-14 rounded-full drop-shadow-lg`}
+                className={`flex justify-center place-items-center bg-${pokemonData.type1.name}-primary w-14 sm:w-16 rounded-full drop-shadow-lg`}
               >
-                <p className="text-xs drop-shadow-lg">
+                <p className="text-xs md:text-sm drop-shadow-lg">
                   {pokemonData.type1.name.toUpperCase()}
                 </p>
               </div>
               {pokemonData.type2 !== null && (
                 <div
-                  className={`flex justify-center place-items-center bg-${pokemonData.type2.name}-primary w-14 rounded-full drop-shadow-lg`}
+                  className={`flex justify-center place-items-center bg-${pokemonData.type2.name}-primary w-14 sm:w-16 rounded-full drop-shadow-lg`}
                 >
-                  <p className="text-xs drop-shadow-lg">
+                  <p className="text-xs md:text-sm drop-shadow-lg">
                     {pokemonData.type2.name.toUpperCase()}
                   </p>
                 </div>
               )}
             </div>
-            <div className="flex justify-center place-items-center w-10 text-center">
+            <div className="flex justify-center place-items-center w-10 sm:w-14 md:w-20 lg:w-14 xl:w-20 2xl:w-24 3xl:w-32 text-center">
               {pokemonIsShiny && (
                 <HiSparkles
-                  className="text-lg drop-shadow-lg"
+                  className="text-lg drop-shadow-lg cursor-pointer"
                   onClick={() => setPokemonIsShiny(false)}
                 />
               )}
               {!pokemonIsShiny && (
                 <HiOutlineSparkles
-                  className="text-lg drop-shadow-lg"
+                  className="text-lg drop-shadow-lg cursor-pointer"
                   onClick={() => setPokemonIsShiny(true)}
                 />
               )}
             </div>
             {pokemonData.species.hasGenderDifferences && (
-              <div className="flex flex-row justify-center place-items-center w-16 text-text-light rounded-lg drop-shadow-lg">
+              <div className="flex flex-row justify-center place-items-center w-16 sm:w-20 md:w-24 lg:w-20 xl:w-24 2xl:w-28 3xl:w-36 text-text-light rounded-lg drop-shadow-lg">
                 <div
-                  className="flex justify-center place-items-center w-full bg-blue-600 p-1 rounded-l-lg drop-shadow-lg"
+                  className={`flex justify-center place-items-center w-full p-1 border sm:border-2 border-blue-600 rounded-l-lg drop-shadow-lg ${
+                    pokemonIsFemale
+                      ? "bg-transparent text-blue-600 cursor-pointer"
+                      : "bg-blue-600"
+                  }`}
                   onClick={() => setPokemonIsFemale(false)}
                 >
-                  <IoMdMale className="text-xs drop-shadow-lg" />
+                  <IoMdMale className="text-xs md:text-sm drop-shadow-lg" />
                 </div>
                 <div
-                  className="flex justify-center place-items-center w-full bg-red-600 p-1 rounded-r-lg drop-shadow-lg"
+                  className={`flex justify-center place-items-center w-full p-1 border sm:border-2 border-red-600 rounded-r-lg drop-shadow-lg ${
+                    pokemonIsFemale
+                      ? "bg-red-600"
+                      : "bg-transparent text-red-600 cursor-pointer"
+                  }`}
                   onClick={() => setPokemonIsFemale(true)}
                 >
-                  <IoMdFemale className="text-xs drop-shadow-lg" />
+                  <IoMdFemale className="text-xs md:text-sm drop-shadow-lg" />
                 </div>
               </div>
             )}
@@ -116,7 +124,7 @@ const PokemonAndMoves = ({
                 setMoveToFill(1);
                 setSlotToFill(slotNum);
               }}
-              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg cursor-pointer hover:text-accent-gray-dark hover:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             >
               {!pokemonMove1.move.moveId && (
                 <IoIosAddCircle className="drop-shadow-lg" />
@@ -142,7 +150,7 @@ const PokemonAndMoves = ({
                 setMoveToFill(2);
                 setSlotToFill(slotNum);
               }}
-              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg cursor-pointer hover:text-accent-gray-dark hover:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             >
               {!pokemonMove2.move.moveId && (
                 <IoIosAddCircle className="drop-shadow-lg" />
@@ -168,7 +176,7 @@ const PokemonAndMoves = ({
                 setMoveToFill(3);
                 setSlotToFill(slotNum);
               }}
-              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg cursor-pointer hover:text-accent-gray-dark hover:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             >
               {!pokemonMove3.move.moveId && (
                 <IoIosAddCircle className="drop-shadow-lg" />
@@ -194,7 +202,7 @@ const PokemonAndMoves = ({
                 setMoveToFill(4);
                 setSlotToFill(slotNum);
               }}
-              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg cursor-pointer hover:text-accent-gray-dark hover:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             >
               {!pokemonMove4.move.moveId && (
                 <IoIosAddCircle className="drop-shadow-lg" />
@@ -220,7 +228,7 @@ const PokemonAndMoves = ({
                 setSlotToFill(slotNum);
                 setShowAbilities(true);
               }}
-              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+              className="flex justify-start place-items-center gap-x-4 h-10 p-2 bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg cursor-pointer hover:text-accent-gray-dark hover:border-accent-gray-dark transition-colors duration-300 ease-in-out"
             >
               {!pokemonAbility.abilityId && (
                 <>

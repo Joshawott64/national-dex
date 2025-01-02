@@ -166,10 +166,10 @@ const Moveset = ({
         <div
           key={move.moveId}
           onClick={() => handleMoveSelection(move)}
-          className="flex justify-start place-items-center gap-x-1 w-full h-10 px-2 text-xs text-center bg-white rounded-lg drop-shadow-lg"
+          className="flex justify-start place-items-center gap-x-1 sm:gap-x-4 md:gap-x-7 lg:gap-x-14 xl:gap-x-24 w-full px-2 py-1 text-xs lg:text-sm text-center bg-white rounded-lg drop-shadow-lg cursor-pointer"
         >
           <div
-            className={`flex-1 flex justify-center place-items-center bg-${move.move.type.name}-primary w-16 rounded-full drop-shadow-lg`}
+            className={`flex-1 flex justify-center place-items-center bg-${move.move.type.name}-primary w-16 lg:w-36 rounded-full drop-shadow-lg`}
           >
             <p className="text-text-light drop-shadow-lg">
               {move.move.type.name.toUpperCase()}
@@ -196,18 +196,20 @@ const Moveset = ({
 
   return (
     <div className="fixed flex flex-col justify-center place-items-center gap-y-2 w-full h-full bg-white px-10 pt-5 pb-28 z-50 animate-slideIn">
-      <div className="flex flex-col justify-center place-items-center w-full">
-        <IoIosBackspace
-          onClick={() => setShowMoveset(false)}
-          className="absolute place-self-start text-2xl"
-        />
-        <p className="font-semibold text-lg">Move Selection</p>
-      </div>
-      <div className="flex flex-col place-items-center gap-y-2 w-full h-full p-2 z-50 bg-accent-gray-light rounded-lg overflow-y-scroll">
-        {movesetData.length === 0 && (
-          <VscLoading className="text-2xl animate-spin" />
-        )}
-        {moveset}
+      <div className="flex flex-col justify-center place-items-center gap-y-2 w-fit h-full">
+        <div className="flex flex-col justify-center place-items-center w-full">
+          <IoIosBackspace
+            onClick={() => setShowMoveset(false)}
+            className="absolute place-self-start text-2xl cursor-pointer hover:text-accent-gray-dark transition-colors duration-300 ease-in-out"
+          />
+          <p className="font-semibold text-lg lg:text-xl">Move Selection</p>
+        </div>
+        <div className="flex flex-col place-items-center gap-y-2 min-w-96 w-fit h-full p-2 z-50 bg-accent-gray-light rounded-lg overflow-y-scroll">
+          {movesetData.length === 0 && (
+            <VscLoading className="text-2xl animate-spin" />
+          )}
+          {moveset}
+        </div>
       </div>
     </div>
   );

@@ -335,7 +335,7 @@ const NewTeamPage = () => {
           setPokemon6Ability={setPokemon6Ability}
         />
       )}
-      <div className="flex flex-col justify-center place-items-center gap-y-3 w-full h-full">
+      <div className="flex flex-col justify-start place-items-center gap-y-3 w-full h-full">
         <TeamPreview
           teamName={teamName}
           setTeamName={setTeamName}
@@ -360,7 +360,7 @@ const NewTeamPage = () => {
           handleTeamCreation={handleTeamCreation}
         />
 
-        <div className="flex flex-col gap-y-3 w-full h-full px-2 rounded-lg overflow-y-scroll">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-x-3 gap-y-3 w-full h-fit px-2 3xl:px-40 rounded-lg overflow-y-scroll">
           <PokemonAndMoves
             pokemonData={pokemon1Data}
             pokemonIsShiny={pokemon1IsShiny}
