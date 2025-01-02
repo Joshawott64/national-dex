@@ -62,7 +62,9 @@ const HamburgerMenu = ({ setShowLogin }) => {
               Your teams
             </p>
           )}
-          <p className="drop-shadow-lg">About</p>
+          <p onClick={() => navigate("/about")} className="drop-shadow-lg">
+            About
+          </p>
           {userId === null && (
             <p
               onClick={() => {
@@ -148,7 +150,10 @@ export const LargeScreenMenu = ({ setShowLogin }) => {
               Your teams
             </p>
           )}
-          <p className="drop-shadow-lg cursor-pointer hover:underline underline-offset-2">
+          <p
+            onClick={() => navigate("/about")}
+            className="drop-shadow-lg cursor-pointer hover:underline underline-offset-2"
+          >
             About
           </p>
           {userId === null && (

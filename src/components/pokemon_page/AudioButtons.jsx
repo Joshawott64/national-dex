@@ -1,5 +1,4 @@
 import { IoMdVolumeHigh } from "react-icons/io";
-import boing from "../../assets/cartoon-boing.mp3";
 
 const AudioButtons = ({ legacyCry, latestCry }) => {
   // handler functions

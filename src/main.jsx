@@ -15,6 +15,7 @@ import PokemonPage from "./pages/PokemonPage.jsx";
 import TeamsPage from "./pages/TeamsPage.jsx";
 import NewTeamPage from "./pages/NewTeamPage.jsx";
 import EditTeamPage from "./pages/EditTeamPage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 import "./index.css";
 
 const router = createBrowserRouter(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="teams" element={<TeamsPage />} />
       <Route path="teams/create" element={<NewTeamPage />} />
       <Route path="teams/edit/:id" element={<EditTeamPage />} />
+      <Route path="about" element={<AboutPage />} />
     </Route>
   )
 );
