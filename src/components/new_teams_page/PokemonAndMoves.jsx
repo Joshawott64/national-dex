@@ -1,6 +1,5 @@
-import { IoIosAddCircle, IoMdMale, IoMdFemale, IoIosAdd } from "react-icons/io";
+import { IoIosAddCircle, IoMdMale, IoMdFemale, IoMdSwap } from "react-icons/io";
 import { HiSparkles, HiOutlineSparkles } from "react-icons/hi2";
-import { IoMdSwap } from "react-icons/io";
 
 const PokemonAndMoves = ({
   pokemonData,
@@ -222,7 +221,6 @@ const PokemonAndMoves = ({
                   : "New Move"}
               </p>
             </div>
-
             <div
               onClick={() => {
                 setSlotToFill(slotNum);

@@ -83,11 +83,11 @@ const TeamCard = ({ team, setShowConfirmDelete, setTeamToDelete }) => {
             ></img>
           )}
         </div>
-        <div className="flex-1 flex justify-center place-items-center bg-accent-gray-dark cursor-pointer hover:text-accent-gray-light hover:text-xl transition-all duration-300">
-          <IoMdCreate
-            onClick={() => navigate(`/teams/edit/${team.teamId}`)}
-            className="drop-shadow-lg"
-          />
+        <div
+          onClick={() => navigate(`/teams/edit/${team.teamId}`)}
+          className="flex-1 flex justify-center place-items-center bg-accent-gray-dark cursor-pointer hover:text-accent-gray-light hover:text-xl transition-all duration-300"
+        >
+          <IoMdCreate className="drop-shadow-lg" />
         </div>
         <div
           onClick={() => {
