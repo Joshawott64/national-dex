@@ -16,7 +16,7 @@ const AudioButtons = ({ legacyCry, latestCry }) => {
   };
 
   return (
-    <div className="flex justify-center place-items-center gap-x-4">
+    <div className="hidden lg:flex justify-center place-items-center gap-x-4">
       {legacyCry !== null && (
         <div
           onClick={() => handleCryAudio("legacy")}

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const MoveList = ({ movesetData, currentVersion }) => {
+const MoveList = ({
+  movesetData,
+  currentVersion,
+  setShowMovePopup,
+  setMoveToDisplay,
+}) => {
   const [showLevelMoves, setShowLevelMoves] = useState(true);
   const [showEggMoves, setShowEggMoves] = useState(false);
   const [showMachineMoves, setShowMachineMoves] = useState(false);
@@ -182,7 +187,12 @@ const MoveList = ({ movesetData, currentVersion }) => {
       {/* {move.versionGroups.includes(
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
-      <div>
+      <div
+        onClick={() => {
+          setShowMovePopup(true);
+          setMoveToDisplay(move);
+        }}
+      >
         <div className="flex justify-start place-items-center gap-x-1 h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
@@ -205,7 +215,12 @@ const MoveList = ({ movesetData, currentVersion }) => {
       {/* {move.versionGroups.includes(
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
-      <div>
+      <div
+        onClick={() => {
+          setShowMovePopup(true);
+          setMoveToDisplay(move);
+        }}
+      >
         <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
@@ -228,7 +243,12 @@ const MoveList = ({ movesetData, currentVersion }) => {
       {/* {move.versionGroups.includes(
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
-      <div>
+      <div
+        onClick={() => {
+          setShowMovePopup(true);
+          setMoveToDisplay(move);
+        }}
+      >
         <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div
@@ -251,7 +271,12 @@ const MoveList = ({ movesetData, currentVersion }) => {
       {/* {move.versionGroups.includes(
         currentVersion.replace(/(\!|\,|\')/g, "")
       ) && ( */}
-      <div>
+      <div
+        onClick={() => {
+          setShowMovePopup(true);
+          setMoveToDisplay(move);
+        }}
+      >
         <div className="flex justify-start place-items-center h-10 px-2 text-center bg-white rounded-lg drop-shadow-lg cursor-pointer">
           <div className="flex-1 flex justify-center place-items-center">
             <div

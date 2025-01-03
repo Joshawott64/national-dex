@@ -10,6 +10,7 @@ import MoveList from "../components/pokemon_page/MoveList.jsx";
 import Abilities from "../components/pokemon_page/Abilities.jsx";
 import EvolutionChain from "../components/pokemon_page/EvolutionChain.jsx";
 import AudioButtons from "../components/pokemon_page/AudioButtons.jsx";
+import MovePopup from "../components/pokemon_page/MovePopup.jsx";
 import { IoMdVolumeHigh, IoMdMale, IoMdFemale } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -47,6 +48,8 @@ const PokemonPage = () => {
   const [legacyCry, setLegacyCry] = useState("");
   const [latestCry, setLatestCry] = useState("");
   const [showFemaleSprite, setShowFemaleSprite] = useState(false);
+  const [showMovePopup, setShowMovePopup] = useState(false);
+  const [moveToDisplay, setMoveToDisplay] = useState({});
 
   useEffect(() => {
     axios.get(`/api/pokemon/${id}`).then((res) => {
@@ -97,6 +100,12 @@ const PokemonPage = () => {
 
   return (
     <div className="w-full h-fit md:text-lg">
+      {showMovePopup && (
+        <MovePopup
+          setShowMovePopup={setShowMovePopup}
+          moveToDisplay={moveToDisplay}
+        />
+      )}
       <div className="flex flex-col justify-start place-items-center gap-y-2 w-full h-full px-10 ">
         <ImageBanner
           pokemonData={pokemonData}
@@ -218,7 +227,12 @@ const PokemonPage = () => {
             ability3Data={ability3Data}
           />
         </div>
-        <MoveList movesetData={movesetData} currentVersion={currentVersion} />
+        <MoveList
+          movesetData={movesetData}
+          currentVersion={currentVersion}
+          setShowMovePopup={setShowMovePopup}
+          setMoveToDisplay={setMoveToDisplay}
+        />
       </div>
     </div>
   );
