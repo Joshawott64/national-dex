@@ -12,6 +12,7 @@ export default {
         "navbar-circle": "#48F6F6",
         "title-yellow": "#FFD029",
         "title-blue": "#1970C0",
+        warning: "#FB773C",
         "accent-gray-dark": "#727272",
         "accent-gray-light": "#ECECEC",
         "text-dark": "#000000",

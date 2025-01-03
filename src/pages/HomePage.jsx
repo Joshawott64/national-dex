@@ -23,7 +23,7 @@ const HomePage = () => {
   const [mythicalFilter, setMythicalFilter] = useState(false);
 
   // destructure prop from Outlet
-  const [setShowLogin] = useOutletContext();
+  const [setShowLogin, setShowDeleteUser] = useOutletContext();
 
   useEffect(() => {
     axios.get("/api/pokemon/details/all").then((res) => {

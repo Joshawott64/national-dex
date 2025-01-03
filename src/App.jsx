@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "./components/navbar/Navbar.jsx";
 import LoginPopup from "./components/home_page/LoginPopup.jsx";
 import RegisterPopup from "./components/home_page/RegisterPopup.jsx";
+import DeleteUser from "./components/delete_user/DeleteUser.jsx";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   // state values
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [showDeleteUser, setShowDeleteUser] = useState(false);
 
   const sessionCheck = async () => {
     const res = await axios.get("/api/session-check");
@@ -47,11 +49,17 @@ function App() {
           setShowRegister={setShowRegister}
         />
       )}
+      {showDeleteUser && (
+        <DeleteUser
+          showDeleteUser={showDeleteUser}
+          setShowDeleteUser={setShowDeleteUser}
+        />
+      )}
       <div className="fixed z-50 w-full">
         <Navbar />
       </div>
       <div className="flex flex-col justify-start h-full w-full pt-24 pb-20">
-        <Outlet context={[setShowLogin]} />
+        <Outlet context={[setShowLogin, setShowDeleteUser]} />
         <div className="flex justify-center place-items-center w-full">
           <p className="p-6 drop-shadow-lg">BuyMeACoffee Link</p>
         </div>

@@ -36,6 +36,7 @@ const {
   register,
   login,
   logout,
+  deleteUser,
 } = handlerFunctions;
 
 // endpoints
@@ -59,6 +60,7 @@ app.get("/api/session-check", sessionCheck);
 app.post("/api/register", register);
 app.post("/api/login", login);
 app.post("/api/logout", logout);
+app.delete("/api/user/delete/:userId/:username/:password", deleteUser);
 
 ViteExpress.listen(app, port, () =>
   console.log(`Executing on port ${port} http://localhost:${port}`)

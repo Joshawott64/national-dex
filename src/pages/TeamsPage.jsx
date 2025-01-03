@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import axios from "axios";
 import TeamCard from "../components/teams_page/TeamCard.jsx";
 import ConfirmDelete from "../components/teams_page/ConfirmDelete.jsx";
@@ -12,6 +12,9 @@ const TeamsPage = () => {
 
   // invoke useNavigate
   const navigate = useNavigate();
+
+  // destructure prop from Outlet
+  const [setShowLogin, setShowDeleteUser] = useOutletContext();
 
   // state values
   const [teamData, setTeamData] = useState([]);
@@ -66,6 +69,14 @@ const TeamsPage = () => {
           <p className="drop-shadow-lg group-hover:text-accent-gray-dark transition-colors duration-300">
             New team
           </p>
+        </div>
+        <div className="flex justify-end place-items-center w-full pt-4">
+          <div
+            onClick={() => setShowDeleteUser(true)}
+            className="flex justify-center place-items-center bg-red-600 text-sm text-text-light rounded-full drop-shadow-lg"
+          >
+            <p className="p-1 px-2 drop-shadow-lg">Delete Account</p>
+          </div>
         </div>
       </div>
     </>

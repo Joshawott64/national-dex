@@ -851,6 +851,51 @@ const handlerFunctions = {
       });
     }
   },
+  deleteUser: async (req, res) => {
+    const { userId, username, password } = req.params;
+
+    // check for account in database
+    const userCheck = await User.findOne({
+      where: {
+        userId: userId,
+        username: username,
+      },
+    });
+
+    console.log("usercheck:", userCheck);
+
+    if (!userCheck) {
+      res.status(400).send({
+        message: "Invalid credentials",
+        success: false,
+      });
+    } else {
+      // if account exits, check hashed password
+      const passwordCheck = bcrypt.compareSync(password, userCheck.password);
+
+      if (!passwordCheck) {
+        res.status(400).send({
+          message: "Incorrect password",
+          success: false,
+        });
+      } else {
+        // remove matched user from database
+        await User.destroy({
+          where: {
+            userId: userId,
+          },
+        });
+
+        // destroy session
+        req.session.destroy();
+
+        res.status(200).send({
+          message: "Successfully deleted user account",
+          success: true,
+        });
+      }
+    }
+  },
 };
 
 export default handlerFunctions;
