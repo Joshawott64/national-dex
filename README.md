@@ -1,15 +1,16 @@
-# NationalDex.com
+# NationalDex.net
 
-NationalDex.com is an independently developed application that
-              functions like a Pokédex from the beloved Pokémon franchise and
-              allows users to build their own Pokémon teams.
+NationalDex.net is an independently developed application that
+functions like a Pokédex from the beloved Pokémon franchise and
+allows users to build their own Pokémon teams.
 
 What started out as a simple portfolio builder has evolved into
-              something I wish to share with the world.
+something I wish to share with the world.
 
 Data sourced from [PokéAPI](https://pokeapi.co/)
-              
+
 # Features
+
 - Catalogue of all current Pokémon with search filters on the home page.
 - View Pokémon stats, movesets, abilities, etc.
 - Team building and editing for logged in users:
@@ -19,6 +20,7 @@ Data sourced from [PokéAPI](https://pokeapi.co/)
   - Gender toggle for applicable Pokémon.
 
 # Technologies Used
+
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Express JS](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
