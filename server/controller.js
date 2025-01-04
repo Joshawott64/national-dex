@@ -181,7 +181,7 @@ const handlerFunctions = {
   getUserTeams: async (req, res) => {
     const { userId } = req.body;
 
-    console.log("userId:", userId);
+    // console.log("userId:", userId);
 
     // get teams (and associated models) that match userId
     const teamData = await Team.findAll({
@@ -582,7 +582,7 @@ const handlerFunctions = {
       pokemon6,
     } = req.body;
 
-    console.log("req.body:", req.body);
+    // console.log("req.body:", req.body);
 
     // query and edit each UserPokemon in Team
     const userPokemon1 = await UserPokemon.findByPk(pokemon1.userPokemonId, {
@@ -854,7 +854,7 @@ const handlerFunctions = {
       },
     });
 
-    console.log("usercheck:", userCheck);
+    // console.log("usercheck:", userCheck);
 
     if (!userCheck) {
       res.status(400).send({

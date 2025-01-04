@@ -76,7 +76,7 @@ const TeamsPage = () => {
             <div className="flex justify-end place-items-center w-full pt-4">
               <div
                 onClick={() => setShowDeleteUser(true)}
-                className="flex justify-center place-items-center bg-red-600 text-sm text-text-light rounded-full drop-shadow-lg"
+                className="flex justify-center place-items-center bg-red-600 text-sm text-text-light rounded-full drop-shadow-lg cursor-pointer"
               >
                 <p className="p-1 px-2 drop-shadow-lg">Delete Account</p>
               </div>

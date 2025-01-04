@@ -61,7 +61,7 @@ const SelectablePokemon = ({
 
   useEffect(() => {
     axios.get("/api/team/pokemon/all").then((res) => {
-      console.log("res.data:", res.data);
+      // console.log("res.data:", res.data);
       setSelectablePokemonData(res.data);
     });
   }, []);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IoIosWarning } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const ConfirmDelete = ({ teamToDelete, setShowConfirmDelete }) => {
   // handler functions
@@ -8,6 +9,8 @@ const ConfirmDelete = ({ teamToDelete, setShowConfirmDelete }) => {
       `/api/pokemon/team/delete/${teamToDelete.teamId}`
     );
     setShowConfirmDelete(false);
+
+    toast.success("Successfully deleted team!");
   };
 
   return (
@@ -28,7 +31,7 @@ const ConfirmDelete = ({ teamToDelete, setShowConfirmDelete }) => {
             </p>
           </div>
           <div className="flex flex-row gap-x-6 text-text-light">
-            <div className="flex justify-center place-items-center w-20 bg-accent-gray-dark rounded-full drop-shadow-lg">
+            <div className="flex justify-center place-items-center w-20 bg-accent-gray-dark rounded-full drop-shadow-lg cursor-pointer">
               <p
                 onClick={() => {
                   setShowConfirmDelete(false);
@@ -38,7 +41,7 @@ const ConfirmDelete = ({ teamToDelete, setShowConfirmDelete }) => {
                 Cancel
               </p>
             </div>
-            <div className="flex justify-center place-items-center w-20 bg-red-600 rounded-full drop-shadow-lg">
+            <div className="flex justify-center place-items-center w-20 bg-red-600 rounded-full drop-shadow-lg cursor-pointer">
               <p onClick={handleDeletion} className="p-1 drop-shadow-lg">
                 Confirm
               </p>

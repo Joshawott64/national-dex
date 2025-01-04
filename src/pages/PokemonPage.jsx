@@ -53,7 +53,7 @@ const PokemonPage = () => {
 
   useEffect(() => {
     axios.get(`/api/pokemon/${id}`).then((res) => {
-      console.log("res.data:", res.data);
+      // console.log("res.data:", res.data);
       setPokemonData(res.data);
       setBannerImage(res.data.pokemons[0].officialArtwork);
       setDexNumber(res.data.dexNumber);
@@ -90,7 +90,7 @@ const PokemonPage = () => {
     });
 
     axios.get(`/api/pokemon/evolution-chain/${id}`).then((res) => {
-      console.log("evolutionChainData:", res.data);
+      // console.log("evolutionChainData:", res.data);
       setEvolutionChainData(res.data);
     });
 

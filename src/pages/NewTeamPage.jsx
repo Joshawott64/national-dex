@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import SelectablePokemon from "../components/new_teams_page/SelectablePokemon.jsx";
 import TeamPreview from "../components/new_teams_page/TeamPreview.jsx";
 import PokemonAndMoves from "../components/new_teams_page/PokemonAndMoves.jsx";
@@ -152,7 +153,7 @@ const NewTeamPage = () => {
 
   // handler functions
   const handleTeamCreation = async () => {
-    console.log("TEAM CREATED!!!");
+    // console.log("TEAM CREATED!!!");
 
     const bodyObj = {
       pokemon1: {
@@ -221,9 +222,11 @@ const NewTeamPage = () => {
 
     const newTeam = await axios.post("/api/pokemon/team/create", bodyObj);
 
-    console.log("newTeam.data", newTeam.data);
+    // console.log("newTeam.data", newTeam.data);
 
     navigate("/teams");
+
+    toast.success("New team created!");
   };
 
   return (

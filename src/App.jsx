@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/navbar/Navbar.jsx";
 import LoginPopup from "./components/home_page/LoginPopup.jsx";
 import RegisterPopup from "./components/home_page/RegisterPopup.jsx";
@@ -37,20 +39,35 @@ function App() {
 
   return (
     <div className="h-svh select-none">
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="colored"
+      />
       {showRegister && (
         <RegisterPopup
+          toast={toast}
           setShowLogin={setShowLogin}
           setShowRegister={setShowRegister}
         />
       )}
       {showLogin && (
         <LoginPopup
+          toast={toast}
           setShowLogin={setShowLogin}
           setShowRegister={setShowRegister}
         />
       )}
       {showDeleteUser && (
         <DeleteUser
+          toast={toast}
           showDeleteUser={showDeleteUser}
           setShowDeleteUser={setShowDeleteUser}
         />

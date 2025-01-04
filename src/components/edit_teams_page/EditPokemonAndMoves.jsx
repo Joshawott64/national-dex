@@ -484,8 +484,8 @@ const EditPokemonAndMoves = ({
     }
     setTeamToEditData(copy);
     setShowSelectablePokemon(false);
-    console.log("copy:", copy);
-    console.log("teamToEditData:", teamToEditData);
+    // console.log("copy:", copy);
+    // console.log("teamToEditData:", teamToEditData);
   }, [newPokemon]);
 
   // handler functions

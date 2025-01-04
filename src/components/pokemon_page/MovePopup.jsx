@@ -1,7 +1,7 @@
 import { IoIosBackspace } from "react-icons/io";
 
 const MovePopup = ({ setShowMovePopup, moveToDisplay }) => {
-  console.log("moveToDisplay:", moveToDisplay);
+  // console.log("moveToDisplay:", moveToDisplay);
 
   return (
     <>

@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const DeleteUser = ({ showDeleteUser, setShowDeleteUser }) => {
+const DeleteUser = ({ toast, showDeleteUser, setShowDeleteUser }) => {
+  // invoke useNavigate
+  const navigate = useNavigate();
+
   // invoke useDispatch
   const dispatch = useDispatch();
 
@@ -30,9 +34,11 @@ const DeleteUser = ({ showDeleteUser, setShowDeleteUser }) => {
         setUsername("");
         setPassword("");
         setShowDeleteUser(false);
+        navigate("/");
+        toast.success("Account deletion successful!");
       }
     } catch (err) {
-      console.log("error:", err);
+      console.error("error:", err);
       setErrorText(err.response.data.message);
     }
   };

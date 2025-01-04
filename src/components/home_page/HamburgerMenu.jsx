@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { IoIosMenu } from "react-icons/io";
 
 const HamburgerMenu = ({ setShowLogin }) => {
@@ -123,6 +124,7 @@ export const LargeScreenMenu = ({ setShowLogin }) => {
         type: "LOGOUT",
       });
     }
+    toast.success("Log out successful!");
   };
 
   return (

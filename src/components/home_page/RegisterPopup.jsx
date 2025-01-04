@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const RegisterPopup = ({ setShowLogin, setShowRegister }) => {
+const RegisterPopup = ({ toast, setShowLogin, setShowRegister }) => {
   // invoke useDispatch
   const dispatch = useDispatch();
 
@@ -44,6 +44,7 @@ const RegisterPopup = ({ setShowLogin, setShowRegister }) => {
         setUsername("");
         setPassword("");
         setShowRegister(false);
+        toast.success("Registration successful!");
       }
     } catch (err) {
       setErrorText(err.response.data.message);

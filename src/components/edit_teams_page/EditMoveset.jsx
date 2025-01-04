@@ -47,9 +47,9 @@ const EditMoveset = ({
 
   // handler functions
   const handleServerRequest = async (pokemonId) => {
-    console.log("pokemonId:", pokemonId);
+    // console.log("pokemonId:", pokemonId);
     const moveset = await axios.post("/api/pokemon/moveset", { id: pokemonId });
-    console.log("moveset.data:", moveset.data);
+    // console.log("moveset.data:", moveset.data);
     setMovesetData(moveset.data);
   };
 

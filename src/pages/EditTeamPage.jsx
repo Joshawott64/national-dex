@@ -81,13 +81,13 @@ const EditTeamPage = () => {
       setUserPokemon6(res.data.userPokemon6);
       setPokemon6IsShiny(res.data.userPokemon6.isShiny);
       setPokemon6IsFemale(res.data.userPokemon6.isFemale);
-      console.log("res.data:", res.data);
+      // console.log("res.data:", res.data);
     });
   }, []);
 
   // handler functions
   const handleSaveChanges = async () => {
-    console.log("teamToEditData:", teamToEditData);
+    // console.log("teamToEditData:", teamToEditData);
 
     const bodyObj = {
       userId: userId,

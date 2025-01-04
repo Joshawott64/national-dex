@@ -16,7 +16,7 @@ const MoveList = ({
   const machineMoves = [];
   const tutorMoves = [];
 
-  console.log("movesetData:", movesetData);
+  // console.log("movesetData:", movesetData);
 
   const populateLevelMoves = movesetData.map((move) => {
     if (move.method !== "level-up") {

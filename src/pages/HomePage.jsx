@@ -27,7 +27,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios.get("/api/pokemon/details/all").then((res) => {
-      console.log("res.data:", res.data);
+      // console.log("res.data:", res.data);
       setPokemonData(res.data);
     });
   }, []);
