@@ -11,7 +11,7 @@ const AboutPage = () => {
           </p>
           <div className="place-self-start w-11/12 p-2 bg-primary border-2 border-text-dark rounded-lg drop-shadow-lg">
             <p className="xl:text-lg text-text-light drop-shadow-lg">
-              NationalDex.com is an independently developed application that
+              NationalDex.net is an independently developed application that
               functions like a Pokédex from the beloved Pokémon franchise and
               allows users to build their own Pokémon teams.
             </p>
@@ -25,7 +25,7 @@ const AboutPage = () => {
           <div className="place-self-start w-11/12 p-2 bg-primary border-2 border-text-dark rounded-lg drop-shadow-lg">
             <p className="xl:text-lg text-text-light drop-shadow-lg">
               Whether you're just starting your Pokémon journey, or you're a
-              seasoned veteran, NationalDex.com has something for you.
+              seasoned veteran, NationalDex.net has something for you.
             </p>
           </div>
         </div>

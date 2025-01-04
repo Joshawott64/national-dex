@@ -17,7 +17,7 @@ const Navbar = () => {
           onClick={() => navigate("/")}
           className="font-extrabold text-4xl text-title-yellow italic tracking-tighter cursor-pointer drop-shadow-lg"
         >
-          NationalDex.com
+          NationalDex.net
         </p>
       </div>
     </div>
