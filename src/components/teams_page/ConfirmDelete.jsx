@@ -15,10 +15,12 @@ const ConfirmDelete = ({ teamToDelete, setShowConfirmDelete }) => {
       <div className="fixed flex flex-col justify-start place-items-center w-full h-full px-10 pt-36 z-50 bg-black bg-opacity-60 animate-fadeIn">
         <div className="flex flex-col place-items-center gap-y-4 w-80 sm:w-96 h-fit p-2 pb-4 bg-white rounded-lg drop-shadow-lg">
           <div className="flex flex-col justify-center place-items-center w-full text-center">
-            <p className="drop-shadow-lg">
-              Are you sure you want to delete{" "}
-              <p className="font-semibold">{teamToDelete.name}?</p>
-            </p>
+            <div className="flex flex-col">
+              <p className="drop-shadow-lg">Are you sure you want to delete</p>
+              <p className="font-semibold drop-shadow-lg">
+                {teamToDelete.name}?
+              </p>
+            </div>
             <p className="flex justify-center place-items-center gap-x-2 text-warning drop-shadow-lg">
               <IoIosWarning className="text-lg" />
               This action cannot be undone

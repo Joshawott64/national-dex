@@ -55,6 +55,11 @@ const EditTeamPage = () => {
   const [pokemon6IsFemale, setPokemon6IsFemale] = useState(false);
 
   useEffect(() => {
+    // navigate to teams page if not logged in
+    if (!userId) {
+      navigate("/teams");
+    }
+
     axios.get(`/api/pokemon/team/${id}`).then((res) => {
       setTeamToEditData(res.data);
       setNewTeamName(res.data.name);

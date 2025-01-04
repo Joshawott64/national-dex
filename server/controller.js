@@ -183,14 +183,6 @@ const handlerFunctions = {
 
     console.log("userId:", userId);
 
-    // respond if userId is null (if a logged out user manually navigates to the teams page)
-    if (!userId) {
-      console.log("No userId found");
-      return res
-        .status(404)
-        .send({ success: false, message: "No user ID found." });
-    }
-
     // get teams (and associated models) that match userId
     const teamData = await Team.findAll({
       where: { userId: userId },
