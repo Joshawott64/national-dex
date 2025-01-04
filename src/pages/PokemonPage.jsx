@@ -9,6 +9,8 @@ import StatsTable from "../components/pokemon_page/StatsTable.jsx";
 import MoveList from "../components/pokemon_page/MoveList.jsx";
 import Abilities from "../components/pokemon_page/Abilities.jsx";
 import EvolutionChain from "../components/pokemon_page/EvolutionChain.jsx";
+import AudioButtons from "../components/pokemon_page/AudioButtons.jsx";
+import MovePopup from "../components/pokemon_page/MovePopup.jsx";
 import { IoMdVolumeHigh, IoMdMale, IoMdFemale } from "react-icons/io";
 
 const PokemonPage = () => {
@@ -46,10 +48,12 @@ const PokemonPage = () => {
   const [legacyCry, setLegacyCry] = useState("");
   const [latestCry, setLatestCry] = useState("");
   const [showFemaleSprite, setShowFemaleSprite] = useState(false);
+  const [showMovePopup, setShowMovePopup] = useState(false);
+  const [moveToDisplay, setMoveToDisplay] = useState({});
 
   useEffect(() => {
     axios.get(`/api/pokemon/${id}`).then((res) => {
-      console.log("res.data:", res.data);
+      // console.log("res.data:", res.data);
       setPokemonData(res.data);
       setBannerImage(res.data.pokemons[0].officialArtwork);
       setDexNumber(res.data.dexNumber);
@@ -86,7 +90,7 @@ const PokemonPage = () => {
     });
 
     axios.get(`/api/pokemon/evolution-chain/${id}`).then((res) => {
-      console.log("evolutionChainData:", res.data);
+      // console.log("evolutionChainData:", res.data);
       setEvolutionChainData(res.data);
     });
 
@@ -94,148 +98,142 @@ const PokemonPage = () => {
     setShowFemaleSprite(false);
   }, [id]);
 
-  // handler functions
-  const handleCryAudio = (time) => {
-    switch (time) {
-      case "legacy":
-        new Audio(legacyCry).play();
-        break;
-      case "latest":
-        new Audio(latestCry).play();
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
-    <div className="flex flex-col justify-start place-items-center gap-y-2 w-full h-full px-10">
-      <ImageBanner
-        pokemonData={pokemonData}
-        bannerImage={bannerImage}
-        giph={giph}
-        giphShiny={giphShiny}
-        giphFemale={giphFemale}
-        giphFemaleShiny={giphFemaleShiny}
-      />
-      <div>
-        <p className="drop-shadow-lg">
-          #{dexNumber} - {pokemonName}
-        </p>
-      </div>
-      <div>
-        <p className="drop-shadow-lg">The {pokemonGenus}</p>
-      </div>
-      <div className="flex justify-center place-items-center gap-x-1 w-36 text-xs text-text-light">
-        <div
-          className={`flex justify-center place-items-center bg-${pokemonType1}-primary w-16 rounded-full drop-shadow-lg`}
-        >
-          <p className="drop-shadow-lg">{pokemonType1.toUpperCase()}</p>
-        </div>
-        {pokemonType2 !== null && (
-          <div
-            className={`flex justify-center place-items-center bg-${pokemonType2}-primary w-16 rounded-full drop-shadow-lg`}
-          >
-            <p className="drop-shadow-lg">{pokemonType2.toUpperCase()}</p>
-          </div>
-        )}
-      </div>
-      {typeof pokemonData === "object" && (
-        <FormSelection
-          pokemonData={pokemonData}
-          pokemonName={pokemonName}
-          setPokemonName={setPokemonName}
-          setBannerImage={setBannerImage}
-          setGiph={setGiph}
-          setGiphShiny={setGiphShiny}
-          setGiphFemale={setGiphFemale}
-          setGiphFemaleShiny={setGiphFemaleShiny}
-          pokemonNameSimple={pokemonNameSimple}
-          setPokemonNameSimple={setPokemonNameSimple}
-          setPokemonType1={setPokemonType1}
-          setPokemonType2={setPokemonType2}
-          setBaseAttack={setBaseAttack}
-          setBaseDefense={setBaseDefense}
-          setBaseHp={setBaseHp}
-          setBaseSpecialAttack={setBaseSpecialAttack}
-          setBaseSpecialDefense={setBaseSpecialDefense}
-          setBaseSpeed={setBaseSpeed}
-          setLegacyCry={setLegacyCry}
-          setLatestCry={setLatestCry}
-          setMovesetData={setMovesetData}
-          setAbility1Data={setAbility1Data}
-          setAbility2Data={setAbility2Data}
-          setAbility3Data={setAbility3Data}
-          setShowFemaleSprite={setShowFemaleSprite}
+    <div className="w-full h-fit md:text-lg">
+      {showMovePopup && (
+        <MovePopup
+          setShowMovePopup={setShowMovePopup}
+          moveToDisplay={moveToDisplay}
         />
       )}
-      {pokemonData.hasGenderDifferences && giphFemale !== null && (
-        <div className="flex flex-row justify-center place-items-center w-24 text-text-light rounded-lg drop-shadow-lg">
-          <div
-            className="flex justify-center place-items-center w-full bg-blue-600 p-1 rounded-l-lg drop-shadow-lg"
-            onClick={() => setShowFemaleSprite(false)}
-          >
-            <IoMdMale />
-          </div>
-          <div
-            className="flex justify-center place-items-center w-full bg-red-600 p-1 rounded-r-lg drop-shadow-lg"
-            onClick={() => setShowFemaleSprite(true)}
-          >
-            <IoMdFemale />
-          </div>
+      <div className="flex flex-col justify-start place-items-center gap-y-2 w-full h-full px-10 ">
+        <ImageBanner
+          pokemonData={pokemonData}
+          bannerImage={bannerImage}
+          giph={giph}
+          giphShiny={giphShiny}
+          giphFemale={giphFemale}
+          giphFemaleShiny={giphFemaleShiny}
+        />
+        <div>
+          <p className="drop-shadow-lg">
+            #{dexNumber} - {pokemonName}
+          </p>
         </div>
-      )}
-      <Sprites
-        giph={giph}
-        giphShiny={giphShiny}
-        giphFemale={giphFemale}
-        giphFemaleShiny={giphFemaleShiny}
-        showFemaleSprite={showFemaleSprite}
-      />
-      <div className="flex justify-center place-items-center gap-x-4">
-        {legacyCry !== null && (
+        <div>
+          <p className="drop-shadow-lg">The {pokemonGenus}</p>
+        </div>
+        <div className="flex justify-center place-items-center gap-x-1 w-36 text-xs md:text-sm text-text-light">
           <div
-            onClick={() => handleCryAudio("legacy")}
-            className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
+            className={`flex justify-center place-items-center bg-${pokemonType1}-primary w-16 md:w-20 rounded-full drop-shadow-lg`}
           >
-            <p className="drop-shadow-lg">Legacy</p>
-            <IoMdVolumeHigh className="drop-shadow-lg" />
+            <p className="drop-shadow-lg">{pokemonType1.toUpperCase()}</p>
+          </div>
+          {pokemonType2 !== null && (
+            <div
+              className={`flex justify-center place-items-center bg-${pokemonType2}-primary w-16 md:w-20 rounded-full drop-shadow-lg`}
+            >
+              <p className="drop-shadow-lg">{pokemonType2.toUpperCase()}</p>
+            </div>
+          )}
+        </div>
+        {typeof pokemonData === "object" && (
+          <FormSelection
+            pokemonData={pokemonData}
+            pokemonName={pokemonName}
+            setPokemonName={setPokemonName}
+            setBannerImage={setBannerImage}
+            setGiph={setGiph}
+            setGiphShiny={setGiphShiny}
+            setGiphFemale={setGiphFemale}
+            setGiphFemaleShiny={setGiphFemaleShiny}
+            pokemonNameSimple={pokemonNameSimple}
+            setPokemonNameSimple={setPokemonNameSimple}
+            setPokemonType1={setPokemonType1}
+            setPokemonType2={setPokemonType2}
+            setBaseAttack={setBaseAttack}
+            setBaseDefense={setBaseDefense}
+            setBaseHp={setBaseHp}
+            setBaseSpecialAttack={setBaseSpecialAttack}
+            setBaseSpecialDefense={setBaseSpecialDefense}
+            setBaseSpeed={setBaseSpeed}
+            setLegacyCry={setLegacyCry}
+            setLatestCry={setLatestCry}
+            setMovesetData={setMovesetData}
+            setAbility1Data={setAbility1Data}
+            setAbility2Data={setAbility2Data}
+            setAbility3Data={setAbility3Data}
+            setShowFemaleSprite={setShowFemaleSprite}
+          />
+        )}
+        {pokemonData.hasGenderDifferences && giphFemale !== null && (
+          <div className="flex flex-row justify-center place-items-center w-24 text-text-light rounded-lg drop-shadow-lg">
+            <div
+              className={`flex justify-center place-items-center w-full p-1 border-2 border-blue-600 rounded-l-lg drop-shadow-lg ${
+                showFemaleSprite
+                  ? "bg-transparent text-blue-600 cursor-pointer"
+                  : "bg-blue-600"
+              }`}
+              onClick={() => setShowFemaleSprite(false)}
+            >
+              <IoMdMale />
+            </div>
+            <div
+              className={`flex justify-center place-items-center w-full bg-red-600 p-1 border-2 border-red-600 rounded-r-lg drop-shadow-lg ${
+                showFemaleSprite
+                  ? "bg-red-600"
+                  : "bg-transparent text-red-600 cursor-pointer"
+              }`}
+              onClick={() => setShowFemaleSprite(true)}
+            >
+              <IoMdFemale />
+            </div>
           </div>
         )}
-        <div
-          onClick={() => handleCryAudio("latest")}
-          className="flex justify-center place-items-center gap-x-2 w-24 text-text-dark bg-accent-gray-light border-2 border-text-dark rounded-lg drop-shadow-lg"
-        >
-          <p className="drop-shadow-lg">Latest</p>
-          <IoMdVolumeHigh className="drop-shadow-lg" />
+        <Sprites
+          giph={giph}
+          giphShiny={giphShiny}
+          giphFemale={giphFemale}
+          giphFemaleShiny={giphFemaleShiny}
+          showFemaleSprite={showFemaleSprite}
+        />
+        {latestCry && (
+          <AudioButtons legacyCry={legacyCry} latestCry={latestCry} />
+        )}
+        <EntryMenu
+          currentVersion={currentVersion}
+          setCurrentVersion={setCurrentVersion}
+          dexEntries={dexEntries}
+          setCurrentDexEntry={setCurrentDexEntry}
+        />
+        {dexEntries.length > 0 && (
+          <div className="w-full md:w-5/6 lg:w-3/4 2xl:w-2/3 p-2">
+            <p className="text-center drop-shadow-lg">{currentDexEntry}</p>
+          </div>
+        )}
+        <EvolutionChain evolutionChainData={evolutionChainData} />
+        <div className="flex flex-col sm:flex-row justify-center place-items-start gap-y-2 gap-x-2 lg:gap-x-6 xl:gap-x-10 w-full md:w-5/6 lg:w-3/4 2xl:w-2/3 h-full text-base">
+          <StatsTable
+            baseHp={baseHp}
+            baseAttack={baseAttack}
+            baseDefense={baseDefense}
+            baseSpecialAttack={baseSpecialAttack}
+            baseSpecialDefense={baseSpecialDefense}
+            baseSpeed={baseSpeed}
+          />
+          <Abilities
+            ability1Data={ability1Data}
+            ability2Data={ability2Data}
+            ability3Data={ability3Data}
+          />
         </div>
+        <MoveList
+          movesetData={movesetData}
+          currentVersion={currentVersion}
+          setShowMovePopup={setShowMovePopup}
+          setMoveToDisplay={setMoveToDisplay}
+        />
       </div>
-      <EntryMenu
-        currentVersion={currentVersion}
-        setCurrentVersion={setCurrentVersion}
-        dexEntries={dexEntries}
-        setCurrentDexEntry={setCurrentDexEntry}
-      />
-      {dexEntries.length > 0 && (
-        <div className="p-2">
-          <p className="text-center drop-shadow-lg">{currentDexEntry}</p>
-        </div>
-      )}
-      <EvolutionChain evolutionChainData={evolutionChainData} />
-      <StatsTable
-        baseHp={baseHp}
-        baseAttack={baseAttack}
-        baseDefense={baseDefense}
-        baseSpecialAttack={baseSpecialAttack}
-        baseSpecialDefense={baseSpecialDefense}
-        baseSpeed={baseSpeed}
-      />
-      <Abilities
-        ability1Data={ability1Data}
-        ability2Data={ability2Data}
-        ability3Data={ability3Data}
-      />
-      <MoveList movesetData={movesetData} currentVersion={currentVersion} />
     </div>
   );
 };

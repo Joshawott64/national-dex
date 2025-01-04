@@ -18,6 +18,8 @@ app.use(
 const {
   getAllPokemonDetails,
   getRandomPokemon,
+  getTypes,
+  getGenerations,
   getPokemonById,
   getEvolutionChainBySpeciesId,
   getDexEntries,
@@ -29,15 +31,19 @@ const {
   createNewTeam,
   editTeam,
   deleteTeam,
+  getUsernameByUserId,
   sessionCheck,
   register,
   login,
   logout,
+  deleteUser,
 } = handlerFunctions;
 
 // endpoints
 app.get("/api/pokemon/details/all", getAllPokemonDetails);
 app.get("/api/pokemon/random", getRandomPokemon);
+app.get("/api/types", getTypes);
+app.get("/api/generations", getGenerations);
 app.get("/api/pokemon/:id", getPokemonById);
 app.get("/api/pokemon/evolution-chain/:id", getEvolutionChainBySpeciesId);
 app.get("/api/pokemon/entries/:id", getDexEntries);
@@ -49,10 +55,12 @@ app.get("/api/team/pokemon/all", getPokemonForTeamSelection);
 app.post("/api/pokemon/team/create", createNewTeam);
 app.put("/api/pokemon/team/edit", editTeam);
 app.delete("/api/pokemon/team/delete/:id", deleteTeam);
+app.get("/api/users/:id", getUsernameByUserId);
 app.get("/api/session-check", sessionCheck);
 app.post("/api/register", register);
 app.post("/api/login", login);
 app.post("/api/logout", logout);
+app.delete("/api/user/delete/:userId/:username/:password", deleteUser);
 
 ViteExpress.listen(app, port, () =>
   console.log(`Executing on port ${port} http://localhost:${port}`)

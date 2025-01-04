@@ -1,19 +1,26 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { toast } from "react-toastify";
 import SelectablePokemon from "../components/new_teams_page/SelectablePokemon.jsx";
 import TeamPreview from "../components/new_teams_page/TeamPreview.jsx";
 import PokemonAndMoves from "../components/new_teams_page/PokemonAndMoves.jsx";
 import Moveset from "../components/new_teams_page/Moveset.jsx";
 import AbilitySelection from "../components/new_teams_page/AbilitySelection.jsx";
+import { IoMdCheckmarkCircleOutline, IoMdTrash } from "react-icons/io";
 
 const NewTeamPage = () => {
+  // bg-bug-primary bg-dark-primary bg-dragon-primary bg-electric-primary bg-fairy-primary bg-fighting-primary bg-fire-primary bg-ghost-primary bg-grass-primary bg-ground-primary bg-ice-primary bg-normal-primary bg-poison-primary bg-flying-primary bg-psychic-primary bg-rock-primary bg-steel-primary bg-water-primary
+
   // userId from redux store
   const userId = useSelector((state) => state.userId);
 
   // inovoke useNavigate
   const navigate = useNavigate();
+
+  // destructure prop from Outlet
+  const [setShowLogin, setShowDeleteUser] = useOutletContext();
 
   // state values for team pokemon
   const [pokemon1Data, setPokemon1Data] = useState([]);
@@ -146,7 +153,7 @@ const NewTeamPage = () => {
 
   // handler functions
   const handleTeamCreation = async () => {
-    console.log("TEAM CREATED!!!");
+    // console.log("TEAM CREATED!!!");
 
     const bodyObj = {
       pokemon1: {
@@ -215,216 +222,279 @@ const NewTeamPage = () => {
 
     const newTeam = await axios.post("/api/pokemon/team/create", bodyObj);
 
-    console.log("newTeam.data", newTeam.data);
+    // console.log("newTeam.data", newTeam.data);
 
     navigate("/teams");
+
+    toast.success("New team created!");
   };
 
   return (
     <>
-      <SelectablePokemon
-        setPokemon1Data={setPokemon1Data}
-        setPokemon1IsShiny={setPokemon1IsFemale}
-        setPokemon1IsFemale={setPokemon1IsFemale}
-        setPokemon2Data={setPokemon2Data}
-        setPokemon2IsShiny={setPokemon2IsFemale}
-        setPokemon2IsFemale={setPokemon2IsFemale}
-        setPokemon3Data={setPokemon3Data}
-        setPokemon3IsShiny={setPokemon3IsFemale}
-        setPokemon3IsFemale={setPokemon3IsFemale}
-        setPokemon4Data={setPokemon4Data}
-        setPokemon4IsShiny={setPokemon4IsFemale}
-        setPokemon4IsFemale={setPokemon4IsFemale}
-        setPokemon5Data={setPokemon5Data}
-        setPokemon5IsShiny={setPokemon5IsFemale}
-        setPokemon5IsFemale={setPokemon5IsFemale}
-        setPokemon6Data={setPokemon6Data}
-        setPokemon6IsShiny={setPokemon6IsFemale}
-        setPokemon6IsFemale={setPokemon6IsFemale}
-        slotToFill={slotToFill}
-        showSelectablePokemon={showSelectablePokemon}
-        setShowSelectablePokemon={setShowSelectablePokemon}
-      />
-      {showMoveset && (
-        <Moveset
-          moveToFill={moveToFill}
-          slotToFill={slotToFill}
-          setShowMoveset={setShowMoveset}
-          pokemon1Data={pokemon1Data}
-          setPokemon1Move1={setPokemon1Move1}
-          setPokemon1Move2={setPokemon1Move2}
-          setPokemon1Move3={setPokemon1Move3}
-          setPokemon1Move4={setPokemon1Move4}
-          pokemon2Data={pokemon2Data}
-          setPokemon2Move1={setPokemon2Move1}
-          setPokemon2Move2={setPokemon2Move2}
-          setPokemon2Move3={setPokemon2Move3}
-          setPokemon2Move4={setPokemon2Move4}
-          pokemon3Data={pokemon3Data}
-          setPokemon3Move1={setPokemon3Move1}
-          setPokemon3Move2={setPokemon3Move2}
-          setPokemon3Move3={setPokemon3Move3}
-          setPokemon3Move4={setPokemon3Move4}
-          pokemon4Data={pokemon4Data}
-          setPokemon4Move1={setPokemon4Move1}
-          setPokemon4Move2={setPokemon4Move2}
-          setPokemon4Move3={setPokemon4Move3}
-          setPokemon4Move4={setPokemon4Move4}
-          pokemon5Data={pokemon5Data}
-          setPokemon5Move1={setPokemon5Move1}
-          setPokemon5Move2={setPokemon5Move2}
-          setPokemon5Move3={setPokemon5Move3}
-          setPokemon5Move4={setPokemon5Move4}
-          pokemon6Data={pokemon6Data}
-          setPokemon6Move1={setPokemon6Move1}
-          setPokemon6Move2={setPokemon6Move2}
-          setPokemon6Move3={setPokemon6Move3}
-          setPokemon6Move4={setPokemon6Move4}
-        />
+      {userId && (
+        <>
+          {showSelectablePokemon && (
+            <SelectablePokemon
+              setPokemon1Data={setPokemon1Data}
+              setPokemon1IsShiny={setPokemon1IsFemale}
+              setPokemon1IsFemale={setPokemon1IsFemale}
+              setPokemon1Move1={setPokemon1Move1}
+              setPokemon1Move2={setPokemon1Move2}
+              setPokemon1Move3={setPokemon1Move3}
+              setPokemon1Move4={setPokemon1Move4}
+              setPokemon1Ability={setPokemon1Ability}
+              setPokemon2Data={setPokemon2Data}
+              setPokemon2IsShiny={setPokemon2IsFemale}
+              setPokemon2IsFemale={setPokemon2IsFemale}
+              setPokemon2Move1={setPokemon2Move1}
+              setPokemon2Move2={setPokemon2Move2}
+              setPokemon2Move3={setPokemon2Move3}
+              setPokemon2Move4={setPokemon2Move4}
+              setPokemon2Ability={setPokemon2Ability}
+              setPokemon3Data={setPokemon3Data}
+              setPokemon3IsShiny={setPokemon3IsFemale}
+              setPokemon3IsFemale={setPokemon3IsFemale}
+              setPokemon3Move1={setPokemon3Move1}
+              setPokemon3Move2={setPokemon3Move2}
+              setPokemon3Move3={setPokemon3Move3}
+              setPokemon3Move4={setPokemon3Move4}
+              setPokemon3Ability={setPokemon3Ability}
+              setPokemon4Data={setPokemon4Data}
+              setPokemon4IsShiny={setPokemon4IsFemale}
+              setPokemon4IsFemale={setPokemon4IsFemale}
+              setPokemon4Move1={setPokemon4Move1}
+              setPokemon4Move2={setPokemon4Move2}
+              setPokemon4Move3={setPokemon4Move3}
+              setPokemon4Move4={setPokemon4Move4}
+              setPokemon4Ability={setPokemon4Ability}
+              setPokemon5Data={setPokemon5Data}
+              setPokemon5IsShiny={setPokemon5IsFemale}
+              setPokemon5IsFemale={setPokemon5IsFemale}
+              setPokemon5Move1={setPokemon5Move1}
+              setPokemon5Move2={setPokemon5Move2}
+              setPokemon5Move3={setPokemon5Move3}
+              setPokemon5Move4={setPokemon5Move4}
+              setPokemon5Ability={setPokemon5Ability}
+              setPokemon6Data={setPokemon6Data}
+              setPokemon6IsShiny={setPokemon6IsFemale}
+              setPokemon6IsFemale={setPokemon6IsFemale}
+              setPokemon6Move1={setPokemon6Move1}
+              setPokemon6Move2={setPokemon6Move2}
+              setPokemon6Move3={setPokemon6Move3}
+              setPokemon6Move4={setPokemon6Move4}
+              setPokemon6Ability={setPokemon6Ability}
+              slotToFill={slotToFill}
+              showSelectablePokemon={showSelectablePokemon}
+              setShowSelectablePokemon={setShowSelectablePokemon}
+            />
+          )}
+          {showMoveset && (
+            <Moveset
+              moveToFill={moveToFill}
+              slotToFill={slotToFill}
+              setShowMoveset={setShowMoveset}
+              pokemon1Data={pokemon1Data}
+              setPokemon1Move1={setPokemon1Move1}
+              setPokemon1Move2={setPokemon1Move2}
+              setPokemon1Move3={setPokemon1Move3}
+              setPokemon1Move4={setPokemon1Move4}
+              pokemon2Data={pokemon2Data}
+              setPokemon2Move1={setPokemon2Move1}
+              setPokemon2Move2={setPokemon2Move2}
+              setPokemon2Move3={setPokemon2Move3}
+              setPokemon2Move4={setPokemon2Move4}
+              pokemon3Data={pokemon3Data}
+              setPokemon3Move1={setPokemon3Move1}
+              setPokemon3Move2={setPokemon3Move2}
+              setPokemon3Move3={setPokemon3Move3}
+              setPokemon3Move4={setPokemon3Move4}
+              pokemon4Data={pokemon4Data}
+              setPokemon4Move1={setPokemon4Move1}
+              setPokemon4Move2={setPokemon4Move2}
+              setPokemon4Move3={setPokemon4Move3}
+              setPokemon4Move4={setPokemon4Move4}
+              pokemon5Data={pokemon5Data}
+              setPokemon5Move1={setPokemon5Move1}
+              setPokemon5Move2={setPokemon5Move2}
+              setPokemon5Move3={setPokemon5Move3}
+              setPokemon5Move4={setPokemon5Move4}
+              pokemon6Data={pokemon6Data}
+              setPokemon6Move1={setPokemon6Move1}
+              setPokemon6Move2={setPokemon6Move2}
+              setPokemon6Move3={setPokemon6Move3}
+              setPokemon6Move4={setPokemon6Move4}
+            />
+          )}
+          {showAbilities && (
+            <AbilitySelection
+              setShowAbilities={setShowAbilities}
+              slotToFill={slotToFill}
+              pokemon1Data={pokemon1Data}
+              pokemon2Data={pokemon2Data}
+              pokemon3Data={pokemon3Data}
+              pokemon4Data={pokemon4Data}
+              pokemon5Data={pokemon5Data}
+              pokemon6Data={pokemon6Data}
+              setPokemon1Ability={setPokemon1Ability}
+              setPokemon2Ability={setPokemon2Ability}
+              setPokemon3Ability={setPokemon3Ability}
+              setPokemon4Ability={setPokemon4Ability}
+              setPokemon5Ability={setPokemon5Ability}
+              setPokemon6Ability={setPokemon6Ability}
+            />
+          )}
+          <div className="flex flex-col justify-start place-items-center gap-y-3 w-full h-full">
+            <TeamPreview
+              teamName={teamName}
+              setTeamName={setTeamName}
+              pokemon1Data={pokemon1Data}
+              pokemon1IsFemale={pokemon1IsFemale}
+              pokemon1IsShiny={pokemon1IsShiny}
+              pokemon2Data={pokemon2Data}
+              pokemon2IsFemale={pokemon2IsFemale}
+              pokemon2IsShiny={pokemon2IsShiny}
+              pokemon3Data={pokemon3Data}
+              pokemon3IsFemale={pokemon3IsFemale}
+              pokemon3IsShiny={pokemon3IsShiny}
+              pokemon4Data={pokemon4Data}
+              pokemon4IsFemale={pokemon4IsFemale}
+              pokemon4IsShiny={pokemon4IsShiny}
+              pokemon5Data={pokemon5Data}
+              pokemon5IsFemale={pokemon5IsFemale}
+              pokemon5IsShiny={pokemon5IsShiny}
+              pokemon6Data={pokemon6Data}
+              pokemon6IsFemale={pokemon6IsFemale}
+              pokemon6IsShiny={pokemon6IsShiny}
+              handleTeamCreation={handleTeamCreation}
+            />
+
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-x-3 gap-y-3 w-full h-fit px-2 3xl:px-40 rounded-lg overflow-y-scroll">
+              <PokemonAndMoves
+                pokemonData={pokemon1Data}
+                pokemonIsShiny={pokemon1IsShiny}
+                pokemonIsFemale={pokemon1IsFemale}
+                pokemonMove1={pokemon1Move1}
+                pokemonMove2={pokemon1Move2}
+                pokemonMove3={pokemon1Move3}
+                pokemonMove4={pokemon1Move4}
+                pokemonAbility={pokemon1Ability}
+                setPokemonIsShiny={setPokemon1IsShiny}
+                setPokemonIsFemale={setPokemon1IsFemale}
+                setShowSelectablePokemon={setShowSelectablePokemon}
+                setShowMoveset={setShowMoveset}
+                setShowAbilities={setShowAbilities}
+                setSlotToFill={setSlotToFill}
+                setMoveToFill={setMoveToFill}
+                slotNum={1}
+              />
+              <PokemonAndMoves
+                pokemonData={pokemon2Data}
+                pokemonIsShiny={pokemon2IsShiny}
+                pokemonIsFemale={pokemon2IsFemale}
+                pokemonMove1={pokemon2Move1}
+                pokemonMove2={pokemon2Move2}
+                pokemonMove3={pokemon2Move3}
+                pokemonMove4={pokemon2Move4}
+                pokemonAbility={pokemon2Ability}
+                setPokemonIsShiny={setPokemon2IsShiny}
+                setPokemonIsFemale={setPokemon2IsFemale}
+                setShowSelectablePokemon={setShowSelectablePokemon}
+                setShowMoveset={setShowMoveset}
+                setShowAbilities={setShowAbilities}
+                setSlotToFill={setSlotToFill}
+                setMoveToFill={setMoveToFill}
+                slotNum={2}
+              />
+              <PokemonAndMoves
+                pokemonData={pokemon3Data}
+                pokemonIsShiny={pokemon3IsShiny}
+                pokemonIsFemale={pokemon3IsFemale}
+                pokemonMove1={pokemon3Move1}
+                pokemonMove2={pokemon3Move2}
+                pokemonMove3={pokemon3Move3}
+                pokemonMove4={pokemon3Move4}
+                pokemonAbility={pokemon3Ability}
+                setPokemonIsShiny={setPokemon3IsShiny}
+                setPokemonIsFemale={setPokemon3IsFemale}
+                setShowSelectablePokemon={setShowSelectablePokemon}
+                setShowMoveset={setShowMoveset}
+                setShowAbilities={setShowAbilities}
+                setSlotToFill={setSlotToFill}
+                setMoveToFill={setMoveToFill}
+                slotNum={3}
+              />
+              <PokemonAndMoves
+                pokemonData={pokemon4Data}
+                pokemonIsShiny={pokemon4IsShiny}
+                pokemonIsFemale={pokemon4IsFemale}
+                pokemonMove1={pokemon4Move1}
+                pokemonMove2={pokemon4Move2}
+                pokemonMove3={pokemon4Move3}
+                pokemonMove4={pokemon4Move4}
+                pokemonAbility={pokemon4Ability}
+                setPokemonIsShiny={setPokemon4IsShiny}
+                setPokemonIsFemale={setPokemon4IsFemale}
+                setShowSelectablePokemon={setShowSelectablePokemon}
+                setShowMoveset={setShowMoveset}
+                setShowAbilities={setShowAbilities}
+                setSlotToFill={setSlotToFill}
+                setMoveToFill={setMoveToFill}
+                slotNum={4}
+              />
+              <PokemonAndMoves
+                pokemonData={pokemon5Data}
+                pokemonIsShiny={pokemon5IsShiny}
+                pokemonIsFemale={pokemon5IsFemale}
+                pokemonMove1={pokemon5Move1}
+                pokemonMove2={pokemon5Move2}
+                pokemonMove3={pokemon5Move3}
+                pokemonMove4={pokemon5Move4}
+                pokemonAbility={pokemon5Ability}
+                setPokemonIsShiny={setPokemon5IsShiny}
+                setPokemonIsFemale={setPokemon5IsFemale}
+                setShowSelectablePokemon={setShowSelectablePokemon}
+                setShowMoveset={setShowMoveset}
+                setShowAbilities={setShowAbilities}
+                setSlotToFill={setSlotToFill}
+                setMoveToFill={setMoveToFill}
+                slotNum={5}
+              />
+              <PokemonAndMoves
+                pokemonData={pokemon6Data}
+                pokemonIsShiny={pokemon6IsShiny}
+                pokemonIsFemale={pokemon6IsFemale}
+                pokemonMove1={pokemon6Move1}
+                pokemonMove2={pokemon6Move2}
+                pokemonMove3={pokemon6Move3}
+                pokemonMove4={pokemon6Move4}
+                pokemonAbility={pokemon6Ability}
+                setPokemonIsShiny={setPokemon6IsShiny}
+                setPokemonIsFemale={setPokemon6IsFemale}
+                setShowSelectablePokemon={setShowSelectablePokemon}
+                setShowMoveset={setShowMoveset}
+                setShowAbilities={setShowAbilities}
+                setSlotToFill={setSlotToFill}
+                setMoveToFill={setMoveToFill}
+                slotNum={6}
+              />
+            </div>
+          </div>
+        </>
       )}
-      {showAbilities && (
-        <AbilitySelection
-          setShowAbilities={setShowAbilities}
-          slotToFill={slotToFill}
-          pokemon1Data={pokemon1Data}
-          pokemon2Data={pokemon2Data}
-          pokemon3Data={pokemon3Data}
-          pokemon4Data={pokemon4Data}
-          pokemon5Data={pokemon5Data}
-          pokemon6Data={pokemon6Data}
-          setPokemon1Ability={setPokemon1Ability}
-          setPokemon2Ability={setPokemon2Ability}
-          setPokemon3Ability={setPokemon3Ability}
-          setPokemon4Ability={setPokemon4Ability}
-          setPokemon5Ability={setPokemon5Ability}
-          setPokemon6Ability={setPokemon6Ability}
-        />
+      {!userId && (
+        <>
+          <div className="flex justify-center place-items-center gap-x-1 w-full h-full">
+            <p className="drop-shadow-lg">Please</p>
+            <p
+              onClick={() => setShowLogin(true)}
+              className="text-primary underline underline-offset-2 hover:text-primary-darkened hover:underline-offset-4 cursor-pointer drop-shadow-lg transition-all duration-300 ease-in-out"
+            >
+              log in
+            </p>
+            <p className="drop-shadow-lg">to access this feature</p>
+          </div>
+        </>
       )}
-      <div className="flex flex-col gap-y-4 w-full h-full">
-        <TeamPreview
-          teamName={teamName}
-          setTeamName={setTeamName}
-          pokemon1Data={pokemon1Data}
-          pokemon1IsFemale={pokemon1IsFemale}
-          pokemon1IsShiny={pokemon1IsShiny}
-          pokemon2Data={pokemon2Data}
-          pokemon2IsFemale={pokemon2IsFemale}
-          pokemon2IsShiny={pokemon2IsShiny}
-          pokemon3Data={pokemon3Data}
-          pokemon3IsFemale={pokemon3IsFemale}
-          pokemon3IsShiny={pokemon3IsShiny}
-          pokemon4Data={pokemon4Data}
-          pokemon4IsFemale={pokemon4IsFemale}
-          pokemon4IsShiny={pokemon4IsShiny}
-          pokemon5Data={pokemon5Data}
-          pokemon5IsFemale={pokemon5IsFemale}
-          pokemon5IsShiny={pokemon5IsShiny}
-          pokemon6Data={pokemon6Data}
-          pokemon6IsFemale={pokemon6IsFemale}
-          pokemon6IsShiny={pokemon6IsShiny}
-        />
-        <PokemonAndMoves
-          pokemon1Data={pokemon1Data}
-          pokemon1IsShiny={pokemon1IsShiny}
-          pokemon1IsFemale={pokemon1IsFemale}
-          pokemon1Move1={pokemon1Move1}
-          pokemon1Move2={pokemon1Move2}
-          pokemon1Move3={pokemon1Move3}
-          pokemon1Move4={pokemon1Move4}
-          pokemon1Ability={pokemon1Ability}
-          setPokemon1IsShiny={setPokemon1IsShiny}
-          setPokemon1IsFemale={setPokemon1IsFemale}
-          setPokemon1Move1={setPokemon1Move1}
-          setPokemon1Move2={setPokemon1Move2}
-          setPokemon1Move3={setPokemon1Move3}
-          setPokemon1Move4={setPokemon1Move4}
-          setPokemon1Ability={setPokemon1Ability}
-          pokemon2Data={pokemon2Data}
-          pokemon2IsShiny={pokemon2IsShiny}
-          pokemon2IsFemale={pokemon2IsFemale}
-          pokemon2Move1={pokemon2Move1}
-          pokemon2Move2={pokemon2Move2}
-          pokemon2Move3={pokemon2Move3}
-          pokemon2Move4={pokemon2Move4}
-          pokemon2Ability={pokemon2Ability}
-          setPokemon2IsShiny={setPokemon2IsShiny}
-          setPokemon2IsFemale={setPokemon2IsFemale}
-          setPokemon2Move1={setPokemon2Move1}
-          setPokemon2Move2={setPokemon2Move2}
-          setPokemon2Move3={setPokemon2Move3}
-          setPokemon2Move4={setPokemon2Move4}
-          setPokemon2Ability={setPokemon2Ability}
-          pokemon3Data={pokemon3Data}
-          pokemon3IsShiny={pokemon3IsShiny}
-          pokemon3IsFemale={pokemon3IsFemale}
-          pokemon3Move1={pokemon3Move1}
-          pokemon3Move2={pokemon3Move2}
-          pokemon3Move3={pokemon3Move3}
-          pokemon3Move4={pokemon3Move4}
-          pokemon3Ability={pokemon3Ability}
-          setPokemon3IsShiny={setPokemon3IsShiny}
-          setPokemon3IsFemale={setPokemon3IsFemale}
-          setPokemon3Move1={setPokemon3Move1}
-          setPokemon3Move2={setPokemon3Move2}
-          setPokemon3Move3={setPokemon3Move3}
-          setPokemon3Move4={setPokemon3Move4}
-          setPokemon3Ability={setPokemon3Ability}
-          pokemon4Data={pokemon4Data}
-          pokemon4IsShiny={pokemon4IsShiny}
-          pokemon4IsFemale={pokemon4IsFemale}
-          pokemon4Move1={pokemon4Move1}
-          pokemon4Move2={pokemon4Move2}
-          pokemon4Move3={pokemon4Move3}
-          pokemon4Move4={pokemon4Move4}
-          pokemon4Ability={pokemon4Ability}
-          setPokemon4IsShiny={setPokemon4IsShiny}
-          setPokemon4IsFemale={setPokemon4IsFemale}
-          setPokemon4Move1={setPokemon4Move1}
-          setPokemon4Move2={setPokemon4Move2}
-          setPokemon4Move3={setPokemon4Move3}
-          setPokemon4Move4={setPokemon4Move4}
-          setPokemon4Ability={setPokemon4Ability}
-          pokemon5Data={pokemon5Data}
-          pokemon5IsShiny={pokemon5IsShiny}
-          pokemon5IsFemale={pokemon5IsFemale}
-          pokemon5Move1={pokemon5Move1}
-          pokemon5Move2={pokemon5Move2}
-          pokemon5Move3={pokemon5Move3}
-          pokemon5Move4={pokemon5Move4}
-          pokemon5Ability={pokemon5Ability}
-          setPokemon5IsShiny={setPokemon5IsShiny}
-          setPokemon5IsFemale={setPokemon5IsFemale}
-          setPokemon5Move1={setPokemon5Move1}
-          setPokemon5Move2={setPokemon5Move2}
-          setPokemon5Move3={setPokemon5Move3}
-          setPokemon5Move4={setPokemon5Move4}
-          setPokemon5Ability={setPokemon5Ability}
-          pokemon6Data={pokemon6Data}
-          pokemon6IsShiny={pokemon6IsShiny}
-          pokemon6IsFemale={pokemon6IsFemale}
-          pokemon6Move1={pokemon6Move1}
-          pokemon6Move2={pokemon6Move2}
-          pokemon6Move3={pokemon6Move3}
-          pokemon6Move4={pokemon6Move4}
-          pokemon6Ability={pokemon6Ability}
-          setPokemon6IsShiny={setPokemon6IsShiny}
-          setPokemon6IsFemale={setPokemon6IsFemale}
-          setPokemon6Move1={setPokemon6Move1}
-          setPokemon6Move2={setPokemon6Move2}
-          setPokemon6Move3={setPokemon6Move3}
-          setPokemon6Move4={setPokemon6Move4}
-          setPokemon6Ability={setPokemon6Ability}
-          setSlotToFill={setSlotToFill}
-          setShowSelectablePokemon={setShowSelectablePokemon}
-          setShowMoveset={setShowMoveset}
-          setShowAbilities={setShowAbilities}
-          setMoveToFill={setMoveToFill}
-        />
-      </div>
-      <div>
-        <p onClick={() => navigate("/teams")}>Discard</p>
-        <p onClick={handleTeamCreation}>Create</p>
-      </div>
     </>
   );
 };

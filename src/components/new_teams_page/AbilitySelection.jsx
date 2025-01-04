@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { IoIosBackspace } from "react-icons/io";
 
 const AbilitySelection = ({
   setShowAbilities,
@@ -90,16 +91,41 @@ const AbilitySelection = ({
   };
 
   // map over abilitiesData
-  const abilityList = abilitiesData.map((ability) => (
-    <div key={ability.abilityId}>
-      <p onClick={() => handleAbilitySelection(ability)}>{ability.name}</p>
-    </div>
-  ));
+  const abilityList = abilitiesData.map((ability, i) => {
+    return (
+      <div
+        key={ability.abilityId}
+        onClick={() => handleAbilitySelection(ability)}
+        className="flex flex-col w-full cursor-pointer hover:text-accent-gray-dark transition-colors duration-300 ease-in-out"
+      >
+        <p className="font-semibold drop-shadow-lg">
+          {ability.name
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")}
+          {i === abilitiesData.length - 1 && abilitiesData.length > 1
+            ? " (Hidden)"
+            : ""}
+        </p>
+        <p className="drop-shadow-lg">{ability.shortEffect}</p>
+      </div>
+    );
+  });
 
   return (
-    <div className="absolute w-full h-full bg-accent-gray-light z-50">
-      <p>Ability Selection</p>
-      {abilityList}
+    <div className="fixed flex flex-col justify-start place-items-center w-full h-full px-10 pt-36 z-50 bg-black bg-opacity-60 animate-fadeIn">
+      <div className="flex flex-col place-items-center gap-y-4 w-80 sm:w-96 h-fit p-2 pb-4 bg-white rounded-lg drop-shadow-lg">
+        <div className="flex flex-col justify-center place-items-center w-full">
+          <IoIosBackspace
+            onClick={() => setShowAbilities(false)}
+            className="absolute place-self-start text-2xl drop-shadow-lg cursor-pointer hover:text-accent-gray-dark transition-colors duartion-300 ease-in-out"
+          />
+          <p className="font-semibold text-lg drop-shadow-lg">
+            Ability Selection
+          </p>
+        </div>
+        {abilityList}
+      </div>
     </div>
   );
 };

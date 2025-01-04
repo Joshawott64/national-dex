@@ -45,6 +45,18 @@ const handlerFunctions = {
 
     res.status(200).send(randomPokemonData);
   },
+  getTypes: async (req, res) => {
+    const typeData = await Type.findAll({
+      where: { typeId: { [Op.lt]: 19 } },
+    });
+
+    res.status(200).send(typeData);
+  },
+  getGenerations: async (req, res) => {
+    const generationData = await Generation.findAll();
+
+    res.status(200).send(generationData);
+  },
   getPokemonById: async (req, res) => {
     const id = req.params.id;
 
@@ -144,10 +156,10 @@ const handlerFunctions = {
 
     const movesetData = await Moveset.findAll({
       where: { pokemonId: id },
+      order: [[{ model: Move }, "name", "ASC"]],
       include: [
         {
           model: Move,
-          order: [["name", "ASC"]],
           include: [
             {
               model: Type,
@@ -169,19 +181,12 @@ const handlerFunctions = {
   getUserTeams: async (req, res) => {
     const { userId } = req.body;
 
-    console.log("userId:", userId);
-
-    // respond if userId is null (if a logged out user manually navigates to the teams page)
-    if (!userId) {
-      console.log("No userId found");
-      return res
-        .status(404)
-        .send({ success: false, message: "No user ID found." });
-    }
+    // console.log("userId:", userId);
 
     // get teams (and associated models) that match userId
     const teamData = await Team.findAll({
       where: { userId: userId },
+      order: ["teamId"],
       include: [
         {
           model: UserPokemon,
@@ -440,7 +445,7 @@ const handlerFunctions = {
   },
   getPokemonForTeamSelection: async (req, res) => {
     const pokemonData = await Pokemon.findAll({
-      order: ["speciesId"],
+      order: ["speciesId", "pokemonId"],
       include: [
         {
           model: Species,
@@ -453,7 +458,6 @@ const handlerFunctions = {
         { model: Ability, as: "ability3" },
       ],
     });
-
     res.status(200).send(pokemonData);
   },
   createNewTeam: async (req, res) => {
@@ -578,6 +582,8 @@ const handlerFunctions = {
       pokemon6,
     } = req.body;
 
+    // console.log("req.body:", req.body);
+
     // query and edit each UserPokemon in Team
     const userPokemon1 = await UserPokemon.findByPk(pokemon1.userPokemonId, {
       where: { userId: userId },
@@ -679,6 +685,8 @@ const handlerFunctions = {
     teamToEdit.userPokemon5 = userPokemon5;
     teamToEdit.userPokemon6 = userPokemon6;
 
+    await teamToEdit.save();
+
     res.status(200).send({ success: true });
   },
   deleteTeam: async (req, res) => {
@@ -719,6 +727,15 @@ const handlerFunctions = {
     });
 
     res.status(200).send({ success: true, message: "Successful deletion!" });
+  },
+  getUsernameByUserId: async (req, res) => {
+    const { id } = req.params;
+
+    const username = await User.findByPk(id, {
+      attributes: ["username"],
+    });
+
+    res.status(200).send(username);
   },
   sessionCheck: async (req, res) => {
     if (req.session.userId) {
@@ -824,6 +841,51 @@ const handlerFunctions = {
         message: "Session destroyed",
         success: true,
       });
+    }
+  },
+  deleteUser: async (req, res) => {
+    const { userId, username, password } = req.params;
+
+    // check for account in database
+    const userCheck = await User.findOne({
+      where: {
+        userId: userId,
+        username: username,
+      },
+    });
+
+    // console.log("usercheck:", userCheck);
+
+    if (!userCheck) {
+      res.status(400).send({
+        message: "Invalid credentials",
+        success: false,
+      });
+    } else {
+      // if account exits, check hashed password
+      const passwordCheck = bcrypt.compareSync(password, userCheck.password);
+
+      if (!passwordCheck) {
+        res.status(400).send({
+          message: "Incorrect password",
+          success: false,
+        });
+      } else {
+        // remove matched user from database
+        await User.destroy({
+          where: {
+            userId: userId,
+          },
+        });
+
+        // destroy session
+        req.session.destroy();
+
+        res.status(200).send({
+          message: "Successfully deleted user account",
+          success: true,
+        });
+      }
     }
   },
 };

@@ -3,11 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        "3xl": "2000px",
+      },
       colors: {
         primary: "#FB5A5A",
+        "primary-darkened": "#e34d4d",
         "navbar-circle": "#48F6F6",
         "title-yellow": "#FFD029",
         "title-blue": "#1970C0",
+        warning: "#FB773C",
         "accent-gray-dark": "#727272",
         "accent-gray-light": "#ECECEC",
         "text-dark": "#000000",
@@ -41,9 +46,18 @@ export default {
             opacity: 100,
           },
         },
+        slide: {
+          "0%": {
+            transform: "translateY(100%)",
+          },
+          "100%": {
+            transform: "translateY(0%)",
+          },
+        },
       },
       animation: {
         fadeIn: "fade 0.25s linear",
+        slideIn: "slide 0.25s ease-in-out",
       },
     },
   },

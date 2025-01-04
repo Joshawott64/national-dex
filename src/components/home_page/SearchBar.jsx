@@ -2,11 +2,11 @@ import { IoMdSearch } from "react-icons/io";
 
 const SearchBar = ({ setSearchString }) => {
   return (
-    <div className="relative h-12 flex place-items-center text-sm text-text-dark">
+    <div className="relative flex place-items-center w-full h-9 text-base text-text-dark">
       <IoMdSearch className="absolute left-2 z-30" />
       <input
         type="text"
-        className="w-full px-7 py-1 bg-accent-gray-light rounded-lg drop-shadow-lg border-2 border-accent-gray-light focus:outline-none focus:border-accent-gray-dark"
+        className="w-full h-full px-7 py-1 bg-accent-gray-light rounded-lg drop-shadow-lg border-2 border-accent-gray-light focus:outline-none focus:border-accent-gray-dark transition-colors duration-300 ease-in-out"
         placeholder="Search Pokemon names..."
         onChange={(e) => setSearchString(e.target.value.toLowerCase())}
       />
