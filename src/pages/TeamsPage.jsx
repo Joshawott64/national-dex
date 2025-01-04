@@ -87,14 +87,14 @@ const TeamsPage = () => {
       {!userId && (
         <>
           <div className="flex justify-center place-items-center gap-x-1 w-full h-full">
-            <p>Please</p>
+            <p className="drop-shadow-lg">Please</p>
             <p
               onClick={() => setShowLogin(true)}
-              className="text-primary drop-shadow-lg"
+              className="text-primary underline underline-offset-2 hover:text-primary-darkened hover:underline-offset-4 cursor-pointer drop-shadow-lg transition-all duration-300 ease-in-out"
             >
               log in
             </p>
-            <p>to access this feature</p>
+            <p className="drop-shadow-lg">to access this feature</p>
           </div>
         </>
       )}
