@@ -17,7 +17,7 @@
     "seed:species": "node database/seeding/seeds/seedSpecies.js",
     "seed:pokemon": "node --max-old-space-size=12288 database/seeding/seeds/seedPokemon.js",
     "seed:evolutions": "node database/seeding/seeds/seedEvolutions.js",
-    "seed:all": "node database/seeding/seeds/seedAbilities.js && node database/seeding/seeds/seedGenerations.js && node database/seeding/seeds/seedTypes.js && node database/seeding/seeds/seedMoves.js && node database/seeding/seeds/seedVersions.js && node database/seeding/seeds/seedSpecies.js && node database/seeding/seeds/seedPokemon.js && node database/seeding/seeds/seedEvolutions.js",
+    "seed:all": "node database/seeding/seeds/seedAbilities.js && node database/seeding/seeds/seedGenerations.js && node database/seeding/seeds/seedTypes.js && node database/seeding/seeds/seedMoves.js && node database/seeding/seeds/seedVersions.js && node database/seeding/seeds/seedSpecies.js && node --max-old-space-size=12288 database/seeding/seeds/seedPokemon.js && node database/seeding/seeds/seedEvolutions.js",
     "seed:generate": "node database/seeding/generateSeedData.js"
   },
   "dependencies": {

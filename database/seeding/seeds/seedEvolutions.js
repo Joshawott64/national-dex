@@ -1,12 +1,16 @@
 import { all } from "axios";
-import db, { Evolution, Chain } from "../../model.js";
-import evolutionChainData0 from "../table_JSONs/chains/all_evolution_chains_0.json" assert { type: "json" };
-import evolutionChainData1 from "../table_JSONs/chains/all_evolution_chains_1.json" assert { type: "json" };
-import evolutionChainData2 from "../table_JSONs/chains/all_evolution_chains_2.json" assert { type: "json" };
+import db, { Evolution, Chain, User, UserPokemon, Team } from "../../model.js";
+import evolutionChainData0 from "../table_JSONs/chains/all_evolution_chains_0.json" with { type: "json" };
+import evolutionChainData1 from "../table_JSONs/chains/all_evolution_chains_1.json" with { type: "json" };
+import evolutionChainData2 from "../table_JSONs/chains/all_evolution_chains_2.json" with { type: "json" };
 
 console.log("Syncing database...");
 await Evolution.sync({ force: true });
 await Chain.sync({ force: true });
+// sync non pre-seeded tables
+await User.sync({ force: true });
+await UserPokemon.sync({ force: true });
+await Team.sync({ force: true });
 console.log("Seeding evolutions...");
 
 const allEvolutionChains = [
@@ -14,7 +18,7 @@ const allEvolutionChains = [
   ...evolutionChainData1,
   ...evolutionChainData2,
 ];
-console.log("allEvolutionChains.length", allEvolutionChains.length);
+
 // recursive function for populating evolutions table
 const createEvolutionEntry = async (evolvesTo, chain, iteration) => {
   // delcare variables for evolution creation
@@ -173,7 +177,6 @@ const createEvolutionEntry = async (evolvesTo, chain, iteration) => {
 // create evolutions and chains tables
 const evolutionChainsInDB = await Promise.all(
   allEvolutionChains.map(async (chain, i) => {
-    console.log("i", i);
     // create new chain entry
     const newChain = await Chain.create({
       chainId: chain.id,
