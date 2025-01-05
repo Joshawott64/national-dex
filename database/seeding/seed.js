@@ -628,6 +628,6 @@ const createEvolutionEntry = async (evolvesTo, chain) => {
   });
 };
 
-// await db.close();
+await db.close();
 
 console.log("Finished seeding database!");
