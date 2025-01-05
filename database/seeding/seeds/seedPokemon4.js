@@ -1,12 +1,12 @@
 import db, { Pokemon, Moveset } from "../../model.js";
-import pokemonData6 from "../table_JSONs/pokemon/all_pokemon_6.json" with { type: "json" };
+import pokemonData3 from "../table_JSONs/pokemon/all_pokemon_3.json" with { type: "json" };
 
 console.log("Syncing database...");
 await Pokemon.sync();
 await Moveset.sync();
 console.log("Seeding pokemon...");
 
-const allPokemon = [...pokemonData6];
+const allPokemon = [...pokemonData3];
 
 const pokemonInDB = await Promise.all(
   allPokemon.map(async (pokemon) => {

@@ -223,4 +223,4 @@ const evolutionChainsInDB = await Promise.all(
 
 console.log("evolutions seeded");
 
-await db.close();
+// await db.close();
