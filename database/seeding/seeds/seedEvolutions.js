@@ -1,4 +1,3 @@
-import { all } from "axios";
 import db, { Evolution, Chain, User, UserPokemon, Team } from "../../model.js";
 import evolutionChainData0 from "../table_JSONs/chains/all_evolution_chains_0.json" with { type: "json" };
 import evolutionChainData1 from "../table_JSONs/chains/all_evolution_chains_1.json" with { type: "json" };
@@ -224,4 +223,4 @@ const evolutionChainsInDB = await Promise.all(
 
 console.log("evolutions seeded");
 
-// await db.close();
+await db.close();
