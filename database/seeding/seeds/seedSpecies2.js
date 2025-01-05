@@ -1,13 +1,13 @@
 import db, { Species, DexEntry } from "../../model.js";
-import pokemonSpeciesData0 from "../table_JSONs/species/all_pokemon_species_0.json" with { type: "json" };
-import pokemonSpeciesData1 from "../table_JSONs/species/all_pokemon_species_1.json" with { type: "json" };
+import pokemonSpeciesData2 from "../table_JSONs/species/all_pokemon_species_2.json" with { type: "json" };
+import pokemonSpeciesData3 from "../table_JSONs/species/all_pokemon_species_3.json" with { type: "json" };
 
 console.log("Syncing database...");
-await Species.sync({ force: true });
-await DexEntry.sync({ force: true });
+await Species.sync();
+await DexEntry.sync();
 console.log("Seeding species...");
 
-const allPokemonSpecies = [...pokemonSpeciesData0, ...pokemonSpeciesData1];
+const allPokemonSpecies = [...pokemonSpeciesData2, ...pokemonSpeciesData3];
 
 const speciesInDB = await Promise.all(
   allPokemonSpecies.map(async (species) => {
