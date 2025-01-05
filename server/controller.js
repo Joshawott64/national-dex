@@ -867,7 +867,7 @@ const handlerFunctions = {
 
       if (!passwordCheck) {
         res.status(400).send({
-          message: "Incorrect password",
+          message: "Invalid credentials",
           success: false,
         });
       } else {

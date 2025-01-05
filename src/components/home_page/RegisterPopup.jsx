@@ -15,7 +15,7 @@ const RegisterPopup = ({ toast, setShowLogin, setShowRegister }) => {
 
   // fires whenever username and password are updated
   useEffect(() => {
-    if (username.length > 6 && password.length > 6) {
+    if (username.length >= 6 && password.length >= 6) {
       setDisableSubmit(false);
       setErrorText("");
     } else {
