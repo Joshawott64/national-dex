@@ -54,7 +54,7 @@ const generateJSONs = async (filePath, list, concatenator) => {
 await generateJSONs(
   "./database/seeding/table_JSONs/pokemon/all_pokemon_",
   pokemonList,
-  50
+  200
 );
 
 // generate pokemon species jsons
