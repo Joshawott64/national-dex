@@ -11,7 +11,7 @@ import pokemonData6 from "../table_JSONs/pokemon/all_pokemon_6.json" with { type
 
 console.log("Syncing database...");
 await Pokemon.sync({ force: true });
-await Moveset.sync({ force: true });
+// await Moveset.sync({ force: true });
 console.log("Seeding pokemon...");
 
 const allPokemon = [
