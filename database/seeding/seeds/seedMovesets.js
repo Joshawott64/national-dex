@@ -7,13 +7,7 @@ import pokemonData4 from "../table_JSONs/pokemon/all_pokemon_4.json" with { type
 import pokemonData5 from "../table_JSONs/pokemon/all_pokemon_5.json" with { type: "json" };
 import pokemonData6 from "../table_JSONs/pokemon/all_pokemon_6.json" with { type: "json" };
 
-// due to memory constraints on ec2 instance, I had to
-
-console.log("Syncing database...");
-// await Pokemon.sync({ force: true });
-await Moveset.sync({ force: true });
-console.log("Seeding movesets...");
-
+// a new approach
 const allPokemon = [
   ...pokemonData0,
   //   ...pokemonData1,
@@ -24,46 +18,63 @@ const allPokemon = [
   //   ...pokemonData6,
 ];
 
-const pokemonInDB = await Promise.all(
-  allPokemon.map(async (pokemon) => {
-    const { id } = pokemon;
+const movesets = [];
 
-    // create movesets table for each pokemon
-    const movesetsInDB = await Promise.all(
-      pokemon.moves.map(async (move) => {
+const pokemonList = await Promise.all(
+  allPokemon.map(async (pokemon) => {
+    const { id, moves } = pokemon;
+
+    const populateMovesets = await Promise.all(
+      moves.map(async (move) => {
+        const movesetObj = move;
+        movesetObj.id = id;
+        // console.log("testObj:", testObj)
+        movesets.push(movesetObj);
+      })
+    );
+    // return movesets = [...pokemon.moves]
+  })
+);
+
+console.log("Syncing database...");
+// await Pokemon.sync({ force: true });
+await Moveset.sync({ force: true });
+console.log("Seeding movesets...");
+
+// create movesets table for each pokemon
+const movesetsInDB = await Promise.all(
+  movesets.map(async (move) => {
+    const moveId = move.move.url.replace(
+      /(^https\:\/\/pokeapi\.co\/api\/v2\/move\/|\/$)/g,
+      ""
+    );
+    const moveDetailsInDB = await Promise.all(
+      move.version_group_details.map(async (detail) => {
         // console.log("Syncing database...");
         // await Pokemon.sync({ force: true });
         await Moveset.sync();
         // console.log("Seeding movesets...");
 
-        const moveId = move.move.url.replace(
-          /(^https\:\/\/pokeapi\.co\/api\/v2\/move\/|\/$)/g,
-          ""
-        );
-        const moveDetailsInDB = await Promise.all(
-          move.version_group_details.map(async (detail) => {
-            const levelLearnedAt = detail.level_learned_at;
-            const method = detail.move_learn_method.name;
-            const versionGroup = detail.version_group.name
-              .split("-")
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ");
+        const levelLearnedAt = detail.level_learned_at;
+        const method = detail.move_learn_method.name;
+        const versionGroup = detail.version_group.name
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
 
-            const newMoveSet = await Moveset.create({
-              levelLearnedAt,
-              method,
-              versionGroup,
-              moveId: moveId,
-              pokemonId: id,
-            });
+        const newMoveSet = await Moveset.create({
+          levelLearnedAt,
+          method,
+          versionGroup,
+          moveId: moveId,
+          pokemonId: move.id,
+        });
 
-            // console.log("moveset move seeded");
+        // console.log("moveset move seeded");
 
-            await db.close();
+        await db.close();
 
-            return newMoveSet;
-          })
-        );
+        return newMoveSet;
       })
     );
   })
