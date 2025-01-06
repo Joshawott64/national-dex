@@ -4,8 +4,8 @@ import evolutionChainData1 from "../table_JSONs/chains/all_evolution_chains_1.js
 import evolutionChainData2 from "../table_JSONs/chains/all_evolution_chains_2.json" with { type: "json" };
 
 console.log("Syncing database...");
-await Evolution.sync({ force: true });
 await Chain.sync({ force: true });
+await Evolution.sync({ force: true });
 // sync non pre-seeded tables
 await User.sync({ force: true });
 await UserPokemon.sync({ force: true });
