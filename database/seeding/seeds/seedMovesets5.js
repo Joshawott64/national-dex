@@ -52,7 +52,7 @@ const movesetsInDB = await Promise.all(
       move.version_group_details.map(async (detail) => {
         // console.log("Syncing database...");
         // await Pokemon.sync({ force: true });
-        await Moveset.sync();
+        // await Moveset.sync();
         // console.log("Seeding movesets...");
 
         const levelLearnedAt = detail.level_learned_at;
@@ -72,7 +72,7 @@ const movesetsInDB = await Promise.all(
 
         // console.log("moveset move seeded");
 
-        await db.close();
+        // await db.close();
 
         return newMoveSet;
       })
