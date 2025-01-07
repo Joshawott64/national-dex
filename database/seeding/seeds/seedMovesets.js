@@ -10,7 +10,7 @@ import pokemonData6 from "../table_JSONs/pokemon/all_pokemon_6.json" with { type
 // a new approach
 const allPokemon = [
   ...pokemonData0,
-  //   ...pokemonData1,
+  // ...pokemonData1,
   //   ...pokemonData2,
   //   ...pokemonData3,
   //   ...pokemonData4,
@@ -38,7 +38,7 @@ const pokemonList = await Promise.all(
 
 console.log("Syncing database...");
 // await Pokemon.sync({ force: true });
-await Moveset.sync({ force: true });
+await Moveset.sync();
 console.log("Seeding movesets...");
 
 // create movesets table for each pokemon
