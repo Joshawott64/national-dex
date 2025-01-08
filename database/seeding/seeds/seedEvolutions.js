@@ -1,15 +1,15 @@
 import db, { Evolution, Chain, User, UserPokemon, Team } from "../../model.js";
-import evolutionChainData0 from "../table_JSONs/chains/all_evolution_chains_0.json" with { type: "json" };
-import evolutionChainData1 from "../table_JSONs/chains/all_evolution_chains_1.json" with { type: "json" };
-import evolutionChainData2 from "../table_JSONs/chains/all_evolution_chains_2.json" with { type: "json" };
+import evolutionChainData0 from "../table_JSONs/chains/all_evolution_chains_0.json" assert { type: "json" };
+import evolutionChainData1 from "../table_JSONs/chains/all_evolution_chains_1.json" assert { type: "json" };
+import evolutionChainData2 from "../table_JSONs/chains/all_evolution_chains_2.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Chain.sync({ force: true });
 await Evolution.sync({ force: true });
 // sync non pre-seeded tables
-await User.sync({ force: true });
-await UserPokemon.sync({ force: true });
-await Team.sync({ force: true });
+await User.sync();
+await UserPokemon.sync();
+await Team.sync();
 console.log("Seeding evolutions...");
 
 const allEvolutionChains = [

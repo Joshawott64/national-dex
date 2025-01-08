@@ -1,11 +1,11 @@
 import db, { Pokemon, Moveset } from "../../model.js";
-import pokemonData0 from "../table_JSONs/pokemon/all_pokemon_0.json" with { type: "json" };
-import pokemonData1 from "../table_JSONs/pokemon/all_pokemon_1.json" with { type: "json" };
-import pokemonData2 from "../table_JSONs/pokemon/all_pokemon_2.json" with { type: "json" };
-import pokemonData3 from "../table_JSONs/pokemon/all_pokemon_3.json" with { type: "json" };
-import pokemonData4 from "../table_JSONs/pokemon/all_pokemon_4.json" with { type: "json" };
-import pokemonData5 from "../table_JSONs/pokemon/all_pokemon_5.json" with { type: "json" };
-import pokemonData6 from "../table_JSONs/pokemon/all_pokemon_6.json" with { type: "json" };
+import pokemonData0 from "../table_JSONs/pokemon/all_pokemon_0.json" assert { type: "json" };
+import pokemonData1 from "../table_JSONs/pokemon/all_pokemon_1.json" assert { type: "json" };
+import pokemonData2 from "../table_JSONs/pokemon/all_pokemon_2.json" assert { type: "json" };
+import pokemonData3 from "../table_JSONs/pokemon/all_pokemon_3.json" assert { type: "json" };
+import pokemonData4 from "../table_JSONs/pokemon/all_pokemon_4.json" assert { type: "json" };
+import pokemonData5 from "../table_JSONs/pokemon/all_pokemon_5.json" assert { type: "json" };
+import pokemonData6 from "../table_JSONs/pokemon/all_pokemon_6.json" assert { type: "json" };
 
 // due to memory constraints on ec2 instance, I had to
 
@@ -103,36 +103,36 @@ const pokemonInDB = await Promise.all(
 
     const newPokemon = await Pokemon.create({
       pokemonId: id,
-      name,
+      name: name,
       baseExperience: base_experience,
-      height,
+      height: height,
       isDefault: is_default,
-      order,
-      weight,
-      abilityId,
-      ability2Id,
-      ability3Id,
-      officialArtwork,
-      officialArtworkShiny,
-      giph,
-      giphFemale,
-      giphShiny,
-      giphFemaleShiny,
-      legacyIcon,
-      legacyIconFemale,
-      latestIcon,
-      latestIconFemale,
-      latestCry,
-      legacyCry,
-      baseHp,
-      baseAttack,
-      baseDefense,
-      baseSpecialAttack,
-      baseSpecialDefense,
-      baseSpeed,
-      typeId,
-      type2Id,
-      speciesId,
+      order: order,
+      weight: weight,
+      abilityId: abilityId,
+      ability2Id: ability2Id,
+      ability3Id: ability3Id,
+      officialArtwork: officialArtwork,
+      officialArtworkShiny: officialArtworkShiny,
+      giph: giph,
+      giphFemale: giphFemale,
+      giphShiny: giphShiny,
+      giphFemaleShiny: giphFemaleShiny,
+      legacyIcon: legacyIcon,
+      legacyIconFemale: legacyIconFemale,
+      latestIcon: latestIcon,
+      latestIconFemale: latestIconFemale,
+      latestCry: latestCry,
+      legacyCry: legacyCry,
+      baseHp: baseHp,
+      baseAttack: baseAttack,
+      baseDefense: baseDefense,
+      baseSpecialAttack: baseSpecialAttack,
+      baseSpecialDefense: baseSpecialDefense,
+      baseSpeed: baseSpeed,
+      typeId: typeId,
+      type2Id: type2Id,
+      speciesId: speciesId,
     });
 
     return newPokemon;

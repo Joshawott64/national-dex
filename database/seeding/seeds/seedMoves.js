@@ -1,9 +1,9 @@
 import db, { Move } from "../../model.js";
-import moveData0 from "../table_JSONs/moves/all_moves_0.json" with { type: "json" };
-import moveData1 from "../table_JSONs/moves/all_moves_1.json" with { type: "json" };
-import moveData2 from "../table_JSONs/moves/all_moves_2.json" with { type: "json" };
-import moveData3 from "../table_JSONs/moves/all_moves_3.json" with { type: "json" };
-import moveData4 from "../table_JSONs/moves/all_moves_4.json" with { type: "json" };
+import moveData0 from "../table_JSONs/moves/all_moves_0.json" assert { type: "json" };
+import moveData1 from "../table_JSONs/moves/all_moves_1.json" assert { type: "json" };
+import moveData2 from "../table_JSONs/moves/all_moves_2.json" assert { type: "json" };
+import moveData3 from "../table_JSONs/moves/all_moves_3.json" assert { type: "json" };
+import moveData4 from "../table_JSONs/moves/all_moves_4.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Move.sync({ force: true });

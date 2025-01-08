@@ -1,6 +1,6 @@
 import db, { Ability } from "../../model.js";
-import abilityData0 from "../table_JSONs/abilities/all_abilities_0.json" with { type: "json" };
-import abilityData1 from "../table_JSONs/abilities/all_abilities_1.json" with { type: "json" };
+import abilityData0 from "../table_JSONs/abilities/all_abilities_0.json" assert { type: "json" };
+import abilityData1 from "../table_JSONs/abilities/all_abilities_1.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Ability.sync({ force: true });
