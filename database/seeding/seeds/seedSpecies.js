@@ -1,13 +1,24 @@
 import db, { Species, DexEntry } from "../../model.js";
-import pokemonSpeciesData0 from "../table_JSONs/species/all_pokemon_species_0.json" with { type: "json" };
-import pokemonSpeciesData1 from "../table_JSONs/species/all_pokemon_species_1.json" with { type: "json" };
+import pokemonSpeciesData0 from "../table_JSONs/species/all_pokemon_species_0.json" assert { type: "json" };
+import pokemonSpeciesData1 from "../table_JSONs/species/all_pokemon_species_1.json" assert { type: "json" };
+import pokemonSpeciesData2 from "../table_JSONs/species/all_pokemon_species_2.json" assert { type: "json" };
+import pokemonSpeciesData3 from "../table_JSONs/species/all_pokemon_species_3.json" assert { type: "json" };
+import pokemonSpeciesData4 from "../table_JSONs/species/all_pokemon_species_4.json" assert { type: "json" };
+import pokemonSpeciesData5 from "../table_JSONs/species/all_pokemon_species_5.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Species.sync({ force: true });
 await DexEntry.sync({ force: true });
 console.log("Seeding species...");
 
-const allPokemonSpecies = [...pokemonSpeciesData0, ...pokemonSpeciesData1];
+const allPokemonSpecies = [
+  ...pokemonSpeciesData0,
+  ...pokemonSpeciesData1,
+  ...pokemonSpeciesData2,
+  ...pokemonSpeciesData3,
+  ...pokemonSpeciesData4,
+  ...pokemonSpeciesData5,
+];
 
 const speciesInDB = await Promise.all(
   allPokemonSpecies.map(async (species) => {
@@ -35,15 +46,16 @@ const speciesInDB = await Promise.all(
     const hasGenderDifferences = species["has_gender_differences"];
 
     const newSpecies = await Species.create({
-      name,
-      generationId,
-      dexNumber,
-      isBaby,
-      isLegendary,
-      isMythical,
-      formsSwitchable,
-      genus,
-      hasGenderDifferences,
+      speciesId: species.id,
+      name: name,
+      generationId: generationId,
+      dexNumber: dexNumber,
+      isBaby: isBaby,
+      isLegendary: isLegendary,
+      isMythical: isMythical,
+      formsSwitchable: formsSwitchable,
+      genus: genus,
+      hasGenderDifferences: hasGenderDifferences,
     });
 
     // create dex entries table entries
@@ -58,10 +70,10 @@ const speciesInDB = await Promise.all(
         const speciesId = species.id;
 
         const newDexEntry = await DexEntry.create({
-          dexEntry,
-          language,
-          versionId,
-          speciesId,
+          dexEntry: dexEntry,
+          language: language,
+          versionId: versionId,
+          speciesId: speciesId,
         });
 
         return newDexEntry;

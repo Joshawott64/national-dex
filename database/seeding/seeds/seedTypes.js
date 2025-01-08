@@ -1,5 +1,5 @@
 import db, { Type } from "../../model.js";
-import typeData from "../table_JSONs/types/all_types_0.json" with { type: "json" };
+import typeData from "../table_JSONs/types/all_types_0.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Type.sync({ force: true });

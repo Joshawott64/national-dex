@@ -1,5 +1,5 @@
 import db, { Generation } from "../../model.js";
-import generationData from "../table_JSONs/generations/all_generations_0.json" with { type: "json" };
+import generationData from "../table_JSONs/generations/all_generations_0.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Generation.sync({ force: true });

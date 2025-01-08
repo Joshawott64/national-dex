@@ -1,5 +1,5 @@
 import db, { Version } from "../../model.js";
-import versionData from "../table_JSONs/versions/all_versions_0.json" with { type: "json" };
+import versionData from "../table_JSONs/versions/all_versions_0.json" assert { type: "json" };
 
 console.log("Syncing database...");
 await Version.sync({ force: true });
