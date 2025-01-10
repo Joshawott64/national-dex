@@ -78,7 +78,16 @@ function App() {
       <div className="flex flex-col justify-start h-full w-full pt-24 pb-20">
         <Outlet context={[setShowLogin, setShowDeleteUser]} />
         <div className="flex justify-center place-items-center w-full">
-          <p className="p-6 drop-shadow-lg">BuyMeACoffee Link</p>
+          <p className="p-6 drop-shadow-lg">
+            Want to support NationalDex?{" "}
+            <a
+              href="https://buymeacoffee.com/joshuagrayu"
+              target="_blank"
+              className="text-primary-darkened underline-offset-2 hover:text-primary hover:underline transition-colors duration-200"
+            >
+              BuyMeACoffee
+            </a>
+          </p>
         </div>
       </div>
     </div>
