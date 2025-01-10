@@ -4,9 +4,48 @@ const EvolutionChain = ({ evolutionChainData }) => {
   // invoke useNavigate
   const navigate = useNavigate();
 
+  console.log("evolutionChainData:", evolutionChainData);
+
   // map over evolutionChainData
   const evolutionList = evolutionChainData.map((evolution) => {
+    let imageUrl = "";
     let flavorText = "";
+
+    // assign imageUrl
+    if (evolution.alolan) {
+      imageUrl =
+        evolution.species.pokemons[
+          evolution.species.pokemons.findIndex((pokemon) =>
+            pokemon.name.includes("alola")
+          )
+        ].officialArtwork;
+    } else if (evolution.galarian) {
+      imageUrl =
+        evolution.species.pokemons[
+          evolution.species.pokemons.findIndex((pokemon) =>
+            pokemon.name.includes("galar")
+          )
+        ].officialArtwork;
+    } else if (evolution.hisuian) {
+      imageUrl =
+        evolution.species.pokemons[
+          evolution.species.pokemons.findIndex((pokemon) =>
+            pokemon.name.includes("hisui")
+          )
+        ].officialArtwork;
+    } else if (evolution.paldean) {
+      imageUrl =
+        evolution.species.pokemons[
+          evolution.species.pokemons.findIndex((pokemon) =>
+            pokemon.name.includes("paldea")
+          )
+        ].officialArtwork;
+    } else {
+      imageUrl =
+        evolution.species.pokemons[
+          evolution.species.pokemons.findIndex((pokemon) => pokemon.isDefault)
+        ].officialArtwork;
+    }
 
     // reassign flavor text based on evolution trigger
     switch (evolution.trigger) {
@@ -76,7 +115,7 @@ const EvolutionChain = ({ evolutionChainData }) => {
         flavorText = "Take damage";
         break;
       case "other":
-        flavorText = "!!!!!!!!! [Kingambit] !!!!!!!!!";
+        flavorText = "KO 3 Bisharp hldg Leader's Crest";
         break;
       case null:
         evolution.chain.babyTriggerItem
@@ -96,7 +135,7 @@ const EvolutionChain = ({ evolutionChainData }) => {
         onClick={() => navigate(`/pokemon/${evolution.speciesId}`)}
       >
         <img
-          src={evolution.species.pokemons[0].officialArtwork}
+          src={imageUrl}
           alt={evolution.species.name}
           className="flex-1 w-16 md:w-20"
         />
