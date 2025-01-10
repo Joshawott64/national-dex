@@ -4,8 +4,6 @@ const EvolutionChain = ({ evolutionChainData }) => {
   // invoke useNavigate
   const navigate = useNavigate();
 
-  console.log("evolutionChainData:", evolutionChainData);
-
   // map over evolutionChainData
   const evolutionList = evolutionChainData.map((evolution) => {
     let imageUrl = "";
