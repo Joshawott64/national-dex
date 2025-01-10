@@ -33,11 +33,25 @@ const AboutPage = () => {
           <p className="text-xl xl:text-2xl font-semibold drop-shadow-lg">
             Donations:
           </p>
-          <div className="w-full p-2 bg-primary border-2 border-text-dark rounded-lg drop-shadow-lg">
+          <div className="place-self-start w-11/12 p-2 bg-primary border-2 border-text-dark rounded-lg drop-shadow-lg">
             <p className="xl:text-lg text-text-light drop-shadow-lg">
-              Should you wish to support this website, I have set up a
-              BuyMeACoffee tip jar. Don't ever feel obligated to donate, this is
-              only here for those that want to.
+              Donations on{" "}
+              <a
+                href="https://buymeacoffee.com/joshuagrayu"
+                target="_blank"
+                className="hover:underline underline-offset-2"
+              >
+                BuyMeACoffee
+              </a>{" "}
+              are always appreciated, but never expected. NationalDex.net will
+              always be free to use.
+            </p>
+          </div>
+          <div className="place-self-end w-11/12 p-2 bg-primary border-2 border-text-dark rounded-lg drop-shadow-lg">
+            <p className="xl:text-lg text-text-light drop-shadow-lg">
+              Should this project ever take off, donations will be used to cover
+              operating costs to help keep the website ad-free. My aim is to
+              provide a good user experience first and foremost.
             </p>
           </div>
         </div>
