@@ -10,7 +10,7 @@ const allAbilities = [...abilityData0, ...abilityData1];
 
 const abilitiesInDB = await Promise.all(
   allAbilities.map(async (ability) => {
-    const { name } = ability;
+    const { id, name } = ability;
     // not every move has an effect and shortEffect
     let effect = "";
     let shortEffect = "";
@@ -33,6 +33,7 @@ const abilitiesInDB = await Promise.all(
     }
 
     const newAbility = await Ability.create({
+      abilityId: id,
       name,
       effect,
       shortEffect,

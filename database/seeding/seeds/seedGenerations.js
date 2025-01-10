@@ -7,10 +7,12 @@ console.log("Seeding generations...");
 
 const generationsInDB = await Promise.all(
   generationData.map(async (generation) => {
+    const genId = generation.id;
     const genName = generation.name;
     const regionName = generation.main_region.name;
 
     const newGeneration = await Generation.create({
+      generationId: genId,
       genName,
       regionName,
     });

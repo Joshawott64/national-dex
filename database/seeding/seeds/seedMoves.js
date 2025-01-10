@@ -61,7 +61,7 @@ const movesInDB = await Promise.all(
       statChance = move.meta.stat_chance;
     }
 
-    const { name, accuracy, effect_chance, pp, priority, power } = move;
+    const { id, name, accuracy, effect_chance, pp, priority, power } = move;
 
     const damageClass = move.damage_class.name;
     const target = move.target.name;
@@ -75,6 +75,7 @@ const movesInDB = await Promise.all(
     );
 
     const newMove = await Move.create({
+      moveId: id,
       name: name
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

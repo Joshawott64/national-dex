@@ -7,6 +7,7 @@ console.log("Seeding versions...");
 
 const versionsInDB = await Promise.all(
   versionData.map(async (version) => {
+    const id = version.id;
     const name =
       version.names[
         version.names.findIndex((name) => {
@@ -14,7 +15,7 @@ const versionsInDB = await Promise.all(
         })
       ].name;
 
-    const newVersion = await Version.create({ name });
+    const newVersion = await Version.create({ versionId: id, name });
 
     return newVersion;
   })
