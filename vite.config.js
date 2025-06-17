@@ -14,7 +14,7 @@ export default defineConfig({
   //   },
   // },
   server: {
-    allowedHosts: true,
+    allowedHosts: [".nationaldex.net"],
   },
   plugins: [react()],
 });
