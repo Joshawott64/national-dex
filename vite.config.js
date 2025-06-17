@@ -7,7 +7,8 @@ export default defineConfig({
     vite: () => {
       return {
         server: {
-          allowedHosts: ["nationaldex.net"],
+          // allowedHosts: ["nationaldex.net"],
+          allowedHosts: true,
         },
       };
     },
